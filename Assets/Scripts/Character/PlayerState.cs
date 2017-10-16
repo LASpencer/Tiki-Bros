@@ -89,9 +89,8 @@ public abstract class AirState : PlayerState
 
     public override void Update()
     {
-        //TODO apply gravity
         //TODO air movement
-        //TODO on grounding, exit to Idle
+        //TODO on grounding, exit to Idle or Running based on speed
     }
 
     public override void OnExit()
