@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-enum EPlayerStates
+public enum EPlayerStates
 {
     Idle,
     Run,
@@ -13,8 +13,8 @@ enum EPlayerStates
 
 public abstract class PlayerState  {
 
-    private PlayerController player;
-    PlayerController Player { get { return Player; } }
+    protected PlayerController player;
+    public PlayerController Player { get { return Player; } }
 
     public PlayerState(PlayerController player)
     {
@@ -36,7 +36,9 @@ public class IdleState : PlayerState
 
     public override void OnEnter()
     {
-
+        //TODO if entry condition changes, may not need to kill velocity
+        //player.velocity.x = 0;
+        //player.velocity.z = 0;
     }
 
     public override void OnExit()
@@ -47,9 +49,20 @@ public class IdleState : PlayerState
     {
         //TODO exiting to other states
         // Exit to running on horizontal/vertical input
+        if(Input.GetAxis("Vertical") != 0 || Input.GetAxis("Horizontal") != 0)
+        {
+            player.ChangeState(EPlayerStates.Run);
+        }
         // Exit to jump on jump press
+        if (Input.GetButtonDown("Jump"))
+        {
+            player.ChangeState(EPlayerStates.Jump);
+        }
         // Exit to falling on not grounded
-        throw new NotImplementedException();
+        if (!player.controller.isGrounded)
+        {
+            player.ChangeState(EPlayerStates.Falling);
+        }
     }
 }
 
@@ -61,21 +74,37 @@ public class RunState : PlayerState
 
     public override void OnEnter()
     {
-        throw new NotImplementedException();
+        
     }
 
     public override void OnExit()
     {
-        throw new NotImplementedException();
+        
     }
 
     public override void Update()
     {
-        //TODO movement
+        //TODO write a more fluid movement (accellerate in/decellerate out)
+        Vector3 inputDirection = player.transform.forward * Input.GetAxis("Vertical") + player.transform.right * Input.GetAxis("Horizontal");
+        Vector3 move = inputDirection.normalized * player.GroundSpeed;
+        player.velocity.x = move.x;
+        player.velocity.z = move.z;
         //TODO exit to jump on jump press
+        if (Input.GetButtonDown("Jump"))
+        {
+            player.ChangeState(EPlayerStates.Jump);
+        }
         // Exit to falling on not grounded
+        if (!player.controller.isGrounded)
+        {
+            player.ChangeState(EPlayerStates.Falling);
+        }
         // Exit to idle on not moving
-        throw new NotImplementedException();
+        //TODO rewrite if movement rewritten
+        if (Input.GetAxis("Vertical") == 0 && Input.GetAxis("Horizontal") == 0)
+        {
+            player.ChangeState(EPlayerStates.Idle);
+        }
     }
 }
 
@@ -89,13 +118,17 @@ public abstract class AirState : PlayerState
 
     public override void Update()
     {
-        //TODO air movement
+        //TODO air movement applying force, not just set speed
+        Vector3 inputDirection = player.transform.forward * Input.GetAxis("Vertical") + player.transform.right * Input.GetAxis("Horizontal");
+        Vector3 move = inputDirection.normalized * player.AirSpeed;
+        player.velocity.x = move.x;
+        player.velocity.z = move.z;
         //TODO on grounding, exit to Idle or Running based on speed
-    }
-
-    public override void OnExit()
-    {
-        //TODO y speed = 0
+        if(player.controller.isGrounded)
+        {
+            //TODO exit to idle instead if stopped
+            player.ChangeState(EPlayerStates.Run);
+        }
     }
 }
 
@@ -108,18 +141,19 @@ public class JumpState : AirState
     public override void OnEnter()
     {
         //TODO apply velocity upward
-        throw new NotImplementedException();
+        //TODO keep applying force while button held, until finished time to reach max jump height
+        player.velocity.y = player.jumpForce;
     }
 
     public override void Update()
     {
+        // TODO keep applying up force while jump held (GetKey), until time finished
         // TODO double jump?
         base.Update();
     }
 
     public override void OnExit()
     {
-        base.OnExit();
     }
 }
 
@@ -131,6 +165,16 @@ public class FallingState : AirState
 
     public override void OnEnter()
     {
-        throw new NotImplementedException();
+        
+    }
+
+    public override void Update()
+    {
+        base.Update();
+    }
+
+    public override void OnExit()
+    {
+        
     }
 }
