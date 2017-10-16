@@ -21,6 +21,8 @@ public abstract class PlayerState  {
         this.player = player;
     }
 
+    abstract public void CheckTransition();
+
     abstract public void OnEnter();
 
     abstract public void Update();
@@ -34,22 +36,10 @@ public class IdleState : PlayerState
     {
     }
 
-    public override void OnEnter()
+    public override void CheckTransition()
     {
-        //TODO if entry condition changes, may not need to kill velocity
-        //player.velocity.x = 0;
-        //player.velocity.z = 0;
-    }
-
-    public override void OnExit()
-    {
-    }
-
-    public override void Update()
-    {
-        //TODO exiting to other states
         // Exit to running on horizontal/vertical input
-        if(Input.GetAxis("Vertical") != 0 || Input.GetAxis("Horizontal") != 0)
+        if (Input.GetAxis("Vertical") != 0 || Input.GetAxis("Horizontal") != 0)
         {
             player.ChangeState(EPlayerStates.Run);
         }
@@ -64,12 +54,49 @@ public class IdleState : PlayerState
             player.ChangeState(EPlayerStates.Falling);
         }
     }
+
+    public override void OnEnter()
+    {
+        //TODO if entry condition changes, may not need to kill velocity
+        player.velocity.x = 0;
+        player.velocity.z = 0;
+    }
+
+    public override void OnExit()
+    {
+    }
+
+    public override void Update()
+    {
+        //TODO exiting to other states
+        
+    }
 }
 
 public class RunState : PlayerState
 {
     public RunState(PlayerController player) : base(player)
     {
+    }
+
+    public override void CheckTransition()
+    {
+        //TODO exit to jump on jump press
+        if (Input.GetButtonDown("Jump"))
+        {
+            player.ChangeState(EPlayerStates.Jump);
+        }
+        // Exit to falling on not grounded
+        if (!player.controller.isGrounded)
+        {
+            player.ChangeState(EPlayerStates.Falling);
+        }
+        // Exit to idle on not moving
+        //TODO rewrite if movement rewritten
+        if (Input.GetAxis("Vertical") == 0 && Input.GetAxis("Horizontal") == 0)
+        {
+            player.ChangeState(EPlayerStates.Idle);
+        }
     }
 
     public override void OnEnter()
@@ -89,22 +116,7 @@ public class RunState : PlayerState
         Vector3 move = inputDirection.normalized * player.GroundSpeed;
         player.velocity.x = move.x;
         player.velocity.z = move.z;
-        //TODO exit to jump on jump press
-        if (Input.GetButtonDown("Jump"))
-        {
-            player.ChangeState(EPlayerStates.Jump);
-        }
-        // Exit to falling on not grounded
-        if (!player.controller.isGrounded)
-        {
-            player.ChangeState(EPlayerStates.Falling);
-        }
-        // Exit to idle on not moving
-        //TODO rewrite if movement rewritten
-        if (Input.GetAxis("Vertical") == 0 && Input.GetAxis("Horizontal") == 0)
-        {
-            player.ChangeState(EPlayerStates.Idle);
-        }
+        
     }
 }
 
@@ -115,7 +127,14 @@ public abstract class AirState : PlayerState
     {
     }
 
-
+    public override void CheckTransition()
+    {
+        if (player.controller.isGrounded)
+        {
+            //TODO exit to idle instead if stopped?
+            player.ChangeState(EPlayerStates.Run);
+        }
+    }
     public override void Update()
     {
         //TODO air movement applying force, not just set speed
@@ -123,12 +142,6 @@ public abstract class AirState : PlayerState
         Vector3 move = inputDirection.normalized * player.AirSpeed;
         player.velocity.x = move.x;
         player.velocity.z = move.z;
-        //TODO on grounding, exit to Idle or Running based on speed
-        if(player.controller.isGrounded)
-        {
-            //TODO exit to idle instead if stopped
-            player.ChangeState(EPlayerStates.Run);
-        }
     }
 }
 

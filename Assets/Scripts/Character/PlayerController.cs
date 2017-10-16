@@ -71,6 +71,7 @@ public class PlayerController : MonoBehaviour
 
         velocity = controller.velocity;
 
+        currentState.CheckTransition();
         currentState.Update();
 
         // Apply gravity
