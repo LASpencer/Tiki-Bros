@@ -116,7 +116,7 @@ public class RunState : PlayerState
         Vector3 move = inputDirection.normalized * player.GroundSpeed;
         player.velocity.x = move.x;
         player.velocity.z = move.z;
-        
+        //TODO figure out how to stop bouncing on hills
     }
 }
 
