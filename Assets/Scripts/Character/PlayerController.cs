@@ -25,13 +25,22 @@ public class PlayerController : MonoBehaviour
 
     private Vector3 moveDirection;
 
-//  public Rigidbody playerRB;
-
+    // States
+    private Dictionary<EPlayerStates, PlayerState> states;
+    private PlayerState currentState;
 
 	// Use this for initialization
 	void Start () {
         controller = GetComponent<CharacterController>();
-//        playerRB = GetComponent<Rigidbody>();
+
+        // Set up player states
+        states = new Dictionary<EPlayerStates, PlayerState>();
+        states.Add(EPlayerStates.Idle, new IdleState(this));
+        states.Add(EPlayerStates.Run, new RunState(this));
+        states.Add(EPlayerStates.Jump, new JumpState(this));
+        states.Add(EPlayerStates.Falling, new FallingState(this));
+
+        currentState = states[EPlayerStates.Idle];
 
 	}
 	
