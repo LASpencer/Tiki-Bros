@@ -5,11 +5,20 @@ using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
 {
-    public float GroundSpeed;
-    public float AirSpeed; // TODO not yet implemented
-    public float jumpForce;
+    public float GroundSpeed; 
+    public float AirSpeed; // TODO change to air accelleration
     public float gravityScale;
 	public int treasureColleceted;
+
+    private float jumpVelocity;     // Initial velocity at start of jump
+    private float jumpHoldForce;    // Force applied while holding jump
+
+    public float JumpVelocity { get { return jumpVelocity; } }
+    public float JumpHoldForce { get { return jumpHoldForce; } }
+
+    public float MinJumpHeight;
+    public float MaxJumpHeight;
+    public float JumpChargeTime;
 
 	[Header ("Lives")]
 	public int currentlives;
@@ -44,6 +53,7 @@ public class PlayerController : MonoBehaviour
         currentState = states[EPlayerStates.Idle];
         stateName = EPlayerStates.Idle;
 
+        velocity = new Vector3();
 	}
 	
 	// Update is called once per frame
@@ -69,8 +79,6 @@ public class PlayerController : MonoBehaviour
 
         //controller.Move(moveDirection * Time.deltaTime);
 
-        velocity = controller.velocity;
-
         currentState.CheckTransition();
         currentState.Update();
 
@@ -88,5 +96,13 @@ public class PlayerController : MonoBehaviour
         currentState.OnExit();
         currentState = states[state];
         currentState.OnEnter();
+    }
+
+    public void CalculateJumpParameters()
+    {
+        float g = Physics.gravity.magnitude * gravityScale;
+        jumpVelocity = Mathf.Sqrt(2.0f * MinJumpHeight * g);
+        // HACK pretty sure following equation is wrong
+        jumpHoldForce = g + 2.0f * JumpChargeTime * (g * (MaxJumpHeight - MinJumpHeight) - jumpVelocity * JumpChargeTime) / (JumpChargeTime * JumpChargeTime);
     }
 }

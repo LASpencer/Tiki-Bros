@@ -143,30 +143,61 @@ public abstract class AirState : PlayerState
         player.velocity.x = move.x;
         player.velocity.z = move.z;
     }
+
+    public override void OnExit()
+    {
+        player.velocity.y = 0;
+    }
 }
 
 public class JumpState : AirState
 {
+    float TimeInJump = 0;
+    bool InUpswing = false;
+
     public JumpState(PlayerController player) : base(player)
     {
     }
 
     public override void OnEnter()
     {
+        player.CalculateJumpParameters();       //TODO figure out how to only do it once, or just move this to player.start() and ignore field changes at runtime
         //TODO apply velocity upward
         //TODO keep applying force while button held, until finished time to reach max jump height
-        player.velocity.y = player.jumpForce;
+        player.velocity.y = player.JumpVelocity;
+        TimeInJump = 0;
+        InUpswing = true;
+
     }
 
     public override void Update()
     {
-        // TODO keep applying up force while jump held (GetKey), until time finished
         // TODO double jump?
         base.Update();
+        TimeInJump += Time.deltaTime;
+        // Increase jump height while jump held
+        if (InUpswing)
+        {
+            if (Input.GetButton("Jump"))
+            {
+                // apply up force
+                player.velocity.y += player.JumpHoldForce * Time.deltaTime;
+                if(TimeInJump > player.JumpChargeTime)
+                {
+                    InUpswing = false;
+                    player.velocity.y += player.JumpHoldForce * (player.JumpChargeTime - TimeInJump);
+                }
+            } else
+            {
+                InUpswing = false;
+            }
+        }
     }
 
     public override void OnExit()
     {
+        InUpswing = false;
+        base.OnExit();
     }
 }
 
@@ -178,7 +209,7 @@ public class FallingState : AirState
 
     public override void OnEnter()
     {
-        
+ 
     }
 
     public override void Update()
@@ -188,6 +219,6 @@ public class FallingState : AirState
 
     public override void OnExit()
     {
-        
+        base.OnExit();
     }
 }
