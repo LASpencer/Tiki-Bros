@@ -23,11 +23,12 @@ public class PlayerController : MonoBehaviour
 
     public CharacterController controller;
 
-    private Vector3 moveDirection;
+    public Vector3 velocity;
 
     // States
     private Dictionary<EPlayerStates, PlayerState> states;
-    private PlayerState currentState;
+    public PlayerState currentState;
+    public EPlayerStates stateName; //HACK
 
 	// Use this for initialization
 	void Start () {
@@ -41,32 +42,51 @@ public class PlayerController : MonoBehaviour
         states.Add(EPlayerStates.Falling, new FallingState(this));
 
         currentState = states[EPlayerStates.Idle];
+        stateName = EPlayerStates.Idle;
 
 	}
 	
 	// Update is called once per frame
 	void Update ()
-    { 
-        float yStore = moveDirection.y;
-        //Debug.Log("vert: " + Input.GetAxis("Vertical") + " horiz: " + Input.GetAxis("Horizontal"));
-        moveDirection = (transform.forward * Input.GetAxis("Vertical")) + (transform.right * Input.GetAxis("Horizontal"));
-        //moveDirection = moveDirection.normalized * moveSpeed;
-        moveDirection = Vector3.ClampMagnitude(moveDirection, 1f) * GroundSpeed;
-        moveDirection.y = yStore;
+    {
+        //float yStore = moveDirection.y;
+        ////Debug.Log("vert: " + Input.GetAxis("Vertical") + " horiz: " + Input.GetAxis("Horizontal"));
+        //moveDirection = (transform.forward * Input.GetAxis("Vertical")) + (transform.right * Input.GetAxis("Horizontal"));
+        ////moveDirection = moveDirection.normalized * moveSpeed;
+        //moveDirection = Vector3.ClampMagnitude(moveDirection, 1f) * GroundSpeed;
+        //moveDirection.y = yStore;
 
-        if (controller.isGrounded)
-        {
-            moveDirection.y = 0f;
-            if (Input.GetButtonDown("Jump"))
-            {
-                moveDirection.y = jumpForce;
-            }
-        }
+        //if (controller.isGrounded)
+        //{
+        //    moveDirection.y = 0f;
+        //    if (Input.GetButtonDown("Jump"))
+        //    {
+        //        moveDirection.y = jumpForce;
+        //    }
+        //}
 
-        moveDirection.y = moveDirection.y + (Physics.gravity.y * gravityScale * Time.deltaTime);
+        //moveDirection.y = moveDirection.y + (Physics.gravity.y * gravityScale * Time.deltaTime);
 
-        controller.Move(moveDirection * Time.deltaTime);
+        //controller.Move(moveDirection * Time.deltaTime);
+
+        velocity = controller.velocity;
+
+        currentState.CheckTransition();
+        currentState.Update();
+
+        // Apply gravity
+        velocity.y += Physics.gravity.y * gravityScale * Time.deltaTime;
+
+        controller.Move(velocity * Time.deltaTime);
 
 		livesText.text = "Lives Remaining: " + currentlives + " / " + maxlives ;
+    }
+
+    public void ChangeState(EPlayerStates state)
+    {
+        stateName = state; //HACK
+        currentState.OnExit();
+        currentState = states[state];
+        currentState.OnEnter();
     }
 }
