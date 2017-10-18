@@ -117,6 +117,8 @@ public class RunState : PlayerState
         player.velocity.x = move.x;
         player.velocity.z = move.z;
         //TODO figure out how to stop bouncing on hills
+        // Maybe use raycast/capsulecast to check if ground within margin of error, and if so move down to force collision (do in PlayerController)
+        // Alternately, just treat that as being grounded for state change purpose
     }
 }
 
@@ -146,7 +148,6 @@ public abstract class AirState : PlayerState
 
     public override void OnExit()
     {
-        player.velocity.y = 0;
     }
 }
 
@@ -162,8 +163,7 @@ public class JumpState : AirState
     public override void OnEnter()
     {
         player.CalculateJumpParameters();       //TODO figure out how to only do it once, or just move this to player.start() and ignore field changes at runtime
-        //TODO apply velocity upward
-        //TODO keep applying force while button held, until finished time to reach max jump height
+        //apply velocity upward
         player.velocity.y = player.JumpVelocity;
         TimeInJump = 0;
         InUpswing = true;
@@ -180,14 +180,17 @@ public class JumpState : AirState
         {
             if (Input.GetButton("Jump"))
             {
-                // apply up force
-                player.velocity.y += player.JumpHoldForce * Time.deltaTime;
-                if(TimeInJump > player.JumpChargeTime)
-                {
-                    InUpswing = false;
-                    player.velocity.y += player.JumpHoldForce * (player.JumpChargeTime - TimeInJump);
-                }
-            } else
+                //// apply up force
+                //// TODO apply force upward while button still held
+                ////HACK commented out until proper calculation figured out
+                //player.velocity.y += player.JumpHoldForce * Time.deltaTime;
+                //if (TimeInJump > player.JumpChargeTime)
+                //{
+                //    InUpswing = false;
+                //    player.velocity.y += player.JumpHoldForce * (player.JumpChargeTime - TimeInJump);
+                //}
+            }
+            else
             {
                 InUpswing = false;
             }

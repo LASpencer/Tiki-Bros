@@ -86,13 +86,18 @@ public class PlayerController : MonoBehaviour
         velocity.y += Physics.gravity.y * gravityScale * Time.deltaTime;
 
         controller.Move(velocity * Time.deltaTime);
+        
+        if (controller.isGrounded)
+        {
+            velocity.y = 0f;
+        }
 
 		livesText.text = "Lives Remaining: " + currentlives + " / " + maxlives ;
     }
 
     public void ChangeState(EPlayerStates state)
     {
-        stateName = state; //HACK
+        stateName = state; //HACK may want to just save stateName and not the actual state
         currentState.OnExit();
         currentState = states[state];
         currentState.OnEnter();
@@ -102,7 +107,10 @@ public class PlayerController : MonoBehaviour
     {
         float g = Physics.gravity.magnitude * gravityScale;
         jumpVelocity = Mathf.Sqrt(2.0f * MinJumpHeight * g);
-        // HACK pretty sure following equation is wrong
-        jumpHoldForce = g + 2.0f * JumpChargeTime * (g * (MaxJumpHeight - MinJumpHeight) - jumpVelocity * JumpChargeTime) / (JumpChargeTime * JumpChargeTime);
+        // HACK equation is still wrong
+        float discriminant = g * (g * JumpChargeTime * JumpChargeTime + 8 * jumpVelocity - 12 * jumpVelocity * JumpChargeTime - 8 * MaxJumpHeight);
+        // TODO check discriminant is positive / work out valid limit on MaxJumpHeight makes sense
+
+        jumpHoldForce = (g * JumpChargeTime - 2 * jumpVelocity + Mathf.Sqrt(discriminant)) / (2 * JumpChargeTime);
     }
 }
