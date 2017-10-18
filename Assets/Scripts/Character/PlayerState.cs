@@ -113,7 +113,7 @@ public class RunState : PlayerState
     {
         //TODO write a more fluid movement (accellerate in/decellerate out)
         Vector3 inputDirection = player.transform.forward * Input.GetAxis("Vertical") + player.transform.right * Input.GetAxis("Horizontal");
-        Vector3 move = inputDirection.normalized * player.GroundSpeed;
+        Vector3 move = Vector3.ClampMagnitude(inputDirection, 1.0f) * player.GroundSpeed;
         player.velocity.x = move.x;
         player.velocity.z = move.z;
         //TODO figure out how to stop bouncing on hills
@@ -141,7 +141,7 @@ public abstract class AirState : PlayerState
     {
         //TODO air movement applying force, not just set speed
         Vector3 inputDirection = player.transform.forward * Input.GetAxis("Vertical") + player.transform.right * Input.GetAxis("Horizontal");
-        Vector3 move = inputDirection.normalized * player.AirSpeed;
+        Vector3 move = Vector3.ClampMagnitude(inputDirection, 1.0f) * player.AirSpeed;
         player.velocity.x = move.x;
         player.velocity.z = move.z;
     }

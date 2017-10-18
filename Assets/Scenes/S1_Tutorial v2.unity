@@ -7068,12 +7068,12 @@ Prefab:
     - target: {fileID: 114903373285072742, guid: 1b7c814d448a5ad4c97c03f7fb3ec3af,
         type: 2}
       propertyPath: GroundSpeed
-      value: 8
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 114903373285072742, guid: 1b7c814d448a5ad4c97c03f7fb3ec3af,
         type: 2}
       propertyPath: AirSpeed
-      value: 8
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 143759935014189270, guid: 1b7c814d448a5ad4c97c03f7fb3ec3af,
         type: 2}
