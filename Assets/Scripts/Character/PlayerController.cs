@@ -106,11 +106,11 @@ public class PlayerController : MonoBehaviour
     public void CalculateJumpParameters()
     {
         float g = Physics.gravity.magnitude * gravityScale;
+        float t = JumpChargeTime;
         jumpVelocity = Mathf.Sqrt(2.0f * MinJumpHeight * g);
         // HACK equation is still wrong
-        float discriminant = g * (g * JumpChargeTime * JumpChargeTime + 8 * jumpVelocity - 12 * jumpVelocity * JumpChargeTime - 8 * MaxJumpHeight);
-        // TODO check discriminant is positive / work out valid limit on MaxJumpHeight makes sense
-
-        jumpHoldForce = (g * JumpChargeTime - 2 * jumpVelocity + Mathf.Sqrt(discriminant)) / (2 * JumpChargeTime);
+        float discriminant = 4.25f * Mathf.Pow(g, 2) * Mathf.Pow(t, 4) + 8 * g * MaxJumpHeight * Mathf.Pow(t, 2) - 6 * JumpVelocity * g * Mathf.Pow(t, 3);
+        // TODO check discriminant positive, figure out other checks
+        jumpHoldForce = (1.5f * g * Mathf.Pow(t, 2) - 2 * JumpVelocity * t + Mathf.Sqrt(discriminant)) / (2 * Mathf.Pow(t,2));
     }
 }

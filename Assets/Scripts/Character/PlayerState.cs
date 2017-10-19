@@ -180,15 +180,15 @@ public class JumpState : AirState
         {
             if (Input.GetButton("Jump"))
             {
-                //// apply up force
-                //// TODO apply force upward while button still held
-                ////HACK commented out until proper calculation figured out
-                //player.velocity.y += player.JumpHoldForce * Time.deltaTime;
-                //if (TimeInJump > player.JumpChargeTime)
-                //{
-                //    InUpswing = false;
-                //    player.velocity.y += player.JumpHoldForce * (player.JumpChargeTime - TimeInJump);
-                //}
+                // apply up force
+                // TODO apply force upward while button still held
+                //HACK commented out until proper calculation figured out
+                player.velocity.y += player.JumpHoldForce * Time.deltaTime;
+                if (TimeInJump > player.JumpChargeTime)
+                {
+                    InUpswing = false;
+                    player.velocity.y += player.JumpHoldForce * (player.JumpChargeTime - TimeInJump);
+                }
             }
             else
             {
