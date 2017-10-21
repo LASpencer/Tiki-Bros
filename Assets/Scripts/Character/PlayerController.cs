@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+//TODO: On head colliding with roof (or anything above?) set vertical speed to 0
+
 public class PlayerController : MonoBehaviour
 {
     public float GroundSpeed; 
@@ -12,9 +14,11 @@ public class PlayerController : MonoBehaviour
 
     private float jumpVelocity;     // Initial velocity at start of jump
     private float jumpHoldForce;    // Force applied while holding jump
+    private float jumpCutoffVelocity;  // Impulse applied when cutting off jump
 
     public float JumpVelocity { get { return jumpVelocity; } }
     public float JumpHoldForce { get { return jumpHoldForce; } }
+    public float JumpCutoffVelocity { get { return jumpCutoffVelocity; } }
 
     public float MinJumpHeight;
     public float MaxJumpHeight;
@@ -106,11 +110,20 @@ public class PlayerController : MonoBehaviour
     public void CalculateJumpParameters()
     {
         float g = Physics.gravity.magnitude * gravityScale;
-        float t = JumpChargeTime;
-        jumpVelocity = Mathf.Sqrt(2.0f * MinJumpHeight * g);
-        // HACK equation is still wrong
-        float discriminant = 4.25f * Mathf.Pow(g, 2) * Mathf.Pow(t, 4) + 8 * g * MaxJumpHeight * Mathf.Pow(t, 2) - 6 * JumpVelocity * g * Mathf.Pow(t, 3);
-        // TODO check discriminant positive, figure out other checks
-        jumpHoldForce = (1.5f * g * Mathf.Pow(t, 2) - 2 * JumpVelocity * t + Mathf.Sqrt(discriminant)) / (2 * Mathf.Pow(t,2));
+
+        // Jetpack jump version
+        
+        //float t = JumpChargeTime;
+        //jumpVelocity = Mathf.Sqrt(2.0f * MinJumpHeight * g);
+        //// HACK equation is still wrong
+        //float discriminant = 4.25f * Mathf.Pow(g, 2) * Mathf.Pow(t, 4) + 8 * g * MaxJumpHeight * Mathf.Pow(t, 2) - 6 * JumpVelocity * g * Mathf.Pow(t, 3);
+        //// TODO check discriminant positive, figure out other checks
+        //jumpHoldForce = (1.5f * g * Mathf.Pow(t, 2) - 2 * JumpVelocity * t + Mathf.Sqrt(discriminant)) / (2 * Mathf.Pow(t,2));
+
+        // Cutoff jump version
+
+        jumpVelocity = Mathf.Sqrt(2.0f * MaxJumpHeight * g);
+        float minJumpVelocity = Mathf.Sqrt(2.0f * MinJumpHeight * g);
+        jumpCutoffVelocity = minJumpVelocity - jumpVelocity;
     }
 }
