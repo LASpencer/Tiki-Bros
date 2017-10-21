@@ -23,6 +23,7 @@ public class PlayerController : MonoBehaviour
     public float MinJumpHeight;
     public float MaxJumpHeight;
     public float JumpChargeTime;
+    public float JumpCutoffProportion = 0;  // Proportion of remaining velocity kept when cutting off jump
 
 	[Header ("Lives")]
 	public int currentlives;

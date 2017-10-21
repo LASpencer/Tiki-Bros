@@ -208,7 +208,7 @@ public class JumpState : AirState
                 InUpswing = false;
             } else if (!Input.GetButton("Jump"))
             {
-                player.velocity.y = Mathf.Max(player.velocity.y + player.JumpCutoffVelocity, 0.0f);
+                player.velocity.y = Mathf.Max(player.velocity.y + player.JumpCutoffVelocity, player.velocity.y * player.JumpCutoffProportion);
                 InUpswing = false;
             }
         }
