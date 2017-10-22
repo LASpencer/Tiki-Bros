@@ -8,9 +8,10 @@ using UnityEngine.UI;
 public class PlayerController : MonoBehaviour
 {
     public float GroundSpeed; 
-    public float AirSpeed; // TODO change to air accelleration
+    public float AirAcceleration;
+    public float GroundAcceleration;
     public float gravityScale;
-	public int treasureColleceted;
+	public int treasureCollected;
 
     private float jumpVelocity;     // Initial velocity at start of jump
     private float jumpHoldForce;    // Force applied while holding jump
@@ -126,5 +127,12 @@ public class PlayerController : MonoBehaviour
         jumpVelocity = Mathf.Sqrt(2.0f * MaxJumpHeight * g);
         float minJumpVelocity = Mathf.Sqrt(2.0f * MinJumpHeight * g);
         jumpCutoffVelocity = minJumpVelocity - jumpVelocity;
+    }
+
+    public Vector3 GetTargetVelocity()
+    {
+        Vector3 inputDirection = transform.forward * Input.GetAxis("Vertical") + transform.right * Input.GetAxis("Horizontal");
+        Vector3 targetVelocity = Vector3.ClampMagnitude(inputDirection, 1.0f) * GroundSpeed;
+        return targetVelocity;
     }
 }

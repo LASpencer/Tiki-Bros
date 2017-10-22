@@ -112,10 +112,14 @@ public class RunState : PlayerState
     public override void Update()
     {
         //TODO write a more fluid movement (accellerate in/decellerate out)
-        Vector3 inputDirection = player.transform.forward * Input.GetAxis("Vertical") + player.transform.right * Input.GetAxis("Horizontal");
-        Vector3 move = Vector3.ClampMagnitude(inputDirection, 1.0f) * player.GroundSpeed;
-        player.velocity.x = move.x;
-        player.velocity.z = move.z;
+        Vector3 target = player.GetTargetVelocity();
+        Vector3 groundVelocity = player.velocity;
+        groundVelocity.y = 0;
+        Vector3 difference = target - groundVelocity;
+        player.velocity += Vector3.ClampMagnitude(difference, player.GroundAcceleration * Time.deltaTime);
+        //TODO add friction
+        //
+
         //TODO figure out how to stop bouncing on hills
         // Maybe use raycast/capsulecast to check if ground within margin of error, and if so move down to force collision (do in PlayerController)
         // Alternately, just treat that as being grounded for state change purpose
@@ -140,10 +144,11 @@ public abstract class AirState : PlayerState
     public override void Update()
     {
         //TODO air movement applying force, not just set speed
-        Vector3 inputDirection = player.transform.forward * Input.GetAxis("Vertical") + player.transform.right * Input.GetAxis("Horizontal");
-        Vector3 move = Vector3.ClampMagnitude(inputDirection, 1.0f) * player.AirSpeed;
-        player.velocity.x = move.x;
-        player.velocity.z = move.z;
+        Vector3 target = player.GetTargetVelocity();
+        Vector3 groundVelocity = player.velocity;
+        groundVelocity.y = 0;
+        Vector3 difference = target - groundVelocity;
+        player.velocity += Vector3.ClampMagnitude(difference, player.AirAcceleration * Time.deltaTime);
     }
 
     public override void OnExit()
@@ -223,6 +228,7 @@ public class JumpState : AirState
 
 public class FallingState : AirState
 {
+    //TODO allow jumping shortly after entering fall as "grace period"
     public FallingState(PlayerController player) : base(player)
     {
     }
