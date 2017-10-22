@@ -118,10 +118,9 @@ public class RunState : PlayerState
         Vector3 difference = target - groundVelocity;
         float acceleration = player.GroundAcceleration;
         
-        if (Input.GetAxis("Vertical") == 0 && Input.GetAxis("Horizontal") == 0)
-        {
-            //TODO add friction to acceleration
-            //Maybe it should be if target is zero or target dot velocity is negative?
+        if ((target.x == 0 && target.z == 0) || Vector3.Dot(target, groundVelocity) < -0.5f * groundVelocity.magnitude )
+        {   //HACK 0.5f is magic number, should figure out good anglle
+            //add friction to acceleration
             acceleration += player.Friction;
 
         }
