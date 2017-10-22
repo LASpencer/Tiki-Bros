@@ -11,6 +11,7 @@ public class PlayerController : MonoBehaviour
     public float AirAcceleration;
     public float GroundAcceleration;
     public float gravityScale;
+    public float Friction;
 	public int treasureCollected;
 
     private float jumpVelocity;     // Initial velocity at start of jump
@@ -131,6 +132,7 @@ public class PlayerController : MonoBehaviour
 
     public Vector3 GetTargetVelocity()
     {
+        //HACK transform.forward may need to change once character isn't just following camera angle
         Vector3 inputDirection = transform.forward * Input.GetAxis("Vertical") + transform.right * Input.GetAxis("Horizontal");
         Vector3 targetVelocity = Vector3.ClampMagnitude(inputDirection, 1.0f) * GroundSpeed;
         return targetVelocity;

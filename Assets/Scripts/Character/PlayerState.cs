@@ -93,7 +93,7 @@ public class RunState : PlayerState
         }
         // Exit to idle on not moving
         //TODO rewrite if movement rewritten
-        if (Input.GetAxis("Vertical") == 0 && Input.GetAxis("Horizontal") == 0)
+        if (player.velocity.x == 0 && player.velocity.z == 0)
         {
             player.ChangeState(EPlayerStates.Idle);
         }
@@ -116,10 +116,16 @@ public class RunState : PlayerState
         Vector3 groundVelocity = player.velocity;
         groundVelocity.y = 0;
         Vector3 difference = target - groundVelocity;
-        player.velocity += Vector3.ClampMagnitude(difference, player.GroundAcceleration * Time.deltaTime);
-        //TODO add friction
-        //
+        float acceleration = player.GroundAcceleration;
+        
+        if (Input.GetAxis("Vertical") == 0 && Input.GetAxis("Horizontal") == 0)
+        {
+            //TODO add friction to acceleration
+            //Maybe it should be if target is zero or target dot velocity is negative?
+            acceleration += player.Friction;
 
+        }
+        player.velocity += Vector3.ClampMagnitude(difference, acceleration * Time.deltaTime);
         //TODO figure out how to stop bouncing on hills
         // Maybe use raycast/capsulecast to check if ground within margin of error, and if so move down to force collision (do in PlayerController)
         // Alternately, just treat that as being grounded for state change purpose
@@ -137,8 +143,14 @@ public abstract class AirState : PlayerState
     {
         if (player.controller.isGrounded)
         {
-            //TODO exit to idle instead if stopped?
-            player.ChangeState(EPlayerStates.Run);
+            if (player.velocity.x == 0 && player.velocity.z == 0)
+            {
+                player.ChangeState(EPlayerStates.Idle);
+            }
+            else
+            {
+                player.ChangeState(EPlayerStates.Run);
+            }
         }
     }
     public override void Update()
