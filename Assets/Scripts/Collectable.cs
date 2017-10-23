@@ -13,6 +13,7 @@ public class Collectable : MonoBehaviour
         if (other.GetComponent<PlayerController>() == null)
             return;
 		ScoreManager.scoreValue += pointsToAdd;
+        GameManagerController.Instance.CoinsCollected++;
         Destroy(gameObject);
 
     }

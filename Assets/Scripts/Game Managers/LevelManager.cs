@@ -23,6 +23,7 @@ public class LevelManager : MonoBehaviour
     {
         player = FindObjectOfType<PlayerController>();
         PauseScreen.gameObject.SetActive(false);//Hide pause screen		
+        GameManagerController.Instance.TotalCoins = GameObject.FindGameObjectsWithTag("Coin").Length;
 	}
 	
 	// Update is called once per frame

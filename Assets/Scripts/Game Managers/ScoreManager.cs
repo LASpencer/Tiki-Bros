@@ -20,6 +20,6 @@ public class ScoreManager : MonoBehaviour
 	// Update is called once per frame
 	void Update () 
 	{
-		treasureText.text = "Treasure Collected : " + scoreValue + " / " + "10 " ;
+		treasureText.text = "Treasure Collected : " + GameManagerController.Instance.CoinsCollected + " / " + GameManagerController.Instance.TotalCoins ;
 	}
 }

@@ -6,6 +6,10 @@ public class GameManagerController : MonoBehaviour {
 
     public static GameManagerController Instance;
 
+    public int CoinsCollected;
+
+    public int TotalCoins;
+
     void Awake()
     {
         if(Instance == null)
@@ -27,4 +31,6 @@ public class GameManagerController : MonoBehaviour {
 	void Update () {
 		
 	}
+
+    
 }
