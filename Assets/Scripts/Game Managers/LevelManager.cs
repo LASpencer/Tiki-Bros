@@ -34,7 +34,9 @@ public class LevelManager : MonoBehaviour
 		if (player.currentlives <= player.minlives) 
 		{
 			player.currentlives = 0;
-			SceneManager.LoadScene ("MainMenu");
+            //TODO rewrite killing player ie play animation then go to game over scene
+            Cursor.lockState = CursorLockMode.None;
+            SceneManager.LoadScene ("MainMenu");
 		}
     }
 }

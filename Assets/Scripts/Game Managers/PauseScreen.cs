@@ -5,7 +5,9 @@ using UnityEngine.SceneManagement;
 
 public class PauseScreen : MonoBehaviour
 {
+    //TODO move this all to LevelManager
     private GameObject[] pauseObjects;
+    //TODO instead hold a canvas with all the pause stuff on it, and activate/deactivate that
 
     // Use this for initialization
     void Start()
@@ -18,7 +20,8 @@ public class PauseScreen : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        //TODO change to use Pause Button axis
+        //TODO variable to remember if we're paused, don't just rely on timescale
         //uses the p button to pause and unpause the game
         if (Input.GetKeyDown(KeyCode.P))
         {
