@@ -28,7 +28,13 @@ public class LevelManager : MonoBehaviour
     public void RespawnPlayer ()
     {
         player.transform.position = currentCheckpoint.transform.position;
-		player.currentlives = -1;
+		player.currentlives = player.currentlives  - 1;
         Debug.Log(" Respawn player");
+
+		if (player.currentlives <= player.minlives) 
+		{
+			player.currentlives = 0;
+			SceneManager.LoadScene ("MainMenu");
+		}
     }
 }
