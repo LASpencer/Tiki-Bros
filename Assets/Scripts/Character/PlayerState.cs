@@ -118,13 +118,17 @@ public class RunState : PlayerState
         Vector3 difference = target - groundVelocity;
         float acceleration = player.GroundAcceleration;
         float groundSpeed = groundVelocity.magnitude;
-        float speedDifference = difference.magnitude;
-        if(speedDifference != 0 && groundSpeed != 0)
+        float targetSpeed = target.magnitude;
+        float frictionRatio = 0f;
+        if(targetSpeed == 0)
         {
-            float cosForce = Vector3.Dot(groundVelocity, difference) / (speedDifference * groundSpeed);
-            acceleration += (0.5f - 0.5f * cosForce) * player.Friction;
+            frictionRatio = 1;
+        } else if(targetSpeed != 0 && groundSpeed != 0)
+        {
+            float cosForce = Vector3.Dot(groundVelocity, target) / (targetSpeed * groundSpeed);
+            frictionRatio = (0.5f - 0.5f * cosForce);
         }
-
+        acceleration += player.Friction * frictionRatio;
         player.velocity += Vector3.ClampMagnitude(difference, acceleration * Time.deltaTime);
         //TODO figure out how to stop bouncing on hills
         // Maybe use raycast/capsulecast to check if ground within margin of error, and if so move down to force collision (do in PlayerController)
