@@ -8,16 +8,16 @@ using UnityEngine.UI;
 public class PlayerController : MonoBehaviour
 {
     public float GroundSpeed; 
-    public float AirSpeed; // TODO change to air accelleration
+    public float AirAcceleration;
+    public float GroundAcceleration;
     public float gravityScale;
-	public int treasureColleceted;
+    public float Friction;
+	public int treasureCollected;
 
     private float jumpVelocity;     // Initial velocity at start of jump
-    private float jumpHoldForce;    // Force applied while holding jump
     private float jumpCutoffVelocity;  // Impulse applied when cutting off jump
 
     public float JumpVelocity { get { return jumpVelocity; } }
-    public float JumpHoldForce { get { return jumpHoldForce; } }
     public float JumpCutoffVelocity { get { return jumpCutoffVelocity; } }
 
     public float MinJumpHeight;
@@ -112,19 +112,18 @@ public class PlayerController : MonoBehaviour
     {
         float g = Physics.gravity.magnitude * gravityScale;
 
-        // Jetpack jump version
-        
-        //float t = JumpChargeTime;
-        //jumpVelocity = Mathf.Sqrt(2.0f * MinJumpHeight * g);
-        //// HACK equation is still wrong
-        //float discriminant = 4.25f * Mathf.Pow(g, 2) * Mathf.Pow(t, 4) + 8 * g * MaxJumpHeight * Mathf.Pow(t, 2) - 6 * JumpVelocity * g * Mathf.Pow(t, 3);
-        //// TODO check discriminant positive, figure out other checks
-        //jumpHoldForce = (1.5f * g * Mathf.Pow(t, 2) - 2 * JumpVelocity * t + Mathf.Sqrt(discriminant)) / (2 * Mathf.Pow(t,2));
-
         // Cutoff jump version
 
         jumpVelocity = Mathf.Sqrt(2.0f * MaxJumpHeight * g);
         float minJumpVelocity = Mathf.Sqrt(2.0f * MinJumpHeight * g);
         jumpCutoffVelocity = minJumpVelocity - jumpVelocity;
+    }
+
+    public Vector3 GetTargetVelocity()
+    {
+        //HACK transform.forward may need to change once character isn't just following camera angle
+        Vector3 inputDirection = transform.forward * Input.GetAxis("Vertical") + transform.right * Input.GetAxis("Horizontal");
+        Vector3 targetVelocity = Vector3.ClampMagnitude(inputDirection, 1.0f) * GroundSpeed;
+        return targetVelocity;
     }
 }
