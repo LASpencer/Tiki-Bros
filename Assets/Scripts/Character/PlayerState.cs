@@ -117,13 +117,14 @@ public class RunState : PlayerState
         groundVelocity.y = 0;
         Vector3 difference = target - groundVelocity;
         float acceleration = player.GroundAcceleration;
-        
-        if ((target.x == 0 && target.z == 0) || Vector3.Dot(target, groundVelocity) < -0.5f * groundVelocity.magnitude )
-        {   //HACK 0.5f is magic number, should figure out good anglle
-            //add friction to acceleration
-            acceleration += player.Friction;
-
+        float groundSpeed = groundVelocity.magnitude;
+        float speedDifference = difference.magnitude;
+        if(speedDifference != 0 && groundSpeed != 0)
+        {
+            float cosForce = Vector3.Dot(groundVelocity, difference) / (speedDifference * groundSpeed);
+            acceleration += (0.5f - 0.5f * cosForce) * player.Friction;
         }
+
         player.velocity += Vector3.ClampMagnitude(difference, acceleration * Time.deltaTime);
         //TODO figure out how to stop bouncing on hills
         // Maybe use raycast/capsulecast to check if ground within margin of error, and if so move down to force collision (do in PlayerController)
@@ -191,29 +192,6 @@ public class JumpState : AirState
         // TODO double jump?
         base.Update();
         TimeInJump += Time.deltaTime;
-
-        // Jetpack jump version
-
-        // Increase jump height while jump held
-        //if (InUpswing)
-        //{
-        //    if (Input.GetButton("Jump"))
-        //    {
-        //        // apply up force
-        //        // TODO apply force upward while button still held
-        //        //HACK commented out until proper calculation figured out
-        //        player.velocity.y += player.JumpHoldForce * Time.deltaTime;
-        //        if (TimeInJump > player.JumpChargeTime)
-        //        {
-        //            InUpswing = false;
-        //            player.velocity.y += player.JumpHoldForce * (player.JumpChargeTime - TimeInJump);
-        //        }
-        //    }
-        //    else
-        //    {
-        //        InUpswing = false;
-        //    }
-        //}
 
         // Cutoff jump version
         

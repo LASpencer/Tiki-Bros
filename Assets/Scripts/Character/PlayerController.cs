@@ -15,11 +15,9 @@ public class PlayerController : MonoBehaviour
 	public int treasureCollected;
 
     private float jumpVelocity;     // Initial velocity at start of jump
-    private float jumpHoldForce;    // Force applied while holding jump
     private float jumpCutoffVelocity;  // Impulse applied when cutting off jump
 
     public float JumpVelocity { get { return jumpVelocity; } }
-    public float JumpHoldForce { get { return jumpHoldForce; } }
     public float JumpCutoffVelocity { get { return jumpCutoffVelocity; } }
 
     public float MinJumpHeight;
@@ -113,15 +111,6 @@ public class PlayerController : MonoBehaviour
     public void CalculateJumpParameters()
     {
         float g = Physics.gravity.magnitude * gravityScale;
-
-        // Jetpack jump version
-        
-        //float t = JumpChargeTime;
-        //jumpVelocity = Mathf.Sqrt(2.0f * MinJumpHeight * g);
-        //// HACK equation is still wrong
-        //float discriminant = 4.25f * Mathf.Pow(g, 2) * Mathf.Pow(t, 4) + 8 * g * MaxJumpHeight * Mathf.Pow(t, 2) - 6 * JumpVelocity * g * Mathf.Pow(t, 3);
-        //// TODO check discriminant positive, figure out other checks
-        //jumpHoldForce = (1.5f * g * Mathf.Pow(t, 2) - 2 * JumpVelocity * t + Mathf.Sqrt(discriminant)) / (2 * Mathf.Pow(t,2));
 
         // Cutoff jump version
 
