@@ -7,7 +7,7 @@ public class MenuButtonManager : MonoBehaviour
 {
     public void PlayButton()
     {
-        SceneManager.LoadScene("S1_Tutorial v3");
+        SceneManager.LoadScene("S1_Tutorial v2");
     }
 
 }
