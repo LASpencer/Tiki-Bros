@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class PauseScreenManager : MonoBehaviour
+public class PauseScreenManager : MenuManager
 {
     // Use this for initialization
     void Start()
@@ -14,23 +14,6 @@ public class PauseScreenManager : MonoBehaviour
     void Update()
     {
        
-    }
-
-
-    //Reloads the Level
-    public void RestartLevel()
-    {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-    }
-
-    public void ReturnToMenu()
-    {
-        SceneManager.LoadScene("MainMenu");
-    }
-
-    public void Quit()
-    {
-        Application.Quit();
     }
 
 }

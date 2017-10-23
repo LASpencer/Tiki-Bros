@@ -31,6 +31,5 @@ public class GameManagerController : MonoBehaviour {
 	void Update () {
 		
 	}
-
     
 }

@@ -274,7 +274,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 250964744}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7effedc86e798ce4aa4de2e38a480370, type: 3}
+  m_Script: {fileID: 11500000, guid: 9ac3e6aef26a031439718b46aaf01cc8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!4 &250964746
@@ -439,7 +439,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 754799532}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 250964745}
+        m_MethodName: QuitButton
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &754799532
@@ -1233,6 +1244,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ba9c41f5a9694e4babccf50f949cf8d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  CoinsCollected: 0
+  TotalCoins: 0
 --- !u!4 &1847327109
 Transform:
   m_ObjectHideFlags: 0
@@ -1323,7 +1336,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 250964745}
-        m_MethodName: PlayButton
+        m_MethodName: PlayLevel
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

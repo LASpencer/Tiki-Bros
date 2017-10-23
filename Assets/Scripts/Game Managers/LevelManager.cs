@@ -14,7 +14,7 @@ public class LevelManager : MonoBehaviour
 
     private PlayerController player;
 
-    private bool isPaused = false;
+    private bool isPaused;
 
     public float TimeScale = 1;
 
@@ -22,7 +22,14 @@ public class LevelManager : MonoBehaviour
 	void Start ()
     {
         player = FindObjectOfType<PlayerController>();
+
+        // Initialize pause stuff as unpaused
         PauseScreen.gameObject.SetActive(false);//Hide pause screen		
+        isPaused = false;
+        Time.timeScale = TimeScale;
+
+        // Reset coin count and check coins needed
+        GameManagerController.Instance.CoinsCollected = 0;
         GameManagerController.Instance.TotalCoins = GameObject.FindGameObjectsWithTag("Coin").Length;
 	}
 	
@@ -51,7 +58,7 @@ public class LevelManager : MonoBehaviour
 			player.currentlives = 0;
             //TODO rewrite killing player ie play animation then go to game over scene
             Cursor.lockState = CursorLockMode.None;
-            SceneManager.LoadScene ("MainMenu");
+            SceneManager.LoadScene ("GameOver");
 		}
     }
 
