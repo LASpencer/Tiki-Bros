@@ -16,6 +16,8 @@ public class LevelManager : MonoBehaviour
 
     private bool isPaused;
 
+    public bool IsPaused { get { return isPaused; } }
+
     public float TimeScale = 1;
 
 	// Use this for initialization
