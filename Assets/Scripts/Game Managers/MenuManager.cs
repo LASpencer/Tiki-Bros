@@ -6,6 +6,8 @@ using UnityEngine.SceneManagement;
 // Holds common behaviours and functions for menus
 public class MenuManager : MonoBehaviour
 {
+    protected GameObject CurrentScreen;
+
     public void PlayLevel()
     {
         SceneManager.LoadScene("S1_Tutorial");
@@ -25,5 +27,14 @@ public class MenuManager : MonoBehaviour
     public void QuitButton()
     {
         Application.Quit();
+    }
+    public void ChangeScreen(GameObject newScreen)
+    {
+        if (CurrentScreen != null)
+        {
+            CurrentScreen.SetActive(false);
+        }
+        newScreen.SetActive(true);
+        CurrentScreen = newScreen;
     }
 }

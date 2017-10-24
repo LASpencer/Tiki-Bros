@@ -10,7 +10,7 @@ public class MainMenuManager : MenuManager {
     public GameObject HowToPlay;
     public GameObject Credits;
 
-    private GameObject CurrentScreen;
+    
 
 	// Use this for initialization
 	void Start () {
@@ -25,13 +25,5 @@ public class MainMenuManager : MenuManager {
 		
 	}
 
-    public void ChangeScreen(GameObject newScreen)
-    {
-        if(CurrentScreen != null)
-        {
-            CurrentScreen.SetActive(false);
-        }
-        newScreen.SetActive(true);
-        CurrentScreen = newScreen;
-    }
+    
 }

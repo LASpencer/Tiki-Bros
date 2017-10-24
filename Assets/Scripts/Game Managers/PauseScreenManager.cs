@@ -5,6 +5,9 @@ using UnityEngine.SceneManagement;
 
 public class PauseScreenManager : MenuManager
 {
+    public GameObject PauseScreen;
+    public GameObject Settings;
+    public GameObject HowToPlay;
     // Use this for initialization
     void Start()
     {
@@ -15,5 +18,13 @@ public class PauseScreenManager : MenuManager
     {
        
     }
+
+    void OnEnable()
+    {
+        Settings.SetActive(false);
+        HowToPlay.SetActive(false);
+        ChangeScreen(PauseScreen);
+    }
+
 
 }
