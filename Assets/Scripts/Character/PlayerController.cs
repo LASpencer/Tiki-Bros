@@ -39,6 +39,8 @@ public class PlayerController : MonoBehaviour
 
     public Vector3 velocity;
 
+    public LevelManager level;
+
     // States
     private Dictionary<EPlayerStates, PlayerState> states;
     public PlayerState currentState;
@@ -84,17 +86,20 @@ public class PlayerController : MonoBehaviour
 
         //controller.Move(moveDirection * Time.deltaTime);
 
-        currentState.CheckTransition();
-        currentState.Update();
-
-        // Apply gravity
-        velocity.y += Physics.gravity.y * gravityScale * Time.deltaTime;
-
-        controller.Move(velocity * Time.deltaTime);
-        
-        if (controller.isGrounded)
+        if (!level.IsPaused)
         {
-            velocity.y = 0f;
+            currentState.CheckTransition();
+            currentState.Update();
+
+            // Apply gravity
+            velocity.y += Physics.gravity.y * gravityScale * Time.deltaTime;
+
+            controller.Move(velocity * Time.deltaTime);
+
+            if (controller.isGrounded)
+            {
+                velocity.y = 0f;
+            }
         }
 
 		livesText.text = "Lives Remaining: " + currentlives + " / " + maxlives ;
