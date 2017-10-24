@@ -8,7 +8,7 @@ public class MenuManager : MonoBehaviour
 {
     public void PlayLevel()
     {
-        SceneManager.LoadScene("S1_Tutorial v2");
+        SceneManager.LoadScene("S1_Tutorial");
     }
 
     //TODO move stuff from PauseScreen into here
