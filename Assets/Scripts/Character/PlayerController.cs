@@ -99,12 +99,15 @@ public class PlayerController : MonoBehaviour
             controller.Move(velocity * Time.deltaTime);
 
             // TODO rotate to movement direction
-            // broken: camera following child object so still turning
-            //Vector3 moveDirection = new Vector3(velocity.x, 0, velocity.z);
-            //if(moveDirection.magnitude != 0)
-            //{
-            //    transform.forward = moveDirection;
-            //}
+            // TODO: rotation should be more smooth
+            // TODO: maybe target has some offset?
+            Vector3 moveDirection = new Vector3(velocity.x, 0, velocity.z);
+            if (moveDirection.magnitude != 0)
+            {
+                transform.forward = moveDirection;
+            }
+            CameraTarget.transform.position = transform.position;
+
 
             if (controller.isGrounded)
             {
