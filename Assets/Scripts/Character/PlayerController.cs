@@ -36,6 +36,8 @@ public class PlayerController : MonoBehaviour
 
 
     public CharacterController controller;
+    public CameraController PlayerCamera;
+    public Transform CameraTarget;
 
     public Vector3 velocity;
 
@@ -96,6 +98,14 @@ public class PlayerController : MonoBehaviour
 
             controller.Move(velocity * Time.deltaTime);
 
+            // TODO rotate to movement direction
+            // broken: camera following child object so still turning
+            //Vector3 moveDirection = new Vector3(velocity.x, 0, velocity.z);
+            //if(moveDirection.magnitude != 0)
+            //{
+            //    transform.forward = moveDirection;
+            //}
+
             if (controller.isGrounded)
             {
                 velocity.y = 0f;
@@ -127,7 +137,14 @@ public class PlayerController : MonoBehaviour
     public Vector3 GetTargetVelocity()
     {
         //HACK transform.forward may need to change once character isn't just following camera angle
-        Vector3 inputDirection = transform.forward * Input.GetAxis("Vertical") + transform.right * Input.GetAxis("Horizontal");
+        Vector3 forward = PlayerCamera.transform.forward;
+        forward.y = 0;
+        forward.Normalize();
+        if(forward.magnitude == 0)
+        {
+
+        }
+        Vector3 inputDirection = CameraTarget.transform.forward * Input.GetAxis("Vertical") + CameraTarget.transform.right * Input.GetAxis("Horizontal");
         Vector3 targetVelocity = Vector3.ClampMagnitude(inputDirection, 1.0f) * GroundSpeed;
         return targetVelocity;
     }
