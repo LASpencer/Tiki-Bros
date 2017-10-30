@@ -8,6 +8,12 @@ public class CameraController : MonoBehaviour
 
     public float offset;
 
+    public float offsetWanted;
+
+    public float cameraSmoothTime;
+
+    float currentSmoothSpeed;
+    
     public bool useOffsetValues;
 
     public float rotateSpeed;
@@ -28,6 +34,8 @@ public class CameraController : MonoBehaviour
 
     public LevelManager level;
 
+    public float occlusionRadius;
+
 	// Use this for initialization
 	void Start ()
     {
@@ -41,6 +49,8 @@ public class CameraController : MonoBehaviour
 
         // Hide cursor
         Cursor.lockState = CursorLockMode.Locked;
+
+        offset = offsetWanted;
 	}
 
     // Update is called once per frame
@@ -49,6 +59,8 @@ public class CameraController : MonoBehaviour
 
         if (!level.IsPaused)
         {
+            RaycastHit hit;
+
             // Get the X position of mouse and rotate the target.
             float horizontal = Input.GetAxis("Mouse X") * rotateSpeed;
             target.Rotate(0, horizontal, 0);
@@ -84,13 +96,33 @@ public class CameraController : MonoBehaviour
 
             pivot.Rotate(vertical, 0, 0);
 
-            offset = Mathf.Clamp(offset + zoom, minDistance, maxDistance);
+            offsetWanted = Mathf.Clamp(offsetWanted + zoom, minDistance, maxDistance);
 
             // move the camera based on current rotation of target, using original offset
             float desiredYAngle = target.eulerAngles.y;
             float desiredXAngle = pivot.eulerAngles.x;
 
             Quaternion rotation = Quaternion.Euler(desiredXAngle, desiredYAngle, 0);
+            
+            // Check for occlusion by terrain
+            //TODO create layer mask for things to ignore
+            if(Physics.SphereCast(target.transform.position, occlusionRadius, -pivot.forward, out hit, offsetWanted))
+            {
+                if(hit.distance > minDistance)
+                {
+                    offset = hit.distance;
+                } else
+                {
+                    //TODO if less than minDistance, try rotating instead
+                    offset = minDistance;
+                }
+
+            } else
+            {
+                offset = Mathf.SmoothDamp(offset, offsetWanted, ref currentSmoothSpeed, cameraSmoothTime);
+            }
+
+            // Move to offset wanted
             transform.position = target.position - (pivot.forward * offset);
 
             //  transform.position = target.position - offset;
@@ -102,4 +134,6 @@ public class CameraController : MonoBehaviour
             transform.LookAt(target);
         }
     }
+
+
 }

@@ -38,6 +38,7 @@ public class PlayerController : MonoBehaviour
     public CharacterController controller;
     public CameraController PlayerCamera;
     public Transform CameraTarget;
+    public Vector3 CameraTargetOffset;
 
     public Vector3 velocity;
 
@@ -106,7 +107,7 @@ public class PlayerController : MonoBehaviour
             {
                 transform.forward = moveDirection;
             }
-            CameraTarget.transform.position = transform.position;
+            CameraTarget.transform.position = transform.position + CameraTargetOffset;
 
 
             if (controller.isGrounded)

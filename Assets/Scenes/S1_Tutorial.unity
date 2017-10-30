@@ -1367,7 +1367,7 @@ Transform:
   m_GameObject: {fileID: 477905703}
   m_LocalRotation: {x: -0, y: -1, z: -0, w: 0.00000058114523}
   m_LocalPosition: {x: 48.407757, y: 0.273, z: 4.412118}
-  m_LocalScale: {x: 100, y: 100, z: 100}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 58517477}
   m_Father: {fileID: 0}
@@ -5726,7 +5726,7 @@ Transform:
   m_GameObject: {fileID: 1352176176}
   m_LocalRotation: {x: -0, y: -1, z: -0, w: 0.00000058114523}
   m_LocalPosition: {x: 48.408, y: 1.059, z: 6.412}
-  m_LocalScale: {x: 100, y: 100, z: 100}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 1
@@ -5744,6 +5744,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   target: {fileID: 477905704}
   offset: 3
+  offsetWanted: 3
+  cameraSmoothTime: 0.5
   useOffsetValues: 1
   rotateSpeed: 1.5
   zoomSpeed: 2
@@ -5751,9 +5753,10 @@ MonoBehaviour:
   maxViewAngle: 40
   minViewAngle: -35
   maxDistance: 10
-  minDistance: 0.5
+  minDistance: 2
   invertY: 0
   level: {fileID: 1183135869}
+  occlusionRadius: 0.5
 --- !u!1 &1356178745
 GameObject:
   m_ObjectHideFlags: 0
@@ -8813,6 +8816,11 @@ Prefab:
       propertyPath: PlayerCamera
       value: 
       objectReference: {fileID: 1352176182}
+    - target: {fileID: 114903373285072742, guid: 1b7c814d448a5ad4c97c03f7fb3ec3af,
+        type: 2}
+      propertyPath: CameraTargetOffset.y
+      value: 0.5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 1b7c814d448a5ad4c97c03f7fb3ec3af, type: 2}
   m_IsPrefabParent: 0
