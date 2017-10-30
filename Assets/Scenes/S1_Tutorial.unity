@@ -5372,17 +5372,20 @@ MonoBehaviour:
   offset: 3
   offsetWanted: 3
   cameraSmoothTime: 0.5
-  useOffsetValues: 1
   rotateSpeed: 1.5
   zoomSpeed: 2
   pivot: {fileID: 58517477}
   maxViewAngle: 40
-  minViewAngle: -35
-  maxDistance: 10
-  minDistance: 2
+  viewAngleRange: 40
+  minViewAngle: -10
   invertY: 0
+  maxDistance: 10
+  minDistance: 1
   level: {fileID: 1183135869}
-  occlusionRadius: 0.5
+  occlusionRadius: 0.3
+  BlocksCamera:
+    serializedVersion: 2
+    m_Bits: 1
 --- !u!1 &1356178745
 GameObject:
   m_ObjectHideFlags: 0

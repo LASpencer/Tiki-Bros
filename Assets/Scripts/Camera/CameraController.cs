@@ -13,8 +13,6 @@ public class CameraController : MonoBehaviour
     public float cameraSmoothTime;
 
     float currentSmoothSpeed;
-    
-    public bool useOffsetValues;
 
     public float rotateSpeed;
 
@@ -26,15 +24,17 @@ public class CameraController : MonoBehaviour
 
     public float minViewAngle;
 
+    public bool invertY;
+
     public float maxDistance;
 
     public float minDistance;
 
-    public bool invertY;
-
     public LevelManager level;
 
     public float occlusionRadius;
+
+    public LayerMask BlocksCamera;
 
 	// Use this for initialization
 	void Start ()
@@ -59,7 +59,20 @@ public class CameraController : MonoBehaviour
 
         if (!level.IsPaused)
         {
+            float modifiedMaxAngle = maxViewAngle;
+            float modifiedMinAngle = 0;
             RaycastHit hit;
+            RaycastHit groundBelowTarget;
+            Vector3 groundNormal = Vector3.up;
+            // Find angle of ground below target
+            if(Physics.Raycast(target.transform.position, Vector3.down, out groundBelowTarget, BlocksCamera))
+            {
+                groundNormal = groundBelowTarget.normal;
+            }
+            float slope = Vector3.Angle(target.forward, groundNormal) - 90;
+            modifiedMinAngle = Mathf.Clamp(modifiedMinAngle - slope, minViewAngle, maxViewAngle);
+
+
 
             // Get the X position of mouse and rotate the target.
             float horizontal = Input.GetAxis("Mouse X") * rotateSpeed;
@@ -85,13 +98,13 @@ public class CameraController : MonoBehaviour
                 newPitch -= 360f;
             }
 
-                if (newPitch > maxViewAngle)
+                if (newPitch > modifiedMaxAngle)
                 {
-                    vertical += (maxViewAngle - newPitch);
+                    vertical += (modifiedMaxAngle - newPitch);
                 } 
-                if (newPitch < minViewAngle)
+                if (newPitch < modifiedMinAngle)
                 {
-                    vertical += (minViewAngle - newPitch);
+                    vertical += (modifiedMinAngle - newPitch);
                 }
 
             pivot.Rotate(vertical, 0, 0);
@@ -106,8 +119,9 @@ public class CameraController : MonoBehaviour
             
             // Check for occlusion by terrain
             //TODO create layer mask for things to ignore
-            if(Physics.SphereCast(target.transform.position, occlusionRadius, -pivot.forward, out hit, offsetWanted))
+            if(Physics.SphereCast(target.transform.position, occlusionRadius, -pivot.forward, out hit, offsetWanted, BlocksCamera, QueryTriggerInteraction.Ignore))
             {
+                Debug.Log("Camera collided with " + hit.collider + ", " + hit.collider.tag);
                 if(hit.distance > minDistance)
                 {
                     offset = hit.distance;
@@ -116,6 +130,7 @@ public class CameraController : MonoBehaviour
                     //TODO if less than minDistance, try rotating instead
                     offset = minDistance;
                 }
+                currentSmoothSpeed = 0f;
 
             } else
             {
