@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+
 // Holds common behaviours and functions for menus
 public class MenuManager : MonoBehaviour
 {
