@@ -5,7 +5,7 @@ using UnityEngine;
 [CreateAssetMenu (menuName = "EnemyAI/State")]
 public class State : ScriptableObject {
 
-    public List<Action> actions;
+    public List<EnemyAction> actions;
     public List<Transition> transitions;
     public Color sceneGizmoColor = Color.gray;
 
@@ -17,7 +17,7 @@ public class State : ScriptableObject {
 
     private void DoActions(EnemyController controller)
     {
-        foreach(Action action in actions)
+        foreach(EnemyAction action in actions)
         {
             action.Act(controller);
         }
