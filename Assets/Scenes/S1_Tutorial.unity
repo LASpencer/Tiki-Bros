@@ -5743,12 +5743,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 477905704}
-  offset: {x: 0.01, y: -2.03, z: 2.76}
+  offset: 3
   useOffsetValues: 1
   rotateSpeed: 1.5
+  zoomSpeed: 2
   pivot: {fileID: 58517477}
   maxViewAngle: 40
   minViewAngle: -35
+  maxDistance: 10
+  minDistance: 0.5
   invertY: 0
   level: {fileID: 1183135869}
 --- !u!1 &1356178745
