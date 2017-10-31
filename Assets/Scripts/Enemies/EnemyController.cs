@@ -6,8 +6,13 @@ using UnityEngine.AI;
 [RequireComponent(typeof(NavMeshAgent))]
 public class EnemyController : MonoBehaviour {
 
+    [Tooltip("Current AI State")]
     public State CurrentState;
+
+    [Tooltip("Patrol waypoints, in order they will be reached")]
     public List<Transform> Waypoints;
+
+    // Current destination waypoint
     public Transform CurrentWaypoint
     {
         get { return Waypoints[waypointIndex]; }
