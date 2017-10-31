@@ -5,6 +5,7 @@ using UnityEngine;
 public class Enemy_Crab_behaviour : MonoBehaviour 
 {
 	public Transform target;
+    public Transform Target2;
 
 	public float movementSpeed;
 	
