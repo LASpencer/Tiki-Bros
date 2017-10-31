@@ -81,4 +81,10 @@ public class LevelManager : MonoBehaviour
         PauseScreen.gameObject.SetActive(false);
         Debug.Log("unpause");
     }
+
+    void OnDestroy()
+    {
+        // Make sure time is started again
+        Time.timeScale = 1;
+    }
 }
