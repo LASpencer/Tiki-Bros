@@ -828,7 +828,7 @@ GameObject:
   - component: {fileID: 320180057}
   - component: {fileID: 320180056}
   - component: {fileID: 320180055}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Terrain
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2900,7 +2900,7 @@ GameObject:
   - component: {fileID: 814517423}
   - component: {fileID: 814517422}
   - component: {fileID: 814517421}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Cylinder (5)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5376,7 +5376,6 @@ MonoBehaviour:
   zoomSpeed: 2
   pivot: {fileID: 58517477}
   maxViewAngle: 40
-  viewAngleRange: 40
   minViewAngle: -10
   invertY: 0
   maxDistance: 10
@@ -5385,7 +5384,7 @@ MonoBehaviour:
   occlusionRadius: 0.3
   BlocksCamera:
     serializedVersion: 2
-    m_Bits: 1
+    m_Bits: 768
 --- !u!1 &1356178745
 GameObject:
   m_ObjectHideFlags: 0
@@ -6457,7 +6456,7 @@ GameObject:
   - component: {fileID: 1634363389}
   - component: {fileID: 1634363388}
   - component: {fileID: 1634363387}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Cube (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7058,7 +7057,7 @@ GameObject:
   - component: {fileID: 1781928042}
   - component: {fileID: 1781928041}
   - component: {fileID: 1781928040}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Cube (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
