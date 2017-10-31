@@ -102,7 +102,7 @@ public class PlayerController : MonoBehaviour
             }
         }
 
-		livesText.text = "Lives Remaining: " + currentlives + " / " + maxlives ;
+		livesText.text = "LIVES: " + currentlives + " / " + maxlives ;
     }
 
     public void ChangeState(EPlayerStates state)
