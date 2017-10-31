@@ -10,20 +10,28 @@ public class PatrolAction : EnemyAction
 {
     public override void Act(EnemyController controller)
     {
-        //TODO follow waypoints
-        Vector3 destination = controller.CurrentWaypoint.position;
-        NavMeshAgent agent = controller.navAgent;
-        if(!agent.hasPath)
+        // If no waypoints, do nothing
+        if (controller.Waypoints.Count == 0)
         {
-            agent.destination = destination;
-        } else
-        {
-            if(agent.remainingDistance <= agent.stoppingDistance)
-            {
-                // Get next destination
-                agent.destination = controller.NextWaypoint().position;
-            }
+            return;
         }
-        agent.Resume();
+        else
+        {   // Follow waypoints
+            NavMeshAgent agent = controller.navAgent;
+            // If no path set yet, set destination
+            if (!agent.hasPath)
+            {
+                agent.destination = controller.CurrentWaypoint.position;
+            }
+            else
+            {
+                if (agent.remainingDistance <= agent.stoppingDistance)
+                {
+                    // Get next destination
+                    agent.destination = controller.NextWaypoint().position;
+                }
+            }
+            agent.isStopped = false;
+        }
     }
 }
