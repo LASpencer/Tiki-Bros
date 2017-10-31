@@ -4,36 +4,50 @@ using UnityEngine;
 
 public class CameraController : MonoBehaviour
 {
+    [Tooltip("Target pointed at by camera defining its rotation")]
     public Transform target;
 
-    public float offset;
-
-    public float offsetWanted;
-
-    public float cameraSmoothTime;
-
-    float currentSmoothSpeed;
-
-    public float rotateSpeed;
-
-    public float zoomSpeed;
-
+    [Tooltip("Child of target defining its pitch")]
     public Transform pivot;
 
+    [Tooltip("Camera distance to target")]
+    public float offset;
+
+    [Tooltip("Distance set by player")]
+    public float offsetWanted;
+
+    [Tooltip("Time for camera to reach desired zoom when able")]
+    public float cameraSmoothTime;
+    
+    float currentSmoothSpeed;
+
+    [Tooltip("Rate of camera panning and pitching")]
+    public float rotateSpeed;
+
+    [Tooltip("Rate camera zooms in and out")]
+    public float zoomSpeed;
+
+    [Tooltip("Maximum pitch up")]
     public float maxViewAngle;
 
+    [Tooltip("Maximum pitch down, if ground allows")]
     public float minViewAngle;
 
+    [Tooltip("Inverts mouse Y axis for camera control")]
     public bool invertY;
 
+    [Tooltip("Maximum distance camera can zoom out")]
     public float maxDistance;
 
+    [Tooltip("Minimum distance camera can zoom in to target")]
     public float minDistance;
 
     public LevelManager level;
 
+    [Tooltip("Radius of spherecast to check for obstructions in front of camera")]
     public float occlusionRadius;
 
+    [Tooltip("LayerMask indicating objects that camera can't clip into")]
     public LayerMask BlocksCamera;
 
 	// Use this for initialization
