@@ -13,7 +13,7 @@ public class GameOverManager : MenuManager {
         float treasureCollected = GameManagerController.Instance.CoinsCollected;
         float totalTreasure = GameManagerController.Instance.TotalCoins;
 
-        TreasureCollectedText.text = "Treasure Collected:\n" + treasureCollected.ToString() + "/" + totalTreasure.ToString();
+        TreasureCollectedText.text = "TREASURE FOUND:\n" + treasureCollected.ToString() + "/" + totalTreasure.ToString();
 	}
 	
 	// Update is called once per frame
