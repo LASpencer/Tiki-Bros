@@ -5,7 +5,10 @@ using UnityEngine;
 [CreateAssetMenu (menuName = "EnemyAI/State")]
 public class State : ScriptableObject {
 
+    [Tooltip("Actions which will be taken every update")]
     public List<EnemyAction> actions;
+
+    [Tooltip("Transitions from this state")]
     public List<Transition> transitions;
     public Color sceneGizmoColor = Color.gray;
 
