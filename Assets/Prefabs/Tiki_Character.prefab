@@ -54,7 +54,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1554330219210914}
   m_LocalRotation: {x: -0, y: -1, z: -0, w: 0.00000058114523}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 48.407757, y: 0.273, z: 4.412118}
   m_LocalScale: {x: 100, y: 100, z: 100}
   m_Children:
   - {fileID: 4661986020357950}
@@ -136,7 +136,7 @@ Light:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1900247422612060}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 8
   m_Type: 2
   m_Color: {r: 0.965, g: 0.783045, b: 0.21950692, a: 1}
@@ -191,15 +191,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4839dce638efc9a47ba8cafdb7ee7265, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 7.5
-  jumpForce: 5
+  GroundSpeed: 5
+  AirAcceleration: 10
+  GroundAcceleration: 20
   gravityScale: 1
-  treasureColleceted: 0
-  currentlives: 0
-  maxlives: 0
+  Friction: 10
+  treasureCollected: 0
+  MinJumpHeight: 1
+  MaxJumpHeight: 4
+  JumpChargeTime: 0.5
+  JumpCutoffProportion: 0
+  currentlives: 3
+  maxlives: 3
   minlives: 0
   livesText: {fileID: 0}
   controller: {fileID: 0}
+  PlayerCamera: {fileID: 0}
+  CameraTarget: {fileID: 0}
+  CameraTargetOffset: {x: 0, y: 0.5, z: 0}
+  velocity: {x: 0, y: 0, z: 0}
+  level: {fileID: 0}
+  stateName: 0
 --- !u!143 &143759935014189270
 CharacterController:
   m_ObjectHideFlags: 1
@@ -210,7 +222,7 @@ CharacterController:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Height: 0.016
+  m_Height: 0.0135
   m_Radius: 0.00585868
   m_SlopeLimit: 45
   m_StepOffset: 0.3
