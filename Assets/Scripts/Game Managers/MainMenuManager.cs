@@ -4,12 +4,11 @@ using UnityEngine;
 
 public class MainMenuManager : MenuManager {
 
-    //TODO consider changing these to canvases?
     public GameObject MenuOptions;
     public GameObject Settings;
     public GameObject HowToPlay;
     public GameObject Credits;
-
+	public GameObject CreditsTwo;
     
 
 	// Use this for initialization
@@ -17,6 +16,7 @@ public class MainMenuManager : MenuManager {
         Settings.SetActive(false);
         HowToPlay.SetActive(false);
         Credits.SetActive(false);
+		CreditsTwo.SetActive (false);
         ChangeScreen(MenuOptions);
 	}
 	
