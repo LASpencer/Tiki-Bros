@@ -51,3 +51,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ba9c41f5a9694e4babccf50f949cf8d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  CoinsCollected: 0
+  TotalCoins: 0
