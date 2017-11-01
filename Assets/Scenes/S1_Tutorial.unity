@@ -559,7 +559,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 133, y: -136}
+  m_AnchoredPosition: {x: 146.1, y: -135.9}
   m_SizeDelta: {x: 160, y: 51.200012}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &125870738
@@ -591,7 +591,7 @@ MonoBehaviour:
     m_Alignment: 0
     m_AlignByGeometry: 0
     m_RichText: 1
-    m_HorizontalOverflow: 0
+    m_HorizontalOverflow: 1
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: 'TREASURE:'
@@ -1944,7 +1944,7 @@ GameObject:
   - component: {fileID: 617835852}
   - component: {fileID: 617835851}
   m_Layer: 5
-  m_Name: BlackBox
+  m_Name: Box
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1958,14 +1958,14 @@ RectTransform:
   m_GameObject: {fileID: 617835849}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 2.4770598, y: 1.556095, z: 1}
+  m_LocalScale: {x: 3.4164188, y: 2.146202, z: 1.3792231}
   m_Children: []
   m_Father: {fileID: 2121249040}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -497.14, y: 266.19}
+  m_AnchoredPosition: {x: -468.6, y: 258.8}
   m_SizeDelta: {x: 93.01, y: 88.8}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &617835851
@@ -1987,7 +1987,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: 36a2267b8e903d44a80927cee4bc0d67, type: 3}
+  m_Sprite: {fileID: 21300000, guid: e64b7dd058356154caa413b9aa3223d6, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -2153,8 +2153,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 133, y: -67}
-  m_SizeDelta: {x: 123.79999, y: 45}
+  m_AnchoredPosition: {x: 146.09995, y: -78.37}
+  m_SizeDelta: {x: 123.8, y: 32.91}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &659025333
 MonoBehaviour:
@@ -5451,12 +5451,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 477905704}
+  pivot: {fileID: 58517477}
   offset: 3
   offsetWanted: 3
   cameraSmoothTime: 0.5
   rotateSpeed: 1.5
   zoomSpeed: 2
-  pivot: {fileID: 58517477}
   maxViewAngle: 40
   minViewAngle: -10
   invertY: 0
