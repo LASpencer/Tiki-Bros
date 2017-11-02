@@ -58,6 +58,7 @@ public class EnemyController : MonoBehaviour {
         }
     }
 
+    // Increment waypoints, returning to 0 when end reached
     public Transform NextWaypoint()
     {
         waypointIndex++;

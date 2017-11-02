@@ -100,7 +100,7 @@ MonoBehaviour:
   navAgent: {fileID: 0}
   VisionAngle: 90
   VisionRange: 8
-  EscapeRange: 12
+  EscapeRange: 15
   TimeInState: 0
   player: {fileID: 0}
 --- !u!114 &114491790003554590
