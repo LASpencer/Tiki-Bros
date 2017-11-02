@@ -21,15 +21,19 @@ public class PlayerSpotted : Decision {
             RaycastHit hit;
             //TODO figure out best place to raycast from
             //TODO update tiki to have script in prefab, also make script give mesh's bounds to easily check
-            Bounds tikiBounds = player.gameObject.GetComponent<Renderer>().bounds;
+            Bounds tikiBounds = player.gameObject.GetComponentInChildren<Renderer>().bounds;
             Vector3 origin = controller.transform.position + controller.navAgent.height * controller.transform.up;
-            if (Physics.Raycast(origin, displacement.normalized, out hit, controller.VisionRange))
+            //if (Physics.Raycast(origin, displacement.normalized, out hit, controller.VisionRange))
+            //{
+            //    Debug.Log("Crab looking at " + hit.collider + ", " + hit.collider.tag);
+            //    if (hit.collider.CompareTag("Player"))
+            //    {
+            //        playerSeen = true;
+            //    }
+            //}
+            if(IsTargetVisible(tikiBounds.center, origin, controller.VisionRange))
             {
-                Debug.Log("Crab looking at " + hit.collider + ", " + hit.collider.tag);
-                if (hit.collider.CompareTag("Player"))
-                {
-                    playerSeen = true;
-                }
+                playerSeen = true;
             }
         }
 
