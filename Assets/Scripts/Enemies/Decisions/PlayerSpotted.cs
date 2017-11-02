@@ -19,7 +19,9 @@ public class PlayerSpotted : Decision {
             // If within cone, raycast towards player to check for obstructions
             // May need to do additional casts and require a certain number to count as a sighting
             RaycastHit hit;
-            //TODO origin of raycast should be from middle of controller
+            //TODO figure out best place to raycast from
+            //TODO update tiki to have script in prefab, also make script give mesh's bounds to easily check
+            Bounds tikiBounds = player.gameObject.GetComponent<Renderer>().bounds;
             Vector3 origin = controller.transform.position + controller.navAgent.height * controller.transform.up;
             if (Physics.Raycast(origin, displacement.normalized, out hit, controller.VisionRange))
             {
@@ -32,5 +34,27 @@ public class PlayerSpotted : Decision {
         }
 
         return playerSeen;
+    }
+
+    bool IsTargetVisible(Vector3 target, Vector3 origin, float range)
+    {
+        bool visible = false;
+        Vector3 displacement = target - origin;
+        if(displacement.sqrMagnitude <= range * range)
+        {
+            RaycastHit hit;
+            if(Physics.Raycast(origin, displacement.normalized, out hit, range))
+            {
+                Debug.Log("Crab looking at " + hit.collider + ", " + hit.collider.tag);
+                if (hit.collider.CompareTag("Player"))
+                {
+                    visible = true;
+                }
+            } else
+            {
+                visible = true;
+            }
+        }
+        return visible;
     }
 }
