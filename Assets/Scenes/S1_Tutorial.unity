@@ -114,43 +114,6 @@ Transform:
   m_PrefabParentObject: {fileID: 4838157177557556, guid: 748aa3ac2f2d6fe43ab53761ed2b961e,
     type: 2}
   m_PrefabInternal: {fileID: 1063621338}
---- !u!1 &10024696 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 1652100475119068, guid: f328a453872a96f42aa7f36aa8069778,
-    type: 2}
-  m_PrefabInternal: {fileID: 2011109645}
---- !u!114 &10024699
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 10024696}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4839dce638efc9a47ba8cafdb7ee7265, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  GroundSpeed: 5
-  AirAcceleration: 10
-  GroundAcceleration: 20
-  gravityScale: 1
-  Friction: 10
-  treasureCollected: 0
-  MinJumpHeight: 1
-  MaxJumpHeight: 4
-  JumpChargeTime: 0.5
-  JumpCutoffProportion: 0
-  currentlives: 3
-  maxlives: 3
-  minlives: 0
-  livesText: {fileID: 659025333}
-  controller: {fileID: 0}
-  PlayerCamera: {fileID: 1352176182}
-  CameraTarget: {fileID: 1577245571}
-  CameraTargetOffset: {x: 0, y: 0.5, z: 0}
-  velocity: {x: 0, y: 0, z: 0}
-  level: {fileID: 1183135869}
-  stateName: 0
 --- !u!4 &36659828 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4273723594386960, guid: 748aa3ac2f2d6fe43ab53761ed2b961e,
@@ -11429,46 +11392,26 @@ Prefab:
       propertyPath: m_RootOrder
       value: 8
       objectReference: {fileID: 0}
-    - target: {fileID: 143110100630159478, guid: f328a453872a96f42aa7f36aa8069778,
+    - target: {fileID: 114493189592968032, guid: f328a453872a96f42aa7f36aa8069778,
         type: 2}
-      propertyPath: m_Height
-      value: 0.0135
-      objectReference: {fileID: 0}
-    - target: {fileID: 143110100630159478, guid: f328a453872a96f42aa7f36aa8069778,
+      propertyPath: livesText
+      value: 
+      objectReference: {fileID: 659025333}
+    - target: {fileID: 114493189592968032, guid: f328a453872a96f42aa7f36aa8069778,
         type: 2}
-      propertyPath: m_Radius
-      value: 0.00585868
-      objectReference: {fileID: 0}
-    - target: {fileID: 143110100630159478, guid: f328a453872a96f42aa7f36aa8069778,
+      propertyPath: PlayerCamera
+      value: 
+      objectReference: {fileID: 1352176182}
+    - target: {fileID: 114493189592968032, guid: f328a453872a96f42aa7f36aa8069778,
         type: 2}
-      propertyPath: m_Center.y
-      value: 0.0075
-      objectReference: {fileID: 0}
-    - target: {fileID: 137299008480631414, guid: f328a453872a96f42aa7f36aa8069778,
+      propertyPath: CameraTarget
+      value: 
+      objectReference: {fileID: 1577245571}
+    - target: {fileID: 114493189592968032, guid: f328a453872a96f42aa7f36aa8069778,
         type: 2}
-      propertyPath: m_AABB.m_Center.z
-      value: -0.00079503655
-      objectReference: {fileID: 0}
-    - target: {fileID: 137299008480631414, guid: f328a453872a96f42aa7f36aa8069778,
-        type: 2}
-      propertyPath: m_AABB.m_Extent.z
-      value: 0.0007950405
-      objectReference: {fileID: 0}
-    - target: {fileID: 137299008480631414, guid: f328a453872a96f42aa7f36aa8069778,
-        type: 2}
-      propertyPath: m_AABB.m_Center.x
-      value: -0.000026226044
-      objectReference: {fileID: 0}
-    - target: {fileID: 137299008480631414, guid: f328a453872a96f42aa7f36aa8069778,
-        type: 2}
-      propertyPath: m_AABB.m_Extent.x
-      value: 0.003551979
-      objectReference: {fileID: 0}
-    - target: {fileID: 137299008480631414, guid: f328a453872a96f42aa7f36aa8069778,
-        type: 2}
-      propertyPath: m_AABB.m_Center.y
-      value: -0.000080054626
-      objectReference: {fileID: 0}
+      propertyPath: level
+      value: 
+      objectReference: {fileID: 1183135869}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f328a453872a96f42aa7f36aa8069778, type: 2}
   m_IsPrefabParent: 0
