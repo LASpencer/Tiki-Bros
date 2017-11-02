@@ -427,9 +427,10 @@ GameObject:
   - component: {fileID: 4407371327204974}
   - component: {fileID: 95004307122784612}
   - component: {fileID: 143110100630159478}
+  - component: {fileID: 114493189592968032}
   m_Layer: 0
   m_Name: tikibrowithanimationAJL
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1258,6 +1259,39 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
+--- !u!114 &114493189592968032
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1652100475119068}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4839dce638efc9a47ba8cafdb7ee7265, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  GroundSpeed: 5
+  AirAcceleration: 10
+  GroundAcceleration: 20
+  gravityScale: 1
+  Friction: 10
+  treasureCollected: 0
+  MinJumpHeight: 1
+  MaxJumpHeight: 4
+  JumpChargeTime: 0.5
+  JumpCutoffProportion: 0
+  currentlives: 3
+  maxlives: 3
+  minlives: 0
+  livesText: {fileID: 0}
+  controller: {fileID: 0}
+  PlayerCamera: {fileID: 0}
+  CameraTarget: {fileID: 0}
+  CameraTargetOffset: {x: 0, y: 0.5, z: 0}
+  ModelRenderer: {fileID: 137484263411262576}
+  velocity: {x: 0, y: 0, z: 0}
+  level: {fileID: 0}
+  stateName: 0
 --- !u!137 &137299008480631414
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 1
@@ -1376,13 +1410,13 @@ CharacterController:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Height: 2
-  m_Radius: 0.5
+  m_Height: 0.0135
+  m_Radius: 0.00585868
   m_SlopeLimit: 45
   m_StepOffset: 0.3
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Center: {x: 0, y: 0.0075, z: 0}
 --- !u!183 &183845677378422970
 Cloth:
   m_ObjectHideFlags: 1

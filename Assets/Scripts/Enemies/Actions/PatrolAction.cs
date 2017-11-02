@@ -18,20 +18,15 @@ public class PatrolAction : EnemyAction
         else
         {   // Follow waypoints
             NavMeshAgent agent = controller.navAgent;
-            // If no path set yet, set destination
-            if (!agent.hasPath)
+            // Set destination as waypoint
+            agent.destination = controller.CurrentWaypoint.position;
+
+            if (agent.remainingDistance <= agent.stoppingDistance)
             {
-                agent.destination = controller.CurrentWaypoint.position;
+                // Get next destination if waypoint reached
+                agent.destination = controller.NextWaypoint().position;
             }
-            else
-            {
-                if (agent.remainingDistance <= agent.stoppingDistance)
-                {
-                    // Get next destination
-                    agent.destination = controller.NextWaypoint().position;
-                }
-            }
-            agent.isStopped = false;
+        agent.isStopped = false;
         }
     }
 }

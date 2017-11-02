@@ -18,14 +18,28 @@ public class EnemyController : MonoBehaviour {
         get { return Waypoints[waypointIndex]; }
     }
     public NavMeshAgent navAgent;
+
+    [Tooltip("Angle of cone enemy can see in")]
+    public float VisionAngle;
+
+    [Tooltip("Distance enemy can see")]
+    public float VisionRange;
+
+    [Tooltip("Distance at which enemy give up chasing player")]
+    public float EscapeRange;
+
     [HideInInspector]
     public float TimeInState = 0;
+
+    [HideInInspector]
+    public PlayerController player;
 
     protected int waypointIndex;
 
 	// Use this for initialization
 	void Start () {
         navAgent = GetComponent<NavMeshAgent>();
+        player = FindObjectOfType<PlayerController>();
         waypointIndex = 0;
 	}
 	
@@ -44,6 +58,7 @@ public class EnemyController : MonoBehaviour {
         }
     }
 
+    // Increment waypoints, returning to 0 when end reached
     public Transform NextWaypoint()
     {
         waypointIndex++;
