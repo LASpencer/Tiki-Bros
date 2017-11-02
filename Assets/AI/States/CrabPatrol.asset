@@ -11,6 +11,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 358c7e8e2664d0d47a84cad55f9241be, type: 3}
   m_Name: CrabPatrol
   m_EditorClassIdentifier: 
-  actions: []
-  transitions: []
+  actions:
+  - {fileID: 11400000, guid: d2f1f91a1db12d34fb52e6411bba95b7, type: 2}
+  transitions:
+  - decision: {fileID: 11400000, guid: b410ca4d03633824da869ab54394bf48, type: 2}
+    TrueState: {fileID: 11400000, guid: c9efab4836c694641a6b8da751a4cebb, type: 2}
+    FalseState: {fileID: 11400000}
   sceneGizmoColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}

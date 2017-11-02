@@ -98,7 +98,11 @@ MonoBehaviour:
   CurrentState: {fileID: 11400000, guid: 2dc2a84427ca50e44acaeea754de9516, type: 2}
   Waypoints: []
   navAgent: {fileID: 0}
+  VisionAngle: 90
+  VisionRange: 5
+  EscapeRange: 8
   TimeInState: 0
+  player: {fileID: 0}
 --- !u!114 &114829061518505350
 MonoBehaviour:
   m_ObjectHideFlags: 1

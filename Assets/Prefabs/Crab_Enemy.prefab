@@ -95,10 +95,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1938addbbc2c26a44968381e6855427b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CurrentState: {fileID: 11400000, guid: 2dc2a84427ca50e44acaeea754de9516, type: 2}
+  CurrentState: {fileID: 11400000, guid: 211e3f45e3856e54ea7a4e404aef6803, type: 2}
   Waypoints: []
   navAgent: {fileID: 0}
+  VisionAngle: 90
+  VisionRange: 8
+  EscapeRange: 12
   TimeInState: 0
+  player: {fileID: 0}
 --- !u!114 &114491790003554590
 MonoBehaviour:
   m_ObjectHideFlags: 1
