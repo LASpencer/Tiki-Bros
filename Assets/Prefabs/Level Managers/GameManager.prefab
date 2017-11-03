@@ -138,6 +138,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   CoinsCollected: 0
   TotalCoins: 0
+  LoadingCanvas: {fileID: 223246347149533980}
 --- !u!114 &114617949045043504
 MonoBehaviour:
   m_ObjectHideFlags: 1
