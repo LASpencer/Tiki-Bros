@@ -10,6 +10,13 @@ public class GameManagerController : MonoBehaviour {
 
     public int TotalCoins;
 
+    public Canvas LoadingCanvas;
+
+    bool sceneLoading = false;
+
+    // Whether a scene is being loaded
+    public bool SceneLoading { get { return sceneLoading; } }
+
     void Awake()
     {
         if(Instance == null)
@@ -24,7 +31,7 @@ public class GameManagerController : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		
+        LoadingCanvas.enabled = false;
 	}
 	
 	// Update is called once per frame
@@ -32,4 +39,23 @@ public class GameManagerController : MonoBehaviour {
 		
 	}
     
+    public void LoadScene(string sceneName)
+    {
+        if (!sceneLoading)
+        {
+
+        }
+    }
+
+    void StartSceneLoad()
+    {
+        sceneLoading = true;
+        LoadingCanvas.enabled = true;
+    }
+
+    void FinishSceneLoad()
+    {
+        sceneLoading = false;
+        LoadingCanvas.enabled = false;
+    }
 }
