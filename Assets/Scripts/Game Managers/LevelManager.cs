@@ -60,7 +60,7 @@ public class LevelManager : MonoBehaviour
 			player.currentlives = 0;
             //TODO rewrite killing player ie play animation then go to game over scene
             Cursor.lockState = CursorLockMode.None;
-            SceneManager.LoadScene ("GameOver");
+            GameManagerController.Instance.LoadScene("GameOver");
 		}
     }
 
