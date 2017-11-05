@@ -39,6 +39,7 @@ public class PlayerController : MonoBehaviour
     public CameraController PlayerCamera;
     public Transform CameraTarget;
     public Vector3 CameraTargetOffset;
+    public Renderer ModelRenderer;
 
     public Vector3 velocity;
 
@@ -48,6 +49,9 @@ public class PlayerController : MonoBehaviour
     private Dictionary<EPlayerStates, PlayerState> states;
     public PlayerState currentState;
     public EPlayerStates stateName; //HACK
+
+    // Returns bounds around player's mesh
+    public Bounds bounds { get { return ModelRenderer.bounds; } }
 
 	// Use this for initialization
 	void Start () {
@@ -116,7 +120,7 @@ public class PlayerController : MonoBehaviour
             }
         }
 
-		livesText.text = "Lives Remaining: " + currentlives + " / " + maxlives ;
+		livesText.text = "LIVES: " + currentlives + " / " + maxlives ;
     }
 
     public void ChangeState(EPlayerStates state)
