@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManagerController : MonoBehaviour {
 
@@ -9,6 +10,13 @@ public class GameManagerController : MonoBehaviour {
     public int CoinsCollected;
 
     public int TotalCoins;
+
+    public Canvas LoadingCanvas;
+
+    bool sceneLoading = false;
+
+    // Whether a scene is being loaded
+    public bool SceneLoading { get { return sceneLoading; } }
 
     void Awake()
     {
@@ -24,7 +32,7 @@ public class GameManagerController : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		
+        LoadingCanvas.enabled = false;
 	}
 	
 	// Update is called once per frame
@@ -32,4 +40,40 @@ public class GameManagerController : MonoBehaviour {
 		
 	}
     
+    public void LoadScene(string sceneName)
+    {
+        if (!sceneLoading)
+        {
+            StartCoroutine(AsyncSceneLoad(sceneName));
+        }
+    }
+
+    void StartSceneLoad()
+    {
+        sceneLoading = true;
+        LoadingCanvas.enabled = true;
+    }
+
+    void FinishSceneLoad()
+    {
+        sceneLoading = false;
+        LoadingCanvas.enabled = false;
+    }
+
+    IEnumerator AsyncSceneLoad(string sceneName)
+    {
+        StartSceneLoad();
+        yield return null;
+        AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(sceneName);
+
+        while (!asyncLoad.isDone)
+        {
+            // TODO instead set value of loading bar in canvas
+            // Loading goes from 0 to 0.9, with 1.0 meaning done
+            float progress = Mathf.Clamp01(asyncLoad.progress / 0.9f);
+            Debug.Log("Loading: " + (progress * 100) + "%");
+            yield return null;
+        }
+        FinishSceneLoad();
+    }
 }

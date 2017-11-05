@@ -11,18 +11,19 @@ public class MenuManager : MonoBehaviour
 
     public void PlayLevel()
     {
-        SceneManager.LoadScene("S1_Tutorial");
+        //SceneManager.LoadScene("S1_Tutorial");
+        GameManagerController.Instance.LoadScene("S1_Tutorial");
     }
 
     //TODO move stuff from PauseScreen into here
     public void LoadMainMenu()
     {
-        SceneManager.LoadScene("MainMenu");
+        GameManagerController.Instance.LoadScene("MainMenu");
     }
 
     public void ReloadCurrentLevel()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        GameManagerController.Instance.LoadScene(SceneManager.GetActiveScene().name);
     }
 
     public void QuitButton()
