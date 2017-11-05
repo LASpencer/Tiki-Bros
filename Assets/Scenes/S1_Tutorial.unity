@@ -4048,6 +4048,20 @@ Light:
   m_Lightmapping: 4
   m_AreaSize: {x: 1, y: 1}
   m_BounceIntensity: 1
+  m_FalloffTable:
+    m_Table[0]: 0
+    m_Table[1]: 0
+    m_Table[2]: 0
+    m_Table[3]: 0
+    m_Table[4]: 0
+    m_Table[5]: 0
+    m_Table[6]: 0
+    m_Table[7]: 0
+    m_Table[8]: 0
+    m_Table[9]: 0
+    m_Table[10]: 0
+    m_Table[11]: 0
+    m_Table[12]: 0
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
   m_ShadowRadius: 0
@@ -4694,6 +4708,35 @@ Prefab:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgument
       value: 
       objectReference: {fileID: 52306852}
+    - target: {fileID: 1783346451278460, guid: e9c6a6e212563814c8dd60787735b925, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224687121393242470, guid: e9c6a6e212563814c8dd60787735b925,
+        type: 2}
+      propertyPath: m_AnchoredPosition.x
+      value: 158
+      objectReference: {fileID: 0}
+    - target: {fileID: 224687121393242470, guid: e9c6a6e212563814c8dd60787735b925,
+        type: 2}
+      propertyPath: m_AnchoredPosition.y
+      value: -52
+      objectReference: {fileID: 0}
+    - target: {fileID: 224530904286077386, guid: e9c6a6e212563814c8dd60787735b925,
+        type: 2}
+      propertyPath: m_RootOrder
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 224687121393242470, guid: e9c6a6e212563814c8dd60787735b925,
+        type: 2}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 224296955083930216, guid: e9c6a6e212563814c8dd60787735b925,
+        type: 2}
+      propertyPath: m_RootOrder
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: e9c6a6e212563814c8dd60787735b925, type: 2}
   m_IsPrefabParent: 0
@@ -7339,6 +7382,11 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4393411178344156, guid: 820ae19eafe864345b13fe8e84bcd8cb, type: 2}
       propertyPath: m_RootOrder
+      value: 27
+      objectReference: {fileID: 0}
+    - target: {fileID: 224913033451006090, guid: 820ae19eafe864345b13fe8e84bcd8cb,
+        type: 2}
+      propertyPath: m_AnchoredPosition.x
       value: 27
       objectReference: {fileID: 0}
     m_RemovedComponents: []
