@@ -27,7 +27,7 @@ GameObject:
   - component: {fileID: 215140322677637188}
   m_Layer: 0
   m_Name: Coin
-  m_TagString: Untagged
+  m_TagString: Coin
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -39,7 +39,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1515149095180758}
   m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 48.374, y: 0.91, z: 1.553}
+  m_LocalPosition: {x: 37.153, y: 1.776, z: -16.605}
   m_LocalScale: {x: 0.45537373, y: -0.013067887, z: 0.4553736}
   m_Children: []
   m_Father: {fileID: 0}
@@ -90,7 +90,7 @@ Light:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1515149095180758}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 8
   m_Type: 2
   m_Color: {r: 0.97794116, g: 0.7635082, b: 0.30201122, a: 1}
@@ -166,7 +166,7 @@ ReflectionProbe:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1515149095180758}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Type: 0
   m_Mode: 1

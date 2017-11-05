@@ -36,13 +36,22 @@ public class PlayerController : MonoBehaviour
 
 
     public CharacterController controller;
+    public CameraController PlayerCamera;
+    public Transform CameraTarget;
+    public Vector3 CameraTargetOffset;
+    public Renderer ModelRenderer;
 
     public Vector3 velocity;
+
+    public LevelManager level;
 
     // States
     private Dictionary<EPlayerStates, PlayerState> states;
     public PlayerState currentState;
     public EPlayerStates stateName; //HACK
+
+    // Returns bounds around player's mesh
+    public Bounds bounds { get { return ModelRenderer.bounds; } }
 
 	// Use this for initialization
 	void Start () {
@@ -84,20 +93,34 @@ public class PlayerController : MonoBehaviour
 
         //controller.Move(moveDirection * Time.deltaTime);
 
-        currentState.CheckTransition();
-        currentState.Update();
-
-        // Apply gravity
-        velocity.y += Physics.gravity.y * gravityScale * Time.deltaTime;
-
-        controller.Move(velocity * Time.deltaTime);
-        
-        if (controller.isGrounded)
+        if (!level.IsPaused)
         {
-            velocity.y = 0f;
+            currentState.CheckTransition();
+            currentState.Update();
+
+            // Apply gravity
+            velocity.y += Physics.gravity.y * gravityScale * Time.deltaTime;
+
+            controller.Move(velocity * Time.deltaTime);
+
+            // TODO rotate to movement direction
+            // TODO: rotation should be more smooth
+            // TODO: maybe target has some offset?
+            Vector3 moveDirection = new Vector3(velocity.x, 0, velocity.z);
+            if (moveDirection.magnitude != 0)
+            {
+                transform.forward = moveDirection;
+            }
+            CameraTarget.transform.position = transform.position + CameraTargetOffset;
+
+
+            if (controller.isGrounded)
+            {
+                velocity.y = 0f;
+            }
         }
 
-		livesText.text = "Lives Remaining: " + currentlives + " / " + maxlives ;
+		livesText.text = "LIVES: " + currentlives + " / " + maxlives ;
     }
 
     public void ChangeState(EPlayerStates state)
@@ -122,7 +145,14 @@ public class PlayerController : MonoBehaviour
     public Vector3 GetTargetVelocity()
     {
         //HACK transform.forward may need to change once character isn't just following camera angle
-        Vector3 inputDirection = transform.forward * Input.GetAxis("Vertical") + transform.right * Input.GetAxis("Horizontal");
+        Vector3 forward = PlayerCamera.transform.forward;
+        forward.y = 0;
+        forward.Normalize();
+        if(forward.magnitude == 0)
+        {
+
+        }
+        Vector3 inputDirection = CameraTarget.transform.forward * Input.GetAxis("Vertical") + CameraTarget.transform.right * Input.GetAxis("Horizontal");
         Vector3 targetVelocity = Vector3.ClampMagnitude(inputDirection, 1.0f) * GroundSpeed;
         return targetVelocity;
     }
