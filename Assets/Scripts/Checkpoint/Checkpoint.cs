@@ -23,7 +23,7 @@ public class Checkpoint : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        if (other.name == "Tiki_Character")
+        if (other.CompareTag("Player"))
         {
             levelManager.currentCheckpoint = gameObject;
         }

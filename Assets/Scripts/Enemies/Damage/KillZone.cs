@@ -24,8 +24,9 @@ public class KillZone : MonoBehaviour
     void OnTriggerEnter(Collider other)
     {
         Debug.Log(other.name + "Has entered Kill Zone");
-        if (other.name == "Tiki_Character")
+        if (other.CompareTag("Player"))
         {
+            //TODO make player responsible for dying instead
             levelManager.RespawnPlayer();
             Debug.Log("Player Has died");
         }
