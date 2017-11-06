@@ -14,16 +14,22 @@ public class PlayerController : MonoBehaviour
     public float Friction;
 	public int treasureCollected;
 
+    public float FootRadius = 0.5f;
+
+    
     private float jumpVelocity;     // Initial velocity at start of jump
     private float jumpCutoffVelocity;  // Impulse applied when cutting off jump
 
     public float JumpVelocity { get { return jumpVelocity; } }
     public float JumpCutoffVelocity { get { return jumpCutoffVelocity; } }
-
+    [Header("Jumping")]
     public float MinJumpHeight;
     public float MaxJumpHeight;
     public float JumpChargeTime;
     public float JumpCutoffProportion = 0;  // Proportion of remaining velocity kept when cutting off jump
+
+    public float CoyoteTime;
+    public float JumpPressTolerance;
 
 	[Header ("Lives")]
 	public int currentlives;
@@ -50,6 +56,7 @@ public class PlayerController : MonoBehaviour
     public PlayerState currentState;
     public EPlayerStates stateName; //HACK
 
+    
     bool isGrounded = false;
 
     public bool IsGrounded { get { return isGrounded; } }
@@ -161,14 +168,30 @@ public class PlayerController : MonoBehaviour
     void OnControllerColliderHit(ControllerColliderHit hit)
     {
         Vector3 normal = hit.normal;
+        
         float mag = Vector3.Dot(normal, velocity);
         velocity += -mag * normal;
+        //TODO: If hitting a wall greater than walkable slope, move away from it
+        if (Vector3.Angle(normal, Vector3.up) > (controller.slopeLimit) && Vector3.Angle(normal, Vector3.up) < (180 - controller.slopeLimit))
+        {
+            velocity += normal;
+        }
     }
 
     void CheckIfGrounded()
     {
         //TODO write test based on ground distance directly below
-
-        isGrounded = controller.isGrounded;
+        RaycastHit groundHit;
+        Debug.DrawRay(transform.position, Vector3.down, Color.green);
+        float distance = 0.15f;
+        if (Physics.SphereCast(transform.position + ((FootRadius + distance) * Vector3.up), FootRadius, Vector3.down, out groundHit, FootRadius))
+        {
+            isGrounded = true;
+        }
+        else
+        {
+            isGrounded = false;
+        }
+        //isGrounded = controller.isGrounded;
     }
 }

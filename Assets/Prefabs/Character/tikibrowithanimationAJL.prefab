@@ -1280,6 +1280,8 @@ MonoBehaviour:
   MaxJumpHeight: 4
   JumpChargeTime: 0.5
   JumpCutoffProportion: 0
+  CoyoteTime: 0.2
+  JumpPressTolerance: 0.1
   currentlives: 3
   maxlives: 3
   minlives: 0
