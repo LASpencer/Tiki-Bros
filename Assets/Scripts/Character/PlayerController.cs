@@ -116,7 +116,7 @@ public class PlayerController : MonoBehaviour
 
             if (controller.isGrounded)
             {
-                velocity.y = 0f;
+                //velocity.y = 0f;
             }
         }
 
@@ -155,5 +155,12 @@ public class PlayerController : MonoBehaviour
         Vector3 inputDirection = CameraTarget.transform.forward * Input.GetAxis("Vertical") + CameraTarget.transform.right * Input.GetAxis("Horizontal");
         Vector3 targetVelocity = Vector3.ClampMagnitude(inputDirection, 1.0f) * GroundSpeed;
         return targetVelocity;
+    }
+
+    void OnControllerColliderHit(ControllerColliderHit hit)
+    {
+        Vector3 normal = hit.normal;
+        float mag = Vector3.Dot(normal, velocity);
+        velocity += -mag * normal;
     }
 }
