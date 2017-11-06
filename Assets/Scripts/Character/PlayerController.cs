@@ -50,6 +50,10 @@ public class PlayerController : MonoBehaviour
     public PlayerState currentState;
     public EPlayerStates stateName; //HACK
 
+    bool isGrounded = false;
+
+    public bool IsGrounded { get { return isGrounded; } }
+
     // Returns bounds around player's mesh
     public Bounds bounds { get { return ModelRenderer.bounds; } }
 
@@ -103,6 +107,8 @@ public class PlayerController : MonoBehaviour
 
             controller.Move(velocity * Time.deltaTime);
 
+            CheckIfGrounded();
+
             // TODO rotate to movement direction
             // TODO: rotation should be more smooth
             // TODO: maybe target has some offset?
@@ -113,12 +119,6 @@ public class PlayerController : MonoBehaviour
                 transform.forward = targetVelocity;
             }
             CameraTarget.transform.position = transform.position + CameraTargetOffset;
-
-
-            if (controller.isGrounded)
-            {
-                //velocity.y = 0f;
-            }
         }
 
 		livesText.text = "LIVES: " + currentlives + " / " + maxlives ;
@@ -163,5 +163,12 @@ public class PlayerController : MonoBehaviour
         Vector3 normal = hit.normal;
         float mag = Vector3.Dot(normal, velocity);
         velocity += -mag * normal;
+    }
+
+    void CheckIfGrounded()
+    {
+        //TODO write test based on ground distance directly below
+
+        isGrounded = controller.isGrounded;
     }
 }

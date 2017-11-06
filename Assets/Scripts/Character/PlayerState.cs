@@ -13,6 +13,8 @@ public enum EPlayerStates
 
 public abstract class PlayerState  {
 
+    public const float IDLE_SPEED = 0.0001f; // If x and y components less than this, treat as in idle state
+
     protected PlayerController player;
     public PlayerController Player { get { return Player; } }
 
@@ -49,7 +51,7 @@ public class IdleState : PlayerState
             player.ChangeState(EPlayerStates.Jump);
         }
         // Exit to falling on not grounded
-        if (!player.controller.isGrounded)
+        if (!player.IsGrounded)
         {
             player.ChangeState(EPlayerStates.Falling);
         }
@@ -87,13 +89,13 @@ public class RunState : PlayerState
             player.ChangeState(EPlayerStates.Jump);
         }
         // Exit to falling on not grounded
-        if (!player.controller.isGrounded)
+        if (!player.IsGrounded)
         {
             player.ChangeState(EPlayerStates.Falling);
         }
         // Exit to idle on not moving
         //TODO rewrite if movement rewritten
-        if (player.velocity.x == 0 && player.velocity.z == 0)
+        if (Mathf.Abs(player.velocity.x) < IDLE_SPEED && Mathf.Abs(player.velocity.y) < IDLE_SPEED)
         {
             player.ChangeState(EPlayerStates.Idle);
         }
@@ -145,9 +147,9 @@ public abstract class AirState : PlayerState
 
     public override void CheckTransition()
     {
-        if (player.controller.isGrounded)
+        if (player.IsGrounded)
         {
-            if (player.velocity.x == 0 && player.velocity.z == 0)
+            if (Mathf.Abs(player.velocity.x) < IDLE_SPEED && Mathf.Abs(player.velocity.y) < IDLE_SPEED)
             {
                 player.ChangeState(EPlayerStates.Idle);
             }
