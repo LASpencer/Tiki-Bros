@@ -107,9 +107,10 @@ public class PlayerController : MonoBehaviour
             // TODO: rotation should be more smooth
             // TODO: maybe target has some offset?
             Vector3 moveDirection = new Vector3(velocity.x, 0, velocity.z);
-            if (moveDirection.magnitude != 0)
+            Vector3 targetVelocity = GetTargetVelocity();
+            if (targetVelocity.magnitude != 0)
             {
-                transform.forward = moveDirection;
+                transform.forward = targetVelocity;
             }
             CameraTarget.transform.position = transform.position + CameraTargetOffset;
 
