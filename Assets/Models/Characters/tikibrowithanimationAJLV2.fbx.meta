@@ -1,0 +1,173 @@
+fileFormatVersion: 2
+guid: 5d133ac8c39c2164ea3c720f513cdfec
+timeCreated: 1509943117
+licenseType: Pro
+ModelImporter:
+  serializedVersion: 21
+  fileIDToRecycleName:
+    100000: back_JNT
+    100002: head_CTLR
+    100004: head_JNT
+    100006: L_ankle_JNT
+    100008: L_ellbow_JNT
+    100010: L_foot_JNT
+    100012: L_foottip_JNT
+    100014: L_hand_JNT
+    100016: L_hip_JNT
+    100018: L_knee_JNT
+    100020: L_shoulder_JNT
+    100022: lowerspine_JNT
+    100024: main_control_JNT
+    100026: polySurface1
+    100028: polySurface2
+    100030: polySurface3
+    100032: polySurface4
+    100034: polySurface5
+    100036: polySurface6
+    100038: polySurface7
+    100040: polySurface8
+    100042: polySurface8 1
+    100044: polySurface9
+    100046: R_ankle_JNT
+    100048: R_ellbow_JNT
+    100050: R_foot_JNT
+    100052: R_foottip_JNT
+    100054: R_hand_JNT
+    100056: R_hip_JNT
+    100058: R_knee_JNT
+    100060: R_shoulder_JNT
+    100062: Tikibro_NMTT_v2_low:polySurface161
+    100064: //RootNode
+    100066: transform1
+    100068: transform2
+    100070: transform3
+    100072: transform4
+    100074: transform5
+    100076: transform6
+    100078: transform7
+    100080: transform8
+    100082: transform9
+    400000: back_JNT
+    400002: head_CTLR
+    400004: head_JNT
+    400006: L_ankle_JNT
+    400008: L_ellbow_JNT
+    400010: L_foot_JNT
+    400012: L_foottip_JNT
+    400014: L_hand_JNT
+    400016: L_hip_JNT
+    400018: L_knee_JNT
+    400020: L_shoulder_JNT
+    400022: lowerspine_JNT
+    400024: main_control_JNT
+    400026: polySurface1
+    400028: polySurface2
+    400030: polySurface3
+    400032: polySurface4
+    400034: polySurface5
+    400036: polySurface6
+    400038: polySurface7
+    400040: polySurface8
+    400042: polySurface8 1
+    400044: polySurface9
+    400046: R_ankle_JNT
+    400048: R_ellbow_JNT
+    400050: R_foot_JNT
+    400052: R_foottip_JNT
+    400054: R_hand_JNT
+    400056: R_hip_JNT
+    400058: R_knee_JNT
+    400060: R_shoulder_JNT
+    400062: Tikibro_NMTT_v2_low:polySurface161
+    400064: //RootNode
+    400066: transform1
+    400068: transform2
+    400070: transform3
+    400072: transform4
+    400074: transform5
+    400076: transform6
+    400078: transform7
+    400080: transform8
+    400082: transform9
+    2300000: polySurface2
+    3300000: polySurface2
+    4300000: polySurface8
+    4300002: polySurface2
+    7400000: Take 001
+    9500000: //RootNode
+    13700000: polySurface8
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 100
+    meshCompression: 0
+    addColliders: 0
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

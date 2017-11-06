@@ -13,7 +13,7 @@ public enum EPlayerStates
 
 public abstract class PlayerState  {
 
-    public const float IDLE_SPEED = 0.0001f; // If x and y components less than this, treat as in idle state
+    public const float IDLE_SPEED = 0.01f; // If x and y components less than this, treat as in idle state
 
     protected PlayerController player;
     public PlayerController Player { get { return Player; } }
@@ -70,8 +70,18 @@ public class IdleState : PlayerState
 
     public override void Update()
     {
-        //TODO exiting to other states
-        
+        Vector3 groundSlope = Vector3.up;
+        RaycastHit groundHit;
+        float distance = 0.2f; //HACK
+        if (Physics.Raycast(player.transform.position, Vector3.down, out groundHit, distance))
+        {
+            groundSlope = groundHit.normal;
+        }
+        Vector3 groundVelocity = player.velocity;
+        groundVelocity += -(Vector3.Dot(groundVelocity, groundSlope)) * groundSlope;
+        Vector3 difference =  -groundVelocity;
+        float acceleration = player.GroundAcceleration;
+        player.velocity += Vector3.ClampMagnitude(difference, acceleration * Time.deltaTime);
     }
 }
 

@@ -1,18 +1,48 @@
 fileFormatVersion: 2
-guid: 472f131f42cf82140a9a12e90dc3e733
-timeCreated: 1509942538
-licenseType: Free
+guid: 8040a9f74d538044fa111bb1c2951def
+timeCreated: 1509943117
+licenseType: Pro
 ModelImporter:
   serializedVersion: 21
   fileIDToRecycleName:
-    100000: polySurface11
-    100002: //RootNode
-    400000: polySurface11
-    400002: //RootNode
-    2300000: polySurface11
-    3300000: polySurface11
-    4300000: polySurface11
-    6400000: polySurface11
+    100000: head_JNT
+    100002: L_backleg1_JNT
+    100004: L_backleg2_JNT
+    100006: L_backleg3_JNT
+    100008: L_frontleg1_JNT
+    100010: L_frontleg2_JNT
+    100012: L_frontleg3_JNT
+    100014: main_JNT
+    100016: R_backleg1_JNT
+    100018: R_backleg2_JNT
+    100020: R_backleg3_JNT
+    100022: R_frontleg1_JNT
+    100024: R_frontleg2_JNT
+    100026: R_frontleg3_JNT
+    100028: tail_JNT
+    100030: Turtle_NMTT_v1_low:polySurface20
+    100032: //RootNode
+    400000: head_JNT
+    400002: L_backleg1_JNT
+    400004: L_backleg2_JNT
+    400006: L_backleg3_JNT
+    400008: L_frontleg1_JNT
+    400010: L_frontleg2_JNT
+    400012: L_frontleg3_JNT
+    400014: main_JNT
+    400016: R_backleg1_JNT
+    400018: R_backleg2_JNT
+    400020: R_backleg3_JNT
+    400022: R_frontleg1_JNT
+    400024: R_frontleg2_JNT
+    400026: R_frontleg3_JNT
+    400028: tail_JNT
+    400030: Turtle_NMTT_v1_low:polySurface20
+    400032: //RootNode
+    4300000: Turtle_NMTT_v1_low:polySurface20
+    7400000: Take 001
+    9500000: //RootNode
+    13700000: Turtle_NMTT_v1_low:polySurface20
   materials:
     importMaterials: 1
     materialName: 0
@@ -42,7 +72,7 @@ ModelImporter:
     lODScreenPercentages: []
     globalScale: 1
     meshCompression: 0
-    addColliders: 1
+    addColliders: 0
     importVisibility: 1
     importBlendShapes: 1
     importCameras: 1
@@ -82,7 +112,7 @@ ModelImporter:
     hasExtraRoot: 0
     skeletonHasParents: 1
   lastHumanDescriptionAvatarSource: {instanceID: 0}
-  animationType: 0
+  animationType: 2
   humanoidOversampling: 1
   additionalBone: 0
   userData: 

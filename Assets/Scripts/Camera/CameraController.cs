@@ -135,7 +135,7 @@ public class CameraController : MonoBehaviour
             //TODO create layer mask for things to ignore
             if(Physics.SphereCast(target.transform.position, occlusionRadius, -pivot.forward, out hit, offsetWanted, BlocksCamera, QueryTriggerInteraction.Ignore))
             {
-                Debug.Log("Camera collided with " + hit.collider + ", " + hit.collider.tag);
+                //Debug.Log("Camera collided with " + hit.collider + ", " + hit.collider.tag);
                 if(hit.distance > minDistance)
                 {
                     offset = hit.distance;
