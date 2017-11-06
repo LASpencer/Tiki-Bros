@@ -38,13 +38,13 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1607166977477922}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: -0, y: 0.885611, z: -0, w: 0.4644279}
+  m_LocalPosition: {x: -3.6005435, y: 5.0089927, z: -22.188402}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 124.65401, z: 0}
 --- !u!23 &23145051827219936
 MeshRenderer:
   m_ObjectHideFlags: 1
@@ -83,7 +83,7 @@ MeshFilter:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1607166977477922}
-  m_Mesh: {fileID: 4300000, guid: d9d00b53923733f4b81941c4d0c90000, type: 3}
+  m_Mesh: {fileID: 4300000, guid: d6c4f471ba5c13740b0c717e6f135617, type: 3}
 --- !u!114 &114639501602600272
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -96,7 +96,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CurrentState: {fileID: 11400000, guid: 2dc2a84427ca50e44acaeea754de9516, type: 2}
-  Waypoints: []
+  Waypoints:
+  - {fileID: 0}
+  - {fileID: 0}
   navAgent: {fileID: 0}
   VisionAngle: 90
   VisionRange: 5
