@@ -1276,6 +1276,8 @@ MonoBehaviour:
   gravityScale: 1
   Friction: 10
   treasureCollected: 0
+  FootRadius: 0.5
+  FootOffset: 0.15
   MinJumpHeight: 1
   MaxJumpHeight: 4
   JumpChargeTime: 0.5

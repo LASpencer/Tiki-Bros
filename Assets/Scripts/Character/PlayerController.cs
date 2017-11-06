@@ -14,8 +14,8 @@ public class PlayerController : MonoBehaviour
     public float Friction;
 	public int treasureCollected;
 
-    public float FootRadius = 0.5f;
-
+    public float FootRadius = 0.3f;
+    public float FootOffset = 0.15f;
     
     private float jumpVelocity;     // Initial velocity at start of jump
     private float jumpCutoffVelocity;  // Impulse applied when cutting off jump
@@ -172,10 +172,11 @@ public class PlayerController : MonoBehaviour
         float mag = Vector3.Dot(normal, velocity);
         velocity += -mag * normal;
         //TODO: If hitting a wall greater than walkable slope, move away from it
-        if (Vector3.Angle(normal, Vector3.up) > (controller.slopeLimit) && Vector3.Angle(normal, Vector3.up) < (180 - controller.slopeLimit))
-        {
-            velocity += normal;
-        }
+        //if (Vector3.Angle(normal, Vector3.up) > (controller.slopeLimit) && Vector3.Angle(normal, Vector3.up) < (180 - controller.slopeLimit))
+        //{
+        //    //velocity += normal;
+        //    //TODO
+        //}
     }
 
     void CheckIfGrounded()
@@ -183,8 +184,8 @@ public class PlayerController : MonoBehaviour
         //TODO write test based on ground distance directly below
         RaycastHit groundHit;
         Debug.DrawRay(transform.position, Vector3.down, Color.green);
-        float distance = 0.15f;
-        if (Physics.SphereCast(transform.position + ((FootRadius + distance) * Vector3.up), FootRadius, Vector3.down, out groundHit, FootRadius))
+
+        if (Physics.SphereCast(transform.position + ((FootRadius + FootOffset) * Vector3.up), FootRadius, Vector3.down, out groundHit, FootRadius))
         {
             isGrounded = true;
         }
