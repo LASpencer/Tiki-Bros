@@ -1276,10 +1276,14 @@ MonoBehaviour:
   gravityScale: 1
   Friction: 10
   treasureCollected: 0
+  FootRadius: 0.5
+  FootOffset: 0.15
   MinJumpHeight: 1
   MaxJumpHeight: 4
   JumpChargeTime: 0.5
   JumpCutoffProportion: 0
+  CoyoteTime: 0.2
+  JumpPressTolerance: 0.1
   currentlives: 3
   maxlives: 3
   minlives: 0
