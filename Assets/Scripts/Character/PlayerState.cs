@@ -13,6 +13,8 @@ public enum EPlayerStates
 
 public abstract class PlayerState  {
 
+    public const float IDLE_SPEED = 0.0001f; // If x and y components less than this, treat as in idle state
+
     protected PlayerController player;
     public PlayerController Player { get { return Player; } }
 
@@ -49,7 +51,7 @@ public class IdleState : PlayerState
             player.ChangeState(EPlayerStates.Jump);
         }
         // Exit to falling on not grounded
-        if (!player.controller.isGrounded)
+        if (!player.IsGrounded)
         {
             player.ChangeState(EPlayerStates.Falling);
         }
@@ -87,13 +89,13 @@ public class RunState : PlayerState
             player.ChangeState(EPlayerStates.Jump);
         }
         // Exit to falling on not grounded
-        if (!player.controller.isGrounded)
+        if (!player.IsGrounded)
         {
             player.ChangeState(EPlayerStates.Falling);
         }
         // Exit to idle on not moving
         //TODO rewrite if movement rewritten
-        if (player.velocity.x == 0 && player.velocity.z == 0)
+        if (Mathf.Abs(player.velocity.x) < IDLE_SPEED && Mathf.Abs(player.velocity.y) < IDLE_SPEED)
         {
             player.ChangeState(EPlayerStates.Idle);
         }
@@ -113,8 +115,17 @@ public class RunState : PlayerState
     {
         //TODO write a more fluid movement (accellerate in/decellerate out)
         Vector3 target = player.GetTargetVelocity();
+        Vector3 groundSlope = Vector3.up;
+        RaycastHit groundHit;
+        float distance = 0.2f; //HACK
+        if(Physics.Raycast(player.transform.position, Vector3.down, out groundHit, distance))
+        {
+            groundSlope = groundHit.normal;
+        }
+        target += -(Vector3.Dot(target, groundSlope)) * groundSlope;
         Vector3 groundVelocity = player.velocity;
-        groundVelocity.y = 0;
+        //groundVelocity.y = 0;
+        groundVelocity += -(Vector3.Dot(groundVelocity, groundSlope)) * groundSlope;
         Vector3 difference = target - groundVelocity;
         float acceleration = player.GroundAcceleration;
         float groundSpeed = groundVelocity.magnitude;
@@ -139,24 +150,17 @@ public class RunState : PlayerState
 // Abstract class for shared functionality between aerial states
 public abstract class AirState : PlayerState
 {
+    protected float JumpToleranceTimer;
+
     public AirState(PlayerController player) : base(player)
     {
     }
 
-    public override void CheckTransition()
+    public override void OnEnter()
     {
-        if (player.controller.isGrounded)
-        {
-            if (player.velocity.x == 0 && player.velocity.z == 0)
-            {
-                player.ChangeState(EPlayerStates.Idle);
-            }
-            else
-            {
-                player.ChangeState(EPlayerStates.Run);
-            }
-        }
+        JumpToleranceTimer = 0;
     }
+
     public override void Update()
     {
         //TODO air movement applying force, not just set speed
@@ -165,6 +169,13 @@ public abstract class AirState : PlayerState
         groundVelocity.y = 0;
         Vector3 difference = target - groundVelocity;
         player.velocity += Vector3.ClampMagnitude(difference, player.AirAcceleration * Time.deltaTime);
+
+        // Check if player trying to jump
+        JumpToleranceTimer = Mathf.Max(0, JumpToleranceTimer - Time.deltaTime);
+        if (Input.GetButtonDown("Jump"))
+        {
+            JumpToleranceTimer = player.JumpPressTolerance;
+        }
     }
 
     public override void OnExit()
@@ -183,6 +194,7 @@ public class JumpState : AirState
 
     public override void OnEnter()
     {
+        base.OnEnter();
         player.CalculateJumpParameters();       //TODO figure out how to only do it once, or just move this to player.start() and ignore field changes at runtime
         //apply velocity upward
         player.velocity.y = player.JumpVelocity;
@@ -217,23 +229,70 @@ public class JumpState : AirState
         InUpswing = false;
         base.OnExit();
     }
+
+    public override void CheckTransition()
+    {
+        // Don't land from jumping until controller collider actually hits
+        if (player.controller.isGrounded)
+        {
+            if (JumpToleranceTimer > 0)
+            {
+                player.ChangeState(EPlayerStates.Jump);
+            }
+            else if (Mathf.Abs(player.velocity.x) < IDLE_SPEED && Mathf.Abs(player.velocity.y) < IDLE_SPEED)
+            {
+                player.ChangeState(EPlayerStates.Idle);
+            }
+            else
+            {
+                player.ChangeState(EPlayerStates.Run);
+            }
+        }
+    }
 }
 
 public class FallingState : AirState
 {
+    float TimeFalling;
     //TODO allow jumping shortly after entering fall as "grace period"
     public FallingState(PlayerController player) : base(player)
     {
     }
 
+    public override void CheckTransition()
+    {
+        if (TimeFalling < player.CoyoteTime && Input.GetButtonDown("Jump"))
+        {
+            player.ChangeState(EPlayerStates.Jump);
+        }
+        else if(player.IsGrounded)
+        {
+            if (JumpToleranceTimer > 0)
+            {
+                player.ChangeState(EPlayerStates.Jump);
+            }
+            else if (Mathf.Abs(player.velocity.x) < IDLE_SPEED && Mathf.Abs(player.velocity.y) < IDLE_SPEED)
+            {
+                player.ChangeState(EPlayerStates.Idle);
+            }
+            else
+            {
+                player.ChangeState(EPlayerStates.Run);
+            }
+        }
+    }
+
     public override void OnEnter()
     {
- 
+        base.OnEnter();
+        TimeFalling = 0;
     }
 
     public override void Update()
     {
         base.Update();
+        TimeFalling += Time.deltaTime;
+        
     }
 
     public override void OnExit()

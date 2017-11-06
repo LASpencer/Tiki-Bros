@@ -14,16 +14,22 @@ public class PlayerController : MonoBehaviour
     public float Friction;
 	public int treasureCollected;
 
+    public float FootRadius = 0.3f;
+    public float FootOffset = 0.15f;
+    
     private float jumpVelocity;     // Initial velocity at start of jump
     private float jumpCutoffVelocity;  // Impulse applied when cutting off jump
 
     public float JumpVelocity { get { return jumpVelocity; } }
     public float JumpCutoffVelocity { get { return jumpCutoffVelocity; } }
-
+    [Header("Jumping")]
     public float MinJumpHeight;
     public float MaxJumpHeight;
     public float JumpChargeTime;
     public float JumpCutoffProportion = 0;  // Proportion of remaining velocity kept when cutting off jump
+
+    public float CoyoteTime;
+    public float JumpPressTolerance;
 
 	[Header ("Lives")]
 	public int currentlives;
@@ -49,6 +55,11 @@ public class PlayerController : MonoBehaviour
     private Dictionary<EPlayerStates, PlayerState> states;
     public PlayerState currentState;
     public EPlayerStates stateName; //HACK
+
+    
+    bool isGrounded = false;
+
+    public bool IsGrounded { get { return isGrounded; } }
 
     // Returns bounds around player's mesh
     public Bounds bounds { get { return ModelRenderer.bounds; } }
@@ -103,21 +114,18 @@ public class PlayerController : MonoBehaviour
 
             controller.Move(velocity * Time.deltaTime);
 
+            CheckIfGrounded();
+
             // TODO rotate to movement direction
             // TODO: rotation should be more smooth
             // TODO: maybe target has some offset?
             Vector3 moveDirection = new Vector3(velocity.x, 0, velocity.z);
-            if (moveDirection.magnitude != 0)
+            Vector3 targetVelocity = GetTargetVelocity();
+            if (targetVelocity.magnitude != 0)
             {
-                transform.forward = moveDirection;
+                transform.forward = targetVelocity;
             }
             CameraTarget.transform.position = transform.position + CameraTargetOffset;
-
-
-            if (controller.isGrounded)
-            {
-                velocity.y = 0f;
-            }
         }
 
 		livesText.text = "LIVES: " + currentlives + " / " + maxlives ;
@@ -155,5 +163,36 @@ public class PlayerController : MonoBehaviour
         Vector3 inputDirection = CameraTarget.transform.forward * Input.GetAxis("Vertical") + CameraTarget.transform.right * Input.GetAxis("Horizontal");
         Vector3 targetVelocity = Vector3.ClampMagnitude(inputDirection, 1.0f) * GroundSpeed;
         return targetVelocity;
+    }
+
+    void OnControllerColliderHit(ControllerColliderHit hit)
+    {
+        Vector3 normal = hit.normal;
+        
+        float mag = Vector3.Dot(normal, velocity);
+        velocity += -mag * normal;
+        //TODO: If hitting a wall greater than walkable slope, move away from it
+        //if (Vector3.Angle(normal, Vector3.up) > (controller.slopeLimit) && Vector3.Angle(normal, Vector3.up) < (180 - controller.slopeLimit))
+        //{
+        //    //velocity += normal;
+        //    //TODO
+        //}
+    }
+
+    void CheckIfGrounded()
+    {
+        //TODO write test based on ground distance directly below
+        RaycastHit groundHit;
+        Debug.DrawRay(transform.position, Vector3.down, Color.green);
+
+        if (Physics.SphereCast(transform.position + ((FootRadius + FootOffset) * Vector3.up), FootRadius, Vector3.down, out groundHit, FootRadius))
+        {
+            isGrounded = true;
+        }
+        else
+        {
+            isGrounded = false;
+        }
+        //isGrounded = controller.isGrounded;
     }
 }
