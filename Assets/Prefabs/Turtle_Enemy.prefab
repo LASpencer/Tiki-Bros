@@ -25,6 +25,7 @@ GameObject:
   - component: {fileID: 114829061518505350}
   - component: {fileID: 195969626731884828}
   - component: {fileID: 114639501602600272}
+  - component: {fileID: 95365713821705670}
   m_Layer: 0
   m_Name: Turtle_Enemy
   m_TagString: Untagged
@@ -38,13 +39,13 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1607166977477922}
-  m_LocalRotation: {x: -0, y: 0.885611, z: -0, w: 0.4644279}
-  m_LocalPosition: {x: -3.6005435, y: 5.0089927, z: -22.188402}
+  m_LocalRotation: {x: -0, y: 0.6927843, z: -0, w: 0.72114486}
+  m_LocalPosition: {x: 120.81924, y: 1.9945927, z: 185.68326}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 124.65401, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 87.702, z: 0}
 --- !u!23 &23145051827219936
 MeshRenderer:
   m_ObjectHideFlags: 1
@@ -84,6 +85,23 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1607166977477922}
   m_Mesh: {fileID: 4300000, guid: d6c4f471ba5c13740b0c717e6f135617, type: 3}
+--- !u!95 &95365713821705670
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1607166977477922}
+  m_Enabled: 1
+  m_Avatar: {fileID: 9000000, guid: 8040a9f74d538044fa111bb1c2951def, type: 3}
+  m_Controller: {fileID: 9100000, guid: e1719a7982ea6a54996d10e4f527648f, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
 --- !u!114 &114639501602600272
 MonoBehaviour:
   m_ObjectHideFlags: 1
