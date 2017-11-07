@@ -218,8 +218,8 @@ GameObject:
   - component: {fileID: 143096517367365058}
   - component: {fileID: 114081622212451654}
   m_Layer: 0
-  m_Name: Tiki_Character
-  m_TagString: Untagged
+  m_Name: tikibrowithanimationAJLV2
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1324,7 +1324,7 @@ MonoBehaviour:
   PlayerCamera: {fileID: 0}
   CameraTarget: {fileID: 0}
   CameraTargetOffset: {x: 0, y: 0.5, z: 0}
-  ModelRenderer: {fileID: 0}
+  ModelRenderer: {fileID: 137784412099551804}
   velocity: {x: 0, y: 0, z: 0}
   level: {fileID: 0}
   stateName: 0
