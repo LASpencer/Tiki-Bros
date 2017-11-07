@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-//TODO: On head colliding with roof (or anything above?) set vertical speed to 0
+//TODO change how Jump Tolerance works, so not jumping while off ground
 
 public class PlayerController : MonoBehaviour
 {

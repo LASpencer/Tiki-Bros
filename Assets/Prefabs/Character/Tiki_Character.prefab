@@ -218,7 +218,7 @@ GameObject:
   - component: {fileID: 143096517367365058}
   - component: {fileID: 114081622212451654}
   m_Layer: 0
-  m_Name: tikibrowithanimationAJLV2
+  m_Name: Tiki_Character
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1307,7 +1307,7 @@ MonoBehaviour:
   gravityScale: 1
   Friction: 10
   treasureCollected: 0
-  FootRadius: 0.5
+  FootRadius: 0.3
   FootOffset: 0.15
   MinJumpHeight: 1
   MaxJumpHeight: 4

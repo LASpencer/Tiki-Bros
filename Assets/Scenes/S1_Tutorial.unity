@@ -4170,11 +4170,6 @@ Prefab:
       objectReference: {fileID: 1577245571}
     - target: {fileID: 114081622212451654, guid: 2e36693907f9bb743a54d9c921074a18,
         type: 2}
-      propertyPath: ModelRenderer
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 114081622212451654, guid: 2e36693907f9bb743a54d9c921074a18,
-        type: 2}
       propertyPath: level
       value: 
       objectReference: {fileID: 1183135869}
