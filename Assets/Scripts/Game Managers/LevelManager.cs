@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 public class LevelManager : MonoBehaviour
 {
-    public GameObject currentCheckpoint;
+    public Checkpoint currentCheckpoint;
 
 	public Scene currentScene;
 
@@ -51,7 +51,7 @@ public class LevelManager : MonoBehaviour
 
     public void RespawnPlayer ()
     {
-        player.transform.position = currentCheckpoint.transform.position;
+        player.transform.position = currentCheckpoint.spawnPoint.transform.position;
 		player.currentlives = player.currentlives  - 1;
         Debug.Log(" Respawn player");
 
