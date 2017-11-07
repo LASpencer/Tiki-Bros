@@ -395,7 +395,7 @@ Prefab:
         type: 2}
       propertyPath: currentCheckpoint
       value: 
-      objectReference: {fileID: 697076503}
+      objectReference: {fileID: 1682864730}
     - target: {fileID: 114361039453101976, guid: 6056f318deaf00f46ab9a65532016b87,
         type: 2}
       propertyPath: PauseScreen
@@ -1555,6 +1555,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   levelManager: {fileID: 0}
+  spawnPoint: {fileID: 0}
 --- !u!135 &427765597
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -2798,11 +2799,6 @@ Mesh:
   m_BakedConvexCollisionMesh: 
   m_BakedTriangleCollisionMesh: 
   m_MeshOptimized: 0
---- !u!1 &697076503 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 1739493122985314, guid: 934412ca124d1b64c94d7ce93a696f6a,
-    type: 2}
-  m_PrefabInternal: {fileID: 1707411294}
 --- !u!1 &707538529
 GameObject:
   m_ObjectHideFlags: 0
@@ -3168,6 +3164,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   levelManager: {fileID: 0}
+  spawnPoint: {fileID: 0}
 --- !u!135 &873962065
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -6610,6 +6607,12 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1680626901}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1682864730 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114619105526689206, guid: 934412ca124d1b64c94d7ce93a696f6a,
+    type: 2}
+  m_PrefabInternal: {fileID: 1707411294}
+  m_Script: {fileID: 11500000, guid: b1c03b7bb0c0b7b4a8aacf41f010c557, type: 3}
 --- !u!1001 &1707411294
 Prefab:
   m_ObjectHideFlags: 0
@@ -6649,10 +6652,6 @@ Prefab:
       propertyPath: m_RootOrder
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1144929213558150, guid: 934412ca124d1b64c94d7ce93a696f6a, type: 2}
-      propertyPath: m_Name
-      value: TorchSpawn
-      objectReference: {fileID: 0}
     - target: {fileID: 114619105526689206, guid: 934412ca124d1b64c94d7ce93a696f6a,
         type: 2}
       propertyPath: levelManager
@@ -6663,6 +6662,10 @@ Prefab:
       propertyPath: levelManager
       value: 
       objectReference: {fileID: 1183135869}
+    - target: {fileID: 1144929213558150, guid: 934412ca124d1b64c94d7ce93a696f6a, type: 2}
+      propertyPath: m_Name
+      value: TorchSpawn
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 934412ca124d1b64c94d7ce93a696f6a, type: 2}
   m_IsPrefabParent: 0

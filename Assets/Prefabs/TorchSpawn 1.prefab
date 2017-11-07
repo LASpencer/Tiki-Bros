@@ -125,6 +125,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   levelManager: {fileID: 0}
+  spawnPoint: {fileID: 0}
 --- !u!114 &114619105526689206
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -137,6 +138,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   levelManager: {fileID: 0}
+  spawnPoint: {fileID: 1739493122985314}
 --- !u!135 &135885469385292708
 SphereCollider:
   m_ObjectHideFlags: 1

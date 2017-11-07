@@ -6,7 +6,7 @@ public class Checkpoint : MonoBehaviour
 {
 
     public LevelManager levelManager;
-
+    public GameObject spawnPoint;
 
     // Use this for initialization
     void Start()
@@ -25,7 +25,7 @@ public class Checkpoint : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            levelManager.currentCheckpoint = gameObject;
+            levelManager.currentCheckpoint = this;
         }
     }
 }
