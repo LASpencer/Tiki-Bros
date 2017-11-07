@@ -82,6 +82,8 @@ public class IdleState : PlayerState
         Vector3 difference =  -groundVelocity;
         float acceleration = player.GroundAcceleration;
         player.velocity += Vector3.ClampMagnitude(difference, acceleration * Time.deltaTime);
+        // Animation parameters
+        player.animator.SetFloat("groundSpeed", 0.0f);
     }
 }
 
@@ -154,6 +156,9 @@ public class RunState : PlayerState
         //TODO figure out how to stop bouncing on hills
         // Maybe use raycast/capsulecast to check if ground within margin of error, and if so move down to force collision (do in PlayerController)
         // Alternately, just treat that as being grounded for state change purpose
+
+        // Animation stuff
+        player.animator.SetFloat("groundSpeed", player.velocity.magnitude);
     }
 }
 
@@ -210,7 +215,7 @@ public class JumpState : AirState
         player.velocity.y = player.JumpVelocity;
         TimeInJump = 0;
         InUpswing = true;
-
+        player.animator.SetTrigger("jumping");
     }
 
     public override void Update()

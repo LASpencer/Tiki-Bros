@@ -42,6 +42,7 @@ public class PlayerController : MonoBehaviour
 
 
     public CharacterController controller;
+    public Animator animator;
     public CameraController PlayerCamera;
     public Transform CameraTarget;
     public Vector3 CameraTargetOffset;
@@ -67,6 +68,7 @@ public class PlayerController : MonoBehaviour
 	// Use this for initialization
 	void Start () {
         controller = GetComponent<CharacterController>();
+        animator = GetComponent<Animator>();
 
         // Set up player states
         states = new Dictionary<EPlayerStates, PlayerState>();
