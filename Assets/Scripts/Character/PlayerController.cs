@@ -117,6 +117,7 @@ public class PlayerController : MonoBehaviour
             controller.Move(velocity * Time.deltaTime);
 
             CheckIfGrounded();
+            animator.SetBool("isGrounded", isGrounded);
 
             // TODO rotate to movement direction
             // TODO: rotation should be more smooth

@@ -248,7 +248,7 @@ public class JumpState : AirState
     public override void CheckTransition()
     {
         // Don't land from jumping until controller collider actually hits
-        if (player.controller.isGrounded)
+        if (!InUpswing && player.IsGrounded)
         {
             if (JumpToleranceTimer > 0)
             {
