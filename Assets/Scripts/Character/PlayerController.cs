@@ -31,6 +31,11 @@ public class PlayerController : MonoBehaviour
     public float CoyoteTime;
     public float JumpPressTolerance;
 
+    [Header("Punching")]
+    public HitboxController Hitbox;
+    public float PunchTime = 0.5f;
+
+
 	[Header ("Lives")]
 	public int currentlives;
 	public int maxlives;
@@ -82,6 +87,9 @@ public class PlayerController : MonoBehaviour
         stateName = EPlayerStates.Idle;
 
         velocity = new Vector3();
+
+        // Disable hitbox
+        Hitbox.gameObject.SetActive(false);
 	}
 	
 	// Update is called once per frame

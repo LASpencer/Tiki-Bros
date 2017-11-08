@@ -339,9 +339,15 @@ public class PunchingState : PlayerState
     public override void CheckTransition()
     {
         //TODO transition out based on animation ending event
-        if(timeInState > 0.5f)
+        if(timeInState > player.PunchTime)
         {
-            player.ChangeState(EPlayerStates.Idle);
+            if (Mathf.Abs(player.velocity.x) < IDLE_SPEED && Mathf.Abs(player.velocity.y) < IDLE_SPEED)
+            {
+                player.ChangeState(EPlayerStates.Idle);
+            } else
+            {
+                player.ChangeState(EPlayerStates.Run);
+            }
         }
     }
 
@@ -352,12 +358,14 @@ public class PunchingState : PlayerState
 
         //TODO set/clamp velocity to punching speed
 
-        //TODO activate punching hitbox
+        //activate punching hitbox
+        player.Hitbox.gameObject.SetActive(true);
     }
 
     public override void OnExit()
     {
-        //TODO deactivate punching hitbox
+        // deactivate punching hitbox
+        player.Hitbox.gameObject.SetActive(false);
     }
 
     public override void Update()
