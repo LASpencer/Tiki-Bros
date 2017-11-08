@@ -21,6 +21,7 @@ GameObject:
   - component: {fileID: 4694331517644632}
   - component: {fileID: 33993431883481850}
   - component: {fileID: 23826728951799798}
+  - component: {fileID: 64400427064040962}
   m_Layer: 0
   m_Name: RockWallPlatform
   m_TagString: Untagged
@@ -35,8 +36,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1379611861136934}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 82.098045, y: 0.99798584, z: 191.29428}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 154.63947, y: 22.06, z: 146.05}
+  m_LocalScale: {x: 4.5022764, y: 4.502276, z: 4.502276}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -79,4 +80,18 @@ MeshFilter:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1379611861136934}
+  m_Mesh: {fileID: 4300000, guid: c1ced39e3b297504883ac56a3916ac8b, type: 3}
+--- !u!64 &64400427064040962
+MeshCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1379611861136934}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Convex: 0
+  m_InflateMesh: 0
+  m_SkinWidth: 0.01
   m_Mesh: {fileID: 4300000, guid: c1ced39e3b297504883ac56a3916ac8b, type: 3}
