@@ -4212,7 +4212,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: -653227781
+  randomSeed: -1500886726
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -7822,6 +7822,27 @@ Prefab:
         type: 2}
       propertyPath: m_Colors.m_PressedColor.b
       value: 0.5529412
+      objectReference: {fileID: 0}
+    - target: {fileID: 1783346451278460, guid: e9c6a6e212563814c8dd60787735b925, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114209911114416494, guid: e9c6a6e212563814c8dd60787735b925,
+        type: 2}
+      propertyPath: m_Text
+      value: 'WASD KEYS: MOVE
+
+        LEFT CLICK: ATTACK (WHEN UNLOCKED)
+
+        SPACEBAR: JUMP
+
+
+        ESC KEY: PAUSE, UNPAUSE GAME
+
+
+        FIND THE TREASURE AND SAVE YOUR BROTHER!
+
+'
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: e9c6a6e212563814c8dd60787735b925, type: 2}

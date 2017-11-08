@@ -162,7 +162,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Please note: This game is currently in the Pre-Alpha testing phase.'
+  m_Text: 'Please note: This game is currently in the Alpha testing phase.'
 --- !u!114 &114345055045460504
 MonoBehaviour:
   m_ObjectHideFlags: 1

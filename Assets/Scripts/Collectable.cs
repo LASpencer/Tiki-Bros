@@ -6,7 +6,7 @@ public class Collectable : MonoBehaviour
 {
     public int pointsToAdd;
 
-    public float rotateSpeed = 35f;
+    public float rotateSpeed = 80f;
 
     void OnTriggerEnter(Collider other)
     {
@@ -20,6 +20,6 @@ public class Collectable : MonoBehaviour
 
     void Update()
     {
-        transform.Rotate(0, 0, rotateSpeed * Time.deltaTime);
+        transform.Rotate(0, rotateSpeed * Time.deltaTime, 0);
     }
 }
