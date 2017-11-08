@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-//TODO: On head colliding with roof (or anything above?) set vertical speed to 0
+//TODO change how Jump Tolerance works, so not jumping while off ground
 
 public class PlayerController : MonoBehaviour
 {
@@ -31,6 +31,12 @@ public class PlayerController : MonoBehaviour
     public float CoyoteTime;
     public float JumpPressTolerance;
 
+    [Header("Punching")]
+    public HitboxController Hitbox;
+    public float PunchTime = 0.5f;
+    public float PunchWindup = 0.2f;
+
+
 	[Header ("Lives")]
 	public int currentlives;
 	public int maxlives;
@@ -42,6 +48,7 @@ public class PlayerController : MonoBehaviour
 
 
     public CharacterController controller;
+    public Animator animator;
     public CameraController PlayerCamera;
     public Transform CameraTarget;
     public Vector3 CameraTargetOffset;
@@ -67,6 +74,7 @@ public class PlayerController : MonoBehaviour
 	// Use this for initialization
 	void Start () {
         controller = GetComponent<CharacterController>();
+        animator = GetComponent<Animator>();
 
         // Set up player states
         states = new Dictionary<EPlayerStates, PlayerState>();
@@ -74,11 +82,15 @@ public class PlayerController : MonoBehaviour
         states.Add(EPlayerStates.Run, new RunState(this));
         states.Add(EPlayerStates.Jump, new JumpState(this));
         states.Add(EPlayerStates.Falling, new FallingState(this));
+        states.Add(EPlayerStates.Punching, new PunchingState(this));
 
         currentState = states[EPlayerStates.Idle];
         stateName = EPlayerStates.Idle;
 
         velocity = new Vector3();
+
+        // Disable hitbox
+        Hitbox.gameObject.SetActive(false);
 	}
 	
 	// Update is called once per frame
@@ -115,6 +127,7 @@ public class PlayerController : MonoBehaviour
             controller.Move(velocity * Time.deltaTime);
 
             CheckIfGrounded();
+            animator.SetBool("isGrounded", isGrounded);
 
             // TODO rotate to movement direction
             // TODO: rotation should be more smooth
