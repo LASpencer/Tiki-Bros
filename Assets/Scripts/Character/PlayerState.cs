@@ -358,8 +358,7 @@ public class PunchingState : PlayerState
 
         //TODO set/clamp velocity to punching speed
 
-        //activate punching hitbox
-        player.Hitbox.gameObject.SetActive(true);
+        
     }
 
     public override void OnExit()
@@ -371,5 +370,11 @@ public class PunchingState : PlayerState
     public override void Update()
     {
         timeInState += Time.deltaTime;
+        //TODO activate punching hitbox based on animation event
+        //activate punching hitbox
+        if (timeInState > player.PunchWindup)
+        {
+            player.Hitbox.gameObject.SetActive(true);
+        }
     }
 }

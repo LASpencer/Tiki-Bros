@@ -34,6 +34,7 @@ public class PlayerController : MonoBehaviour
     [Header("Punching")]
     public HitboxController Hitbox;
     public float PunchTime = 0.5f;
+    public float PunchWindup = 0.2f;
 
 
 	[Header ("Lives")]
