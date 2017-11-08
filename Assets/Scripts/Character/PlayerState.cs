@@ -8,7 +8,8 @@ public enum EPlayerStates
     Idle,
     Run,
     Jump,
-    Falling
+    Falling,
+    Punching
 }
 
 public abstract class PlayerState  {
@@ -40,20 +41,27 @@ public class IdleState : PlayerState
 
     public override void CheckTransition()
     {
-        // Exit to running on horizontal/vertical input
-        if (Input.GetAxis("Vertical") != 0 || Input.GetAxis("Horizontal") != 0)
-        {
-            player.ChangeState(EPlayerStates.Run);
-        }
-        // Exit to jump on jump press
-        if (Input.GetButtonDown("Jump"))
-        {
-            player.ChangeState(EPlayerStates.Jump);
-        }
+        
+        
         // Exit to falling on not grounded
         if (!player.IsGrounded)
         {
             player.ChangeState(EPlayerStates.Falling);
+        }
+        // Exit to jump on jump press
+        else if (Input.GetButtonDown("Jump"))
+        {
+            player.ChangeState(EPlayerStates.Jump);
+        }
+        // Exit to Punch on punch press
+        else if (Input.GetButtonDown("Punch"))
+        {
+            player.ChangeState(EPlayerStates.Punching);
+        }
+        // Exit to running on horizontal/vertical input
+        else if (Input.GetAxis("Vertical") != 0 || Input.GetAxis("Horizontal") != 0)
+        {
+            player.ChangeState(EPlayerStates.Run);
         }
     }
 
@@ -95,19 +103,23 @@ public class RunState : PlayerState
 
     public override void CheckTransition()
     {
-        //TODO exit to jump on jump press
-        if (Input.GetButtonDown("Jump"))
-        {
-            player.ChangeState(EPlayerStates.Jump);
-        }
+        
         // Exit to falling on not grounded
         if (!player.IsGrounded)
         {
             player.ChangeState(EPlayerStates.Falling);
         }
+        // exit to jump on jump press
+        else if (Input.GetButtonDown("Jump"))
+        {
+            player.ChangeState(EPlayerStates.Jump);
+        }
+        else if (Input.GetButtonDown("Punch"))
+        {
+            player.ChangeState(EPlayerStates.Punching);
+        }
         // Exit to idle on not moving
-        //TODO rewrite if movement rewritten
-        if (Mathf.Abs(player.velocity.x) < IDLE_SPEED && Mathf.Abs(player.velocity.y) < IDLE_SPEED)
+        else if (Mathf.Abs(player.velocity.x) < IDLE_SPEED && Mathf.Abs(player.velocity.y) < IDLE_SPEED)
         {
             player.ChangeState(EPlayerStates.Idle);
         }
@@ -313,5 +325,43 @@ public class FallingState : AirState
     public override void OnExit()
     {
         base.OnExit();
+    }
+}
+
+public class PunchingState : PlayerState
+{
+    float timeInState;
+
+    public PunchingState(PlayerController player) : base(player)
+    {
+    }
+
+    public override void CheckTransition()
+    {
+        //TODO transition out based on animation ending event
+        if(timeInState > 0.5f)
+        {
+            player.ChangeState(EPlayerStates.Idle);
+        }
+    }
+
+    public override void OnEnter()
+    {
+        timeInState = 0.0f;
+        player.animator.SetTrigger("hasPunched");
+
+        //TODO set/clamp velocity to punching speed
+
+        //TODO activate punching hitbox
+    }
+
+    public override void OnExit()
+    {
+        //TODO deactivate punching hitbox
+    }
+
+    public override void Update()
+    {
+        timeInState += Time.deltaTime;
     }
 }

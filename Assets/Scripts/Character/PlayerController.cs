@@ -76,6 +76,7 @@ public class PlayerController : MonoBehaviour
         states.Add(EPlayerStates.Run, new RunState(this));
         states.Add(EPlayerStates.Jump, new JumpState(this));
         states.Add(EPlayerStates.Falling, new FallingState(this));
+        states.Add(EPlayerStates.Punching, new PunchingState(this));
 
         currentState = states[EPlayerStates.Idle];
         stateName = EPlayerStates.Idle;
