@@ -5,6 +5,9 @@ TagManager:
   serializedVersion: 2
   tags:
   - Coin
+  - 0
+  - Feet
+  - 1
   layers:
   - Default
   - TransparentFX
@@ -16,7 +19,7 @@ TagManager:
   - 
   - Wall
   - Terrain
-  - 
+  - player
   - 
   - 
   - 
