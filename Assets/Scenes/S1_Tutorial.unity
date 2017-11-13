@@ -8082,9 +8082,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Sounds: {fileID: 11400000, guid: 7b5cd4032b0d1a14ea9d5a937bd90bbe, type: 2}
-  GrassSounds: {fileID: 0}
-  SandSounds: {fileID: 0}
-  RockSounds: {fileID: 0}
+  GrassSounds: {fileID: 11400000, guid: 09c9d8e51d5f178409b9972f39dbcf47, type: 2}
+  SandSounds: {fileID: 11400000, guid: 7b5cd4032b0d1a14ea9d5a937bd90bbe, type: 2}
+  RockSounds: {fileID: 11400000, guid: b7ccebf302e02ae438771a631f123086, type: 2}
 --- !u!1 &1526385727
 GameObject:
   m_ObjectHideFlags: 0
