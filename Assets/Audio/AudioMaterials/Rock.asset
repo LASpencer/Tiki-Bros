@@ -11,7 +11,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 28ff0153a54bd0d40bba53d613516c5b, type: 3}
   m_Name: Rock
   m_EditorClassIdentifier: 
-  footstep: {fileID: 8300000, guid: a22d2fe2f792d88419721c4c11540440, type: 3}
-  leftStep: {fileID: 8300000, guid: 438c7dd83aadd4b4fa89f51da178527b, type: 3}
-  rightStep: {fileID: 8300000, guid: 230a7ec2abc64f1438308c9446c1d5de, type: 3}
-  landing: {fileID: 8300000, guid: b7977ec60522c38409749d91e4405301, type: 3}
+  leftStep: {fileID: 8300000, guid: 336b2381bca1ce645b026ca854606368, type: 3}
+  rightStep: {fileID: 8300000, guid: 69046673e109582418698789250bb967, type: 3}
+  landing: {fileID: 8300000, guid: d32bdb51882e40744a093d8d67993da0, type: 3}

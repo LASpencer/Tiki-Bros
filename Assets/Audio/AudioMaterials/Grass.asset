@@ -11,7 +11,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 28ff0153a54bd0d40bba53d613516c5b, type: 3}
   m_Name: Grass
   m_EditorClassIdentifier: 
-  footstep: {fileID: 8300000, guid: a22d2fe2f792d88419721c4c11540440, type: 3}
-  leftStep: {fileID: 8300000, guid: 438c7dd83aadd4b4fa89f51da178527b, type: 3}
-  rightStep: {fileID: 8300000, guid: 230a7ec2abc64f1438308c9446c1d5de, type: 3}
-  landing: {fileID: 8300000, guid: b7977ec60522c38409749d91e4405301, type: 3}
+  leftStep: {fileID: 8300000, guid: e956e9b0020ad2d40b3226bdc8a12575, type: 3}
+  rightStep: {fileID: 8300000, guid: 85c92455df25c3e458dab95621d41460, type: 3}
+  landing: {fileID: 8300000, guid: 91d997663d23f7f4995f452625b939f0, type: 3}
