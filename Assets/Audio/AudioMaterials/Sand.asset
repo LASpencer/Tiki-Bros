@@ -12,3 +12,6 @@ MonoBehaviour:
   m_Name: Sand
   m_EditorClassIdentifier: 
   footstep: {fileID: 8300000, guid: a22d2fe2f792d88419721c4c11540440, type: 3}
+  leftStep: {fileID: 8300000, guid: 438c7dd83aadd4b4fa89f51da178527b, type: 3}
+  rightStep: {fileID: 8300000, guid: 230a7ec2abc64f1438308c9446c1d5de, type: 3}
+  landing: {fileID: 8300000, guid: b7977ec60522c38409749d91e4405301, type: 3}
