@@ -20,6 +20,13 @@ public class Audible : MonoBehaviour {
     //TODO figure out what should be passed through
     public virtual AudioClip GetFootstep(GameObject other)
     {
+        //TODO: Alternate between providing leftFoot and rightFoot
         return Sounds.footstep;
+    }
+
+    public virtual AudioClip GetLanding(GameObject other)
+    {
+        Debug.Log("Landing sound");
+        return Sounds.landing;
     }
 }

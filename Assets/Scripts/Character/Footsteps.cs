@@ -4,42 +4,48 @@ using UnityEngine;
 [RequireComponent(typeof(AudioSource))]
 public class Footsteps : MonoBehaviour
 {
-
-    public AudioClip[] clips;
     private AudioSource a;
     private bool playing = false;
-    private const float timerReset = 0.18f;
+    private bool landing = false;
+    public PlayerController player;
+    private const float TIMER_RESET = 0.18f;    //HACK maybe should be exposed?
 
     void Awake()
     {
         a = GetComponent<AudioSource>();
+        player = GetComponentInParent<PlayerController>();
+    }
+
+    void Update()
+    {
+        // If player becomes ungrounded, feet will land rather than step
+        if (!player.IsGrounded)
+        {
+            landing = true;
+        }
     }
 
     void OnTriggerEnter(Collider col)
     {
-        //string currTag = col.tag;
-        //int currVal = -1;
-        //if (currTag.Length <= 2)
-        //{
-        //    currVal = Int32.Parse(currTag);
-        //}
-        //if (currVal != -1 && !playing)
-        //{
-        //    a.PlayOneShot(clips[currVal]);
-        //    playing = true;
-        //    Invoke ("Reset", timerReset);
-        //}
         if (!playing)
         {
             Audible otherAudible = col.gameObject.GetComponent<Audible>();
             if (otherAudible != null)
             {
                 //TODO decide whether to get Footstep or Landing sound based on player state
-
-                AudioClip footstep = otherAudible.GetFootstep(this.gameObject);
+                AudioClip footstep;
+                if (landing)
+                {
+                    footstep = otherAudible.GetLanding(this.gameObject);
+                }
+                else
+                {
+                    footstep = otherAudible.GetFootstep(this.gameObject);
+                }
                 a.PlayOneShot(footstep);
                 playing = true;
-                Invoke("Reset", timerReset);
+                landing = false;
+                Invoke("Reset", TIMER_RESET);
             }
         }
     }

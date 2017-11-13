@@ -25,7 +25,15 @@ public class TerrainAudible : Audible {
     public override AudioClip GetFootstep(GameObject other)
     {
         AudioMaterial selectedMaterial = SelectMaterial(other);
+        //TODO alternate between selecting left foot and right foot
         return selectedMaterial.footstep;
+    }
+
+    public override AudioClip GetLanding(GameObject other)
+    {
+        AudioMaterial selectedMaterial = SelectMaterial(other);
+        Debug.Log("Landing sound");
+        return selectedMaterial.landing;
     }
 
     private AudioMaterial SelectMaterial(GameObject other)
