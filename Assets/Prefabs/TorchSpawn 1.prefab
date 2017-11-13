@@ -221,7 +221,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   levelManager: {fileID: 0}
   ActivateSound: {fileID: 8300000, guid: 55466f00b2577e440a7e1935a445e62d, type: 3}
-  spawnPoint: {fileID: 0}
+  spawnPoint: {fileID: 1739493122985314}
 --- !u!135 &135885469385292708
 SphereCollider:
   m_ObjectHideFlags: 1

@@ -5,6 +5,7 @@ using UnityEngine;
 public class Footsteps : MonoBehaviour
 {
     private AudioSource a;
+    public bool LeftFoot;
     private bool playing = false;
     private bool landing = false;
     public PlayerController player;
@@ -36,11 +37,19 @@ public class Footsteps : MonoBehaviour
                 AudioClip footstep;
                 if (landing)
                 {
-                    footstep = otherAudible.GetLanding(this.gameObject);
+                    if (LeftFoot)
+                    {
+                        footstep = otherAudible.GetLanding(this.gameObject);
+                    } else
+                    {
+                        //HACK figure out more elegant control structure
+                        landing = false;
+                        return;
+                    }
                 }
                 else
                 {
-                    footstep = otherAudible.GetFootstep(this.gameObject);
+                    footstep = otherAudible.GetFootstep(this.gameObject, LeftFoot);
                 }
                 a.PlayOneShot(footstep);
                 playing = true;

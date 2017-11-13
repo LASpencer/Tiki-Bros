@@ -22,11 +22,16 @@ public class TerrainAudible : Audible {
 		
 	}
 
-    public override AudioClip GetFootstep(GameObject other)
+    public override AudioClip GetFootstep(GameObject other, bool leftFoot)
     {
         AudioMaterial selectedMaterial = SelectMaterial(other);
-        //TODO alternate between selecting left foot and right foot
-        return selectedMaterial.footstep;
+        if (leftFoot)
+        {
+            return selectedMaterial.leftStep;
+        } else
+        {
+            return selectedMaterial.rightStep;
+        }
     }
 
     public override AudioClip GetLanding(GameObject other)

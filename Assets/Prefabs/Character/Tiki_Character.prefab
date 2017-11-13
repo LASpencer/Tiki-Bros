@@ -1583,12 +1583,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b200a7c5371f3e94cbc15af39bb2ae59, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  clips:
-  - {fileID: 8300000, guid: a22d2fe2f792d88419721c4c11540440, type: 3}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  LeftFoot: 0
+  player: {fileID: 0}
 --- !u!114 &114081622212451654
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1652,12 +1648,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b200a7c5371f3e94cbc15af39bb2ae59, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  clips:
-  - {fileID: 8300000, guid: a22d2fe2f792d88419721c4c11540440, type: 3}
-  - {fileID: 8300000, guid: a22d2fe2f792d88419721c4c11540440, type: 3}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  LeftFoot: 1
+  player: {fileID: 0}
 --- !u!135 &135357707063973336
 SphereCollider:
   m_ObjectHideFlags: 1

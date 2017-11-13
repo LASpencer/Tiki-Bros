@@ -8648,11 +8648,6 @@ Prefab:
       propertyPath: m_RootOrder
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 114619105526689206, guid: 934412ca124d1b64c94d7ce93a696f6a,
-        type: 2}
-      propertyPath: levelManager
-      value: 
-      objectReference: {fileID: 1183135869}
     - target: {fileID: 114282248092458140, guid: 934412ca124d1b64c94d7ce93a696f6a,
         type: 2}
       propertyPath: levelManager
@@ -8662,6 +8657,11 @@ Prefab:
       propertyPath: m_Name
       value: TorchSpawn
       objectReference: {fileID: 0}
+    - target: {fileID: 114619105526689206, guid: 934412ca124d1b64c94d7ce93a696f6a,
+        type: 2}
+      propertyPath: levelManager
+      value: 
+      objectReference: {fileID: 1183135869}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 934412ca124d1b64c94d7ce93a696f6a, type: 2}
   m_IsPrefabParent: 0
