@@ -8,12 +8,18 @@ public class Collectable : MonoBehaviour
 
     public float rotateSpeed = 80f;
 
+    public AudioClip CollectSound;
+
     void OnTriggerEnter(Collider other)
     {
         if (other.GetComponent<PlayerController>() == null)
             return;
 		ScoreManager.scoreValue += pointsToAdd;
         GameManagerController.Instance.CoinsCollected++;
+
+        //Play audio
+        AudioSource.PlayClipAtPoint(CollectSound, transform.position);
+
         Destroy(gameObject);
 
     }

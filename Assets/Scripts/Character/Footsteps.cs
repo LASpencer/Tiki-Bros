@@ -34,6 +34,8 @@ public class Footsteps : MonoBehaviour
             Audible otherAudible = col.gameObject.GetComponent<Audible>();
             if (otherAudible != null)
             {
+                //TODO decide whether to get Footstep or Landing sound based on player state
+
                 AudioClip footstep = otherAudible.GetFootstep(this.gameObject);
                 a.PlayOneShot(footstep);
                 playing = true;
