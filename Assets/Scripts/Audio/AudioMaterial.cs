@@ -8,6 +8,9 @@ using UnityEngine.Audio;
 public class AudioMaterial : ScriptableObject {
 
     public AudioClip footstep;
+    public AudioClip leftStep;
+    public AudioClip rightStep;
+    public AudioClip landing;
     //TODO landing audio?
     //TODO punched audio
 }
