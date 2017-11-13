@@ -1,0 +1,16 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 28ff0153a54bd0d40bba53d613516c5b, type: 3}
+  m_Name: Rock
+  m_EditorClassIdentifier: 
+  leftStep: {fileID: 8300000, guid: 336b2381bca1ce645b026ca854606368, type: 3}
+  rightStep: {fileID: 8300000, guid: 69046673e109582418698789250bb967, type: 3}
+  landing: {fileID: 8300000, guid: d32bdb51882e40744a093d8d67993da0, type: 3}
