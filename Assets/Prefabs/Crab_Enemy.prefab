@@ -25,6 +25,7 @@ GameObject:
   - component: {fileID: 114491790003554590}
   - component: {fileID: 195485101239613430}
   - component: {fileID: 114340679009243656}
+  - component: {fileID: 95370662161796844}
   m_Layer: 0
   m_Name: Crab_Enemy
   m_TagString: Untagged
@@ -38,8 +39,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1362852881264558}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 143.2785, y: 9.236856, z: 168.32513}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 143.2785, y: 10.076856, z: 179.47513}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -55,10 +56,10 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_MotionVectors: 1
-  m_LightProbeUsage: 1
+  m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: 68129c872ed5b9d48ada40f2aee37c45, type: 2}
+  - {fileID: 2100000, guid: 0b2bceeeeab11f84aa9fedae86fa3f83, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -84,6 +85,23 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1362852881264558}
   m_Mesh: {fileID: 4300000, guid: 0d5619bb5b764a24c9e625790b167e86, type: 3}
+--- !u!95 &95370662161796844
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1362852881264558}
+  m_Enabled: 1
+  m_Avatar: {fileID: 9000000, guid: 197f4a06795212b449188ce5819c62a0, type: 3}
+  m_Controller: {fileID: 9100000, guid: 43ac43fad340e1b4bbbae6fdfe5baa1f, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
 --- !u!114 &114340679009243656
 MonoBehaviour:
   m_ObjectHideFlags: 1
