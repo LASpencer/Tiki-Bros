@@ -7,7 +7,7 @@ public class Footsteps : MonoBehaviour
 
     public AudioClip[] clips;
     private AudioSource a;
-    private bool once = false;
+    private bool playing = false;
     private const float timerReset = 0.18f;
 
     void Awake()
@@ -17,21 +17,34 @@ public class Footsteps : MonoBehaviour
 
     void OnTriggerEnter(Collider col)
     {
-        string currTag = col.tag;
-        int currVal = -1;
-        if (currTag.Length <= 2)
+        //string currTag = col.tag;
+        //int currVal = -1;
+        //if (currTag.Length <= 2)
+        //{
+        //    currVal = Int32.Parse(currTag);
+        //}
+        //if (currVal != -1 && !playing)
+        //{
+        //    a.PlayOneShot(clips[currVal]);
+        //    playing = true;
+        //    Invoke ("Reset", timerReset);
+        //}
+        if (!playing)
         {
-            currVal = Int32.Parse(currTag);
-        }
-        if (currVal != -1 && !once)
-        {
-            a.PlayOneShot(clips[currVal]);
-            once = true;
-            Invoke ("Reset", timerReset);
+            Audible otherAudible = col.gameObject.GetComponent<Audible>();
+            if (otherAudible != null)
+            {
+                AudioClip footstep = otherAudible.GetFootstep(this.gameObject);
+                a.PlayOneShot(footstep);
+                playing = true;
+                Invoke("Reset", timerReset);
+            }
         }
     }
+
+
     private void Reset()
     {
-        once = false;
+        playing = false;
     }
 }
