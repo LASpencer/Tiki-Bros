@@ -86,5 +86,7 @@ public class LevelManager : MonoBehaviour
     {
         // Make sure time is started again
         Time.timeScale = 1;
+        // Turn cursor back on
+        Cursor.lockState = CursorLockMode.None;
     }
 }

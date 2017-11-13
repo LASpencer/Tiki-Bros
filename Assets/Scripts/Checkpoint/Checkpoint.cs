@@ -6,6 +6,8 @@ public class Checkpoint : MonoBehaviour
 {
 
     public LevelManager levelManager;
+
+    [Tooltip("Location at which player will respawn")]
     public GameObject spawnPoint;
 
     // Use this for initialization

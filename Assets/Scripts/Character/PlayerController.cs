@@ -7,14 +7,20 @@ using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
 {
+    [Tooltip("Maximum speed character moves along ground")]
     public float GroundSpeed; 
+    [Tooltip("Acceleration applied while in air")]
     public float AirAcceleration;
+    [Tooltip("Acceleration applied while running")]
     public float GroundAcceleration;
     public float gravityScale;
-    public float Friction;
+    [Tooltip("Extra acceleration for stopping or turning around")]
+    public float BrakingAcceleration;
 	public int treasureCollected;
 
+    [Tooltip("Radius of spherecast to check grounding")]
     public float FootRadius = 0.3f;
+    [Tooltip("Distance above ground bottom of sphere starts at")]
     public float FootOffset = 0.15f;
     
     private float jumpVelocity;     // Initial velocity at start of jump
@@ -23,17 +29,23 @@ public class PlayerController : MonoBehaviour
     public float JumpVelocity { get { return jumpVelocity; } }
     public float JumpCutoffVelocity { get { return jumpCutoffVelocity; } }
     [Header("Jumping")]
+    [Tooltip("Jump height if button tapped for only one frame")]
     public float MinJumpHeight;
+    [Tooltip("Jump height when button held until top reached")]
     public float MaxJumpHeight;
-    public float JumpChargeTime;
+    [Tooltip("Proportion of velocity retained when jump button released")]
     public float JumpCutoffProportion = 0;  // Proportion of remaining velocity kept when cutting off jump
 
+    [Tooltip("Time player can still jump after beginning to fall")]
     public float CoyoteTime;
+    [Tooltip("Time before landing in which a jump press will be accepted")]
     public float JumpPressTolerance;
 
     [Header("Punching")]
     public HitboxController Hitbox;
+    [Tooltip("Total time in punch state")]
     public float PunchTime = 0.5f;
+    [Tooltip("Time it takes for punch hitbox to activate")]
     public float PunchWindup = 0.2f;
 
 
@@ -51,6 +63,7 @@ public class PlayerController : MonoBehaviour
     public Animator animator;
     public CameraController PlayerCamera;
     public Transform CameraTarget;
+    [Tooltip("Position of camera target relative to player")]
     public Vector3 CameraTargetOffset;
     public Renderer ModelRenderer;
 
@@ -96,25 +109,6 @@ public class PlayerController : MonoBehaviour
 	// Update is called once per frame
 	void Update ()
     {
-        //float yStore = moveDirection.y;
-        ////Debug.Log("vert: " + Input.GetAxis("Vertical") + " horiz: " + Input.GetAxis("Horizontal"));
-        //moveDirection = (transform.forward * Input.GetAxis("Vertical")) + (transform.right * Input.GetAxis("Horizontal"));
-        ////moveDirection = moveDirection.normalized * moveSpeed;
-        //moveDirection = Vector3.ClampMagnitude(moveDirection, 1f) * GroundSpeed;
-        //moveDirection.y = yStore;
-
-        //if (controller.isGrounded)
-        //{
-        //    moveDirection.y = 0f;
-        //    if (Input.GetButtonDown("Jump"))
-        //    {
-        //        moveDirection.y = jumpForce;
-        //    }
-        //}
-
-        //moveDirection.y = moveDirection.y + (Physics.gravity.y * gravityScale * Time.deltaTime);
-
-        //controller.Move(moveDirection * Time.deltaTime);
 
         if (!level.IsPaused)
         {
