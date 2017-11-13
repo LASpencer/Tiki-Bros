@@ -548,7 +548,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: 294497051
+  randomSeed: -552647324
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -3803,16 +3803,6 @@ Prefab:
       propertyPath: m_RootOrder
       value: 14
       objectReference: {fileID: 0}
-    - target: {fileID: 224913033451006090, guid: 820ae19eafe864345b13fe8e84bcd8cb,
-        type: 2}
-      propertyPath: m_AnchoredPosition.x
-      value: 276
-      objectReference: {fileID: 0}
-    - target: {fileID: 224913033451006090, guid: 820ae19eafe864345b13fe8e84bcd8cb,
-        type: 2}
-      propertyPath: m_AnchoredPosition.y
-      value: 187
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 820ae19eafe864345b13fe8e84bcd8cb, type: 2}
   m_IsPrefabParent: 0
@@ -4212,7 +4202,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: -1500886726
+  randomSeed: -319389722
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -7613,7 +7603,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 262.00003, y: -211}
+  m_AnchoredPosition: {x: 262.00003, y: -114}
   m_SizeDelta: {x: 144.39, y: 51.99}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &754799531
@@ -8055,7 +8045,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: -97168272
+  randomSeed: -570211924
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -11453,7 +11443,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 262.00003, y: -100}
+  m_AnchoredPosition: {x: 262.00003, y: -43.900032}
   m_SizeDelta: {x: 200.7, y: 49.5}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &870366918
@@ -11710,7 +11700,7 @@ GameObject:
   m_PrefabInternal: {fileID: 0}
   serializedVersion: 5
   m_Component:
-  - component: {fileID: 1010912499}
+  - component: {fileID: 1010912501}
   - component: {fileID: 1010912498}
   - component: {fileID: 1010912497}
   - component: {fileID: 1010912496}
@@ -11763,13 +11753,13 @@ Camera:
   near clip plane: 0.3
   far clip plane: 1000
   field of view: 60
-  orthographic: 0
-  orthographic size: 5
+  orthographic: 1
+  orthographic size: 446.84778
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_RenderingPath: 3
+  m_RenderingPath: 1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
   m_TargetEye: 3
@@ -11780,19 +11770,6 @@ Camera:
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
   m_StereoMirrorMode: 0
---- !u!4 &1010912499
-Transform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1010912494}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 724, y: 314.69473, z: -570}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 3
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1010912500
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11805,6 +11782,24 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   profile: {fileID: 11400000, guid: 56dc3dd152480cc459a48623bfffcd1a, type: 2}
+--- !u!224 &1010912501
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1010912494}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: -570}
+  m_LocalScale: {x: 0.9618552, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 699, y: 345}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1036878861
 GameObject:
   m_ObjectHideFlags: 0
@@ -12136,7 +12131,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 262.00003, y: -34.1}
+  m_AnchoredPosition: {x: 262.00003, y: 22}
   m_SizeDelta: {x: 211.5, y: 54.2}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1456274019
@@ -12352,7 +12347,7 @@ ParticleSystem:
   moveWithTransform: 1
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: -1880063883
+  randomSeed: -702049166
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -15690,6 +15685,10 @@ Prefab:
       propertyPath: m_Colors.m_PressedColor.b
       value: 0.5529412
       objectReference: {fileID: 0}
+    - target: {fileID: 1501054639406442, guid: 37272384f999d214bae52769abda2c61, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 37272384f999d214bae52769abda2c61, type: 2}
   m_IsPrefabParent: 0
@@ -15710,7 +15709,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1536454305
 RectTransform:
   m_ObjectHideFlags: 0
@@ -15928,8 +15927,8 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1750184099}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 686.9, y: 436.5, z: 11}
-  m_LocalScale: {x: 9.46185, y: 34.711533, z: 9.461848}
+  m_LocalPosition: {x: 665, y: 488, z: 11}
+  m_LocalScale: {x: 13.090223, y: 48.022503, z: 13.090221}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 12
@@ -16106,8 +16105,8 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1813002980}
   m_LocalRotation: {x: -0, y: -0, z: 0.19012333, w: 0.98176026}
-  m_LocalPosition: {x: 287.9, y: 436.5, z: 11}
-  m_LocalScale: {x: 9.46185, y: 34.711533, z: 9.461848}
+  m_LocalPosition: {x: 159, y: 488, z: 11}
+  m_LocalScale: {x: 13.090223, y: 48.022503, z: 13.090221}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 13
