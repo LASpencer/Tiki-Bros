@@ -8,12 +8,19 @@ public class Collectable : MonoBehaviour
 
     public float rotateSpeed = 80f;
 
+    public AudioClip CollectSound;
+
     void OnTriggerEnter(Collider other)
     {
         if (other.GetComponent<PlayerController>() == null)
             return;
 		ScoreManager.scoreValue += pointsToAdd;
         GameManagerController.Instance.CoinsCollected++;
+
+        //Play audio
+        //AudioSource.PlayClipAtPoint(CollectSound, transform.position);
+        Camera.main.gameObject.GetComponent<AudioSource>().PlayOneShot(CollectSound); //HACK make nicer way to get camera's audio source
+
         Destroy(gameObject);
 
     }

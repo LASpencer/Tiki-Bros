@@ -155,6 +155,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pointsToAdd: 2
   rotateSpeed: 80
+  CollectSound: {fileID: 8300000, guid: 210dc261f6cf939448d5c0b6a1c68797, type: 3}
 --- !u!135 &135004903116986752
 SphereCollider:
   m_ObjectHideFlags: 1
