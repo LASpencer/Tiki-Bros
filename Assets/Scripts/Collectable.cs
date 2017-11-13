@@ -18,7 +18,8 @@ public class Collectable : MonoBehaviour
         GameManagerController.Instance.CoinsCollected++;
 
         //Play audio
-        AudioSource.PlayClipAtPoint(CollectSound, transform.position);
+        //AudioSource.PlayClipAtPoint(CollectSound, transform.position);
+        Camera.main.gameObject.GetComponent<AudioSource>().PlayOneShot(CollectSound); //HACK make nicer way to get camera's audio source
 
         Destroy(gameObject);
 

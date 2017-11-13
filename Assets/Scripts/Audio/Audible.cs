@@ -31,7 +31,6 @@ public class Audible : MonoBehaviour {
 
     public virtual AudioClip GetLanding(GameObject other)
     {
-        Debug.Log("Landing sound");
         return Sounds.landing;
     }
 }

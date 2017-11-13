@@ -37,7 +37,6 @@ public class TerrainAudible : Audible {
     public override AudioClip GetLanding(GameObject other)
     {
         AudioMaterial selectedMaterial = SelectMaterial(other);
-        Debug.Log("Landing sound");
         return selectedMaterial.landing;
     }
 
@@ -51,15 +50,12 @@ public class TerrainAudible : Audible {
         {
             case 0:     //Rock
                 selectedMaterial = RockSounds;
-                Debug.Log("Sound from rock");
                 break;
             case 1:     //Grass
                 selectedMaterial = GrassSounds;
-                Debug.Log("Sound from grass");
                 break;
             case 2:     //Sand
                 selectedMaterial = SandSounds;
-                Debug.Log("Sound from sand");
                 break;
             default:
                 selectedMaterial = Sounds;
