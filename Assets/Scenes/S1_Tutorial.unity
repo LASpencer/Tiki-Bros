@@ -11411,6 +11411,7 @@ GameObject:
   - component: {fileID: 1520372198}
   - component: {fileID: 1520372197}
   - component: {fileID: 1520372196}
+  - component: {fileID: 1520372199}
   m_Layer: 9
   m_Name: Terrain
   m_TagString: Untagged
@@ -11472,6 +11473,21 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 25
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1520372199
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1520372195}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 36f80d5b90f1ef342aad4c7c6847afb7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Sounds: {fileID: 11400000, guid: 7b5cd4032b0d1a14ea9d5a937bd90bbe, type: 2}
+  GrassSounds: {fileID: 11400000, guid: 09c9d8e51d5f178409b9972f39dbcf47, type: 2}
+  SandSounds: {fileID: 11400000, guid: 7b5cd4032b0d1a14ea9d5a937bd90bbe, type: 2}
+  RockSounds: {fileID: 11400000, guid: b7ccebf302e02ae438771a631f123086, type: 2}
 --- !u!1 &1526385727
 GameObject:
   m_ObjectHideFlags: 0
