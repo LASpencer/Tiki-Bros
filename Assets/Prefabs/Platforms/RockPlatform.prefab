@@ -22,12 +22,13 @@ GameObject:
   - component: {fileID: 33573204140461472}
   - component: {fileID: 23277729264217594}
   - component: {fileID: 64500780897692908}
+  - component: {fileID: 114033713836228242}
   m_Layer: 0
   m_Name: RockPlatform
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &4702820984971998
 Transform:
@@ -95,3 +96,15 @@ MeshCollider:
   m_InflateMesh: 0
   m_SkinWidth: 0.01
   m_Mesh: {fileID: 4300000, guid: 535cb5703d5b65244b145950fd2d5340, type: 3}
+--- !u!114 &114033713836228242
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1894201437761372}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2b711f430d04c304287e96eca6d9bddf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Sounds: {fileID: 11400000, guid: b7ccebf302e02ae438771a631f123086, type: 2}

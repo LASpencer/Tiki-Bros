@@ -6,6 +6,7 @@ public class Checkpoint : MonoBehaviour
 {
 
     public LevelManager levelManager;
+    public AudioClip ActivateSound;
 
     [Tooltip("Location at which player will respawn")]
     public GameObject spawnPoint;
@@ -25,9 +26,10 @@ public class Checkpoint : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player"))
+        if (other.CompareTag("Player") && levelManager.currentCheckpoint != this)
         {
             levelManager.currentCheckpoint = this;
+            gameObject.GetComponent<AudioSource>().PlayOneShot(ActivateSound);
         }
     }
 }

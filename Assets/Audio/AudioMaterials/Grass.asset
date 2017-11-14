@@ -1,0 +1,16 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 28ff0153a54bd0d40bba53d613516c5b, type: 3}
+  m_Name: Grass
+  m_EditorClassIdentifier: 
+  leftStep: {fileID: 8300000, guid: e956e9b0020ad2d40b3226bdc8a12575, type: 3}
+  rightStep: {fileID: 8300000, guid: 85c92455df25c3e458dab95621d41460, type: 3}
+  landing: {fileID: 8300000, guid: 91d997663d23f7f4995f452625b939f0, type: 3}
