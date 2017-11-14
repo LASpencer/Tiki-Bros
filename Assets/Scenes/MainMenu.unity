@@ -255,7 +255,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &122293833
 Prefab:
@@ -431,7 +431,7 @@ GameObject:
   - component: {fileID: 307659397}
   - component: {fileID: 307659396}
   m_Layer: 0
-  m_Name: EmberRight
+  m_Name: SmokeLightLeft
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -548,7 +548,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: -552647324
+  randomSeed: -10165413
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -4085,7 +4085,7 @@ GameObject:
   - component: {fileID: 651657445}
   - component: {fileID: 651657444}
   m_Layer: 0
-  m_Name: EmberLeft
+  m_Name: SmokeLightLeft
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4202,7 +4202,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: -319389722
+  randomSeed: -2095990270
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -7822,7 +7822,7 @@ Prefab:
       propertyPath: m_Text
       value: 'WASD KEYS: MOVE
 
-        LEFT CLICK: ATTACK (WHEN UNLOCKED)
+        LEFT CLICK: PUNCH
 
         SPACEBAR: JUMP
 
@@ -7915,7 +7915,7 @@ GameObject:
   - component: {fileID: 849339237}
   - component: {fileID: 849339236}
   m_Layer: 0
-  m_Name: Particle System
+  m_Name: EmberLeft
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7932,7 +7932,7 @@ Transform:
   m_LocalScale: {x: 38.51828, y: 38.51837, z: 38.51835}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: -79.811005, y: -54.453003, z: 52.108}
 --- !u!199 &849339236
 ParticleSystemRenderer:
@@ -8045,7 +8045,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: -570211924
+  randomSeed: -1970164600
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -12230,7 +12230,7 @@ GameObject:
   - component: {fileID: 1485183162}
   - component: {fileID: 1485183161}
   m_Layer: 0
-  m_Name: Particle System (1)
+  m_Name: EmberRight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -12347,7 +12347,7 @@ ParticleSystem:
   moveWithTransform: 1
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: -702049166
+  randomSeed: 1727514316
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -15561,7 +15561,7 @@ Transform:
   m_LocalScale: {x: 38.51828, y: 38.51837, z: 38.51835}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: -78.451004, y: 59.089005, z: -62.378002}
 --- !u!1001 &1521224051
 Prefab:
