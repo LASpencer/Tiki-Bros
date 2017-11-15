@@ -39,7 +39,6 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4708826581079718}
-  - component: {fileID: 114826049800860716}
   m_Layer: 0
   m_Name: SpawnPoint
   m_TagString: Untagged
@@ -66,8 +65,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1242399319505020}
-  m_LocalRotation: {x: -0, y: 0.79428256, z: -0, w: 0.60754865}
-  m_LocalPosition: {x: 44.83, y: -28.77, z: 30.89}
+  m_LocalRotation: {x: -0, y: 0.9889084, z: -0, w: -0.14852695}
+  m_LocalPosition: {x: 41.88, y: -34.93, z: 57.4}
   m_LocalScale: {x: 1.6, y: 1.6, z: 1.6}
   m_Children:
   - {fileID: 4708826581079718}
@@ -139,20 +138,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   levelManager: {fileID: 0}
+  ActivateSound: {fileID: 0}
   spawnPoint: {fileID: 1507366370239680}
---- !u!114 &114826049800860716
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1507366370239680}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b1c03b7bb0c0b7b4a8aacf41f010c557, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  levelManager: {fileID: 0}
-  spawnPoint: {fileID: 0}
 --- !u!135 &135311612159178050
 SphereCollider:
   m_ObjectHideFlags: 1
