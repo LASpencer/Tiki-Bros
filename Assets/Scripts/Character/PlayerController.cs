@@ -192,7 +192,7 @@ public class PlayerController : MonoBehaviour
         RaycastHit groundHit;
         Debug.DrawRay(transform.position, Vector3.down, Color.green);
 
-        if (Physics.SphereCast(transform.position + ((FootRadius + FootOffset) * Vector3.up), FootRadius, Vector3.down, out groundHit, FootRadius))
+        if (Physics.SphereCast(transform.position + ((FootRadius + FootOffset) * Vector3.up), FootRadius, Vector3.down, out groundHit, FootRadius, Physics.DefaultRaycastLayers, QueryTriggerInteraction.Ignore))
         {
             isGrounded = true;
         }
