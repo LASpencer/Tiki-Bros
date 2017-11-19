@@ -28,8 +28,25 @@ public class Checkpoint : MonoBehaviour
     {
         if (other.CompareTag("Player") && levelManager.currentCheckpoint != this)
         {
+            if(levelManager.currentCheckpoint != null)
+            {
+                levelManager.currentCheckpoint.Deactivate();
+            }
             levelManager.currentCheckpoint = this;
-            gameObject.GetComponent<AudioSource>().PlayOneShot(ActivateSound);
+            this.Activate();
+            
         }
+    }
+
+    // Called when player reaches and activates checkpoint
+    public void Activate()
+    {
+        gameObject.GetComponent<AudioSource>().PlayOneShot(ActivateSound);
+    }
+
+    // Called when another checkpoint is activated
+    public void Deactivate()
+    {
+
     }
 }
