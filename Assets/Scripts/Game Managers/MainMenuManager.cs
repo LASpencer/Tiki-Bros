@@ -9,7 +9,6 @@ public class MainMenuManager : MenuManager {
     public GameObject HowToPlay;
     public GameObject Credits;
 	public GameObject CreditsTwo;
-    
 
 	// Use this for initialization
 	void Start () {
