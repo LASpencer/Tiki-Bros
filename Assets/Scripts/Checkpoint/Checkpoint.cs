@@ -11,6 +11,8 @@ public class Checkpoint : MonoBehaviour
     [Tooltip("Location at which player will respawn")]
     public GameObject spawnPoint;
 
+	public GameObject CheckpointParticles;
+
     // Use this for initialization
     void Start()
     {
@@ -34,7 +36,7 @@ public class Checkpoint : MonoBehaviour
             }
             levelManager.currentCheckpoint = this;
             this.Activate();
-            
+            gameObject.GetComponent<AudioSource>().PlayOneShot(ActivateSound);
         }
     }
 
@@ -42,11 +44,14 @@ public class Checkpoint : MonoBehaviour
     public void Activate()
     {
         gameObject.GetComponent<AudioSource>().PlayOneShot(ActivateSound);
+        if (CheckpointParticles != null)
+            CheckpointParticles.SetActive(true);
     }
 
     // Called when another checkpoint is activated
     public void Deactivate()
     {
-
+        if (CheckpointParticles != null)
+            CheckpointParticles.SetActive(false);
     }
 }
