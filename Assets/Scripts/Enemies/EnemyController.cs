@@ -36,17 +36,24 @@ public class EnemyController : MonoBehaviour {
 
     protected int waypointIndex;
 
+	Animator animator;
+
 	// Use this for initialization
 	void Start () {
         navAgent = GetComponent<NavMeshAgent>();
         player = FindObjectOfType<PlayerController>();
         waypointIndex = 0;
-	}
+		animator = GetComponent<Animator> ();
+    }
 	
 	// Update is called once per frame
 	void Update () {
         TimeInState += Time.deltaTime;
         CurrentState.UpdateState(this);
+		if (animator != null) {
+			//if (animator.get
+				animator.SetFloat ("MovementSpeed", navAgent.velocity.magnitude);
+		}
 	}
 
     public void ChangeState(State nextState)
