@@ -9,6 +9,7 @@ TagManager:
   - Feet
   - 1
   - Enemy
+  - PlayerAttack
   layers:
   - Default
   - TransparentFX
