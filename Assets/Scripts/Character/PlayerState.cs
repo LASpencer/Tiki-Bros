@@ -378,3 +378,30 @@ public class PunchingState : PlayerState
         }
     }
 }
+
+public abstract class DyingState : PlayerState
+{
+    public DyingState(PlayerController player) : base(player)
+    {
+    }
+
+    public override void CheckTransition()
+    {
+        throw new NotImplementedException();
+    }
+
+    public override void OnEnter()
+    {
+        player.IsDead = true;
+    }
+
+    public override void OnExit()
+    {
+        player.IsDead = false;
+        player.level.RespawnPlayer();
+    }
+
+    // TODO state for dying from combat hit
+    // TODO state for drowning/lava
+    // TODO state for falling to death
+}

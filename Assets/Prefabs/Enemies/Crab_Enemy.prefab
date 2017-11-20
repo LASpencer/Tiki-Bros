@@ -823,7 +823,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1661037593448112}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 144.66101, y: 9.998169, z: 178.4784}
+  m_LocalPosition: {x: 142.3035, y: 9.998169, z: 200.65198}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4385173203402888}
@@ -1047,6 +1047,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1938addbbc2c26a44968381e6855427b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Health: 1
+  Hit: 0
+  Invincible: 0
+  AttackActivated: 1
+  KnockbackDirection: {x: 0, y: 0, z: 0}
   CurrentState: {fileID: 11400000, guid: 211e3f45e3856e54ea7a4e404aef6803, type: 2}
   Waypoints:
   - {fileID: 0}
@@ -1057,6 +1062,10 @@ MonoBehaviour:
   VisionAngle: 90
   VisionRange: 8
   EscapeRange: 15
+  RecoveryTime: 1
+  KnockbackSpeed: 3
+  DeathTime: 0.1
+  DeathParticleTime: 2
   TimeInState: 0
   player: {fileID: 0}
 --- !u!114 &114345573825176964
@@ -1070,6 +1079,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5806336285c6d6d48aebf326e0cad941, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Controller: {fileID: 114242102058566638}
 --- !u!135 &135124948917810444
 SphereCollider:
   m_ObjectHideFlags: 1
@@ -1080,7 +1090,7 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.8
+  m_Radius: 0.7
   m_Center: {x: 0, y: 0.5, z: 0}
 --- !u!136 &136076507154263108
 CapsuleCollider:

@@ -8,6 +8,18 @@ public class EnemyController : MonoBehaviour {
 
     public int Health = 1;
 
+    // Set to true on frame when hit by player
+    public bool Hit = false;
+
+    [HideInInspector]
+    public bool Invincible = false;
+
+    [HideInInspector]
+    public bool AttackActivated = true;
+
+    [HideInInspector]
+    public Vector3 KnockbackDirection;
+
     [Tooltip("Current AI State")]
     public State CurrentState;
 
@@ -30,6 +42,18 @@ public class EnemyController : MonoBehaviour {
     [Tooltip("Distance at which enemy give up chasing player")]
     public float EscapeRange;
 
+    [Tooltip("Time spent in Hurt state")]
+    public float RecoveryTime;
+
+    [Tooltip("Speed while being knocked away from player")]
+    public float KnockbackSpeed;
+
+    [Tooltip("Time spent in Death state")]
+    public float DeathTime = 1;
+
+    [Tooltip("Time for particle emitter on death to exist")]
+    public float DeathParticleTime = 2;
+
     [HideInInspector]
     public float TimeInState = 0;
 
@@ -46,6 +70,7 @@ public class EnemyController : MonoBehaviour {
         player = FindObjectOfType<PlayerController>();
         waypointIndex = 0;
 		animator = GetComponent<Animator> ();
+        CurrentState.OnEnter(this);
     }
 	
 	// Update is called once per frame
@@ -56,12 +81,15 @@ public class EnemyController : MonoBehaviour {
 			//if (animator.get
 				animator.SetFloat ("MovementSpeed", navAgent.velocity.magnitude);
 		}
+        Hit = false;
 	}
 
     public void ChangeState(State nextState)
     {
         if(CurrentState != nextState)
         {
+            CurrentState.OnExit(this);
+            nextState.OnEnter(this);
             CurrentState = nextState;
             TimeInState = 0;
         }
@@ -81,16 +109,27 @@ public class EnemyController : MonoBehaviour {
     public void Damage(int damage = 1)
     {
         //HACK make up states for recovery, dying
-        Debug.Log("Enemy punched");
-        Health -= damage;
-        if(Health <= 0)
+        // TODO have invincibility frames
+        if (!Invincible)
         {
-            //TODO death
-            Destroy(gameObject);
-        } else
-        {
-            //
+            Debug.Log("Enemy punched");
+            Health -= damage;
+            Hit = true;
+            animator.SetTrigger("hasBeenHit");
         }
 
+    }
+
+    public void Die()
+    {
+        //TODO particle effects to cover up disappearance
+        // Spawn particle emitter prefab, and destroy after DeathParticleTime
+        navAgent.isStopped = true;
+    }
+
+    public void Attack()
+    {
+        // Do all animation etc changes
+        animator.SetTrigger("hasPunched");
     }
 }

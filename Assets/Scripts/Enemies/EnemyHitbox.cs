@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class EnemyHitbox : MonoBehaviour {
 
+    public EnemyController Controller;
+
 	// Use this for initialization
 	void Start () {
 		
@@ -15,4 +17,14 @@ public class EnemyHitbox : MonoBehaviour {
 	}
 
     //TODO on trigger enter, check if player and if so damage them
+    void OnTriggerEnter(Collider other)
+    {
+        if (Controller.AttackActivated)
+        {
+            if (other.CompareTag("Player"))
+            {
+                other.GetComponent<PlayerController>().Damage();
+            }
+        }
+    }
 }

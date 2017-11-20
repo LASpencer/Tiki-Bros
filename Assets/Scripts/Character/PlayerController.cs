@@ -81,6 +81,9 @@ public class PlayerController : MonoBehaviour
 
     public bool IsGrounded { get { return isGrounded; } }
 
+    [HideInInspector]
+    public bool IsDead = false;
+
     // Returns bounds around player's mesh
     public Bounds bounds { get { return ModelRenderer.bounds; } }
 
@@ -201,5 +204,21 @@ public class PlayerController : MonoBehaviour
             isGrounded = false;
         }
         //isGrounded = controller.isGrounded;
+    }
+
+    public void Damage()
+    {
+        //TODO change to CombatDeath state
+        currentlives -= 1;
+        // TODO respawning happens in Dying state after doing whatever
+        level.RespawnPlayer();
+    }
+
+    public void EnterKillzone()
+    {
+        //TODO change to KillzoneDeath state
+        currentlives -= 1;
+        //TODO respawning happens in Dying state
+        level.RespawnPlayer();
     }
 }
