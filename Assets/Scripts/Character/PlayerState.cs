@@ -9,7 +9,9 @@ public enum EPlayerStates
     Run,
     Jump,
     Falling,
-    Punching
+    Punching,
+    CombatDeath,
+    Drowning
 }
 
 public abstract class PlayerState  {
@@ -381,18 +383,29 @@ public class PunchingState : PlayerState
 
 public abstract class DyingState : PlayerState
 {
+    float timeInState;
+
     public DyingState(PlayerController player) : base(player)
     {
     }
 
     public override void CheckTransition()
     {
-        throw new NotImplementedException();
+        if(timeInState >= player.DeathTime)
+        {
+            player.ChangeState(EPlayerStates.Idle);
+        }
+    }
+
+    public override void Update()
+    {
+        timeInState += Time.deltaTime;
     }
 
     public override void OnEnter()
     {
         player.IsDead = true;
+        timeInState = 0.0f;
     }
 
     public override void OnExit()
@@ -404,4 +417,64 @@ public abstract class DyingState : PlayerState
     // TODO state for dying from combat hit
     // TODO state for drowning/lava
     // TODO state for falling to death
+}
+
+public class CombatDeathState : DyingState
+{
+    public CombatDeathState(PlayerController player) : base(player)
+    {
+    }
+
+    public override void Update()
+    {
+        base.Update();
+        //TODO knockback?
+    }
+
+    public override void CheckTransition()
+    {
+        base.CheckTransition();
+    }
+
+    public override void OnEnter()
+    {
+        base.OnEnter();
+        player.animator.SetTrigger("hasBeenHit");
+    }
+
+    public override void OnExit()
+    {
+        base.OnExit();
+    }
+}
+
+public class DrowiningState : DyingState
+{
+    public DrowiningState(PlayerController player) : base(player)
+    {
+    }
+
+    public override void Update()
+    {
+        base.Update();
+        //TODO sink through terrain
+    }
+
+    public override void CheckTransition()
+    {
+        base.CheckTransition();
+    }
+
+    public override void OnEnter()
+    {
+        base.OnEnter();
+        //TODO appropriate animation for drowning (use falling animation?)
+        //TODO camera freezes to watch death
+    }
+
+    public override void OnExit()
+    {
+        base.OnExit();
+        // TODO camera unfreezes
+    }
 }

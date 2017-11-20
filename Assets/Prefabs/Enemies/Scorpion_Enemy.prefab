@@ -831,6 +831,8 @@ MonoBehaviour:
   KnockbackSpeed: 3
   DeathTime: 0.1
   DeathParticleTime: 2
+  DeathEffect: {fileID: 1653812955986144, guid: 606e6a593bd18d74098189482286cd0a,
+    type: 2}
   TimeInState: 0
   player: {fileID: 0}
 --- !u!136 &136194316356610626

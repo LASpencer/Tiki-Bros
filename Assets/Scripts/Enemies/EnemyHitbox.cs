@@ -23,7 +23,13 @@ public class EnemyHitbox : MonoBehaviour {
         {
             if (other.CompareTag("Player"))
             {
-                other.GetComponent<PlayerController>().Damage();
+                PlayerController player = other.GetComponent<PlayerController>();
+                if (!player.IsDead)
+                {
+                    Controller.Attack();
+                    Vector3 displacement = player.transform.position - Controller.transform.position;
+                    player.Damage(displacement.normalized);
+                }
             }
         }
     }

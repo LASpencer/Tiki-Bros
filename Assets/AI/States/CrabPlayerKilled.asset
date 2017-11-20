@@ -9,12 +9,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 358c7e8e2664d0d47a84cad55f9241be, type: 3}
-  m_Name: TurtlePatrol
+  m_Name: CrabPlayerKilled
   m_EditorClassIdentifier: 
   actions:
-  - {fileID: 11400000, guid: d2f1f91a1db12d34fb52e6411bba95b7, type: 2}
+  - {fileID: 11400000, guid: 108df3fd5e4c7674298a4c7fd0a02826, type: 2}
   transitions:
   - decision: {fileID: 11400000, guid: 2efd73faa8a4930468a6fad550e768d3, type: 2}
-    TrueState: {fileID: 11400000, guid: b2002eea3301b424e93686b9c157f7ff, type: 2}
-    FalseState: {fileID: 11400000}
+    TrueState: {fileID: 11400000}
+    FalseState: {fileID: 11400000, guid: 211e3f45e3856e54ea7a4e404aef6803, type: 2}
   sceneGizmoColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}

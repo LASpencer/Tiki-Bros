@@ -54,6 +54,8 @@ public class PlayerController : MonoBehaviour
 	public int maxlives;
 	public int minlives;
 
+    public float DeathTime;
+
 	[Header ("UI Elements")]
 
 	public Text livesText;
@@ -99,6 +101,8 @@ public class PlayerController : MonoBehaviour
         states.Add(EPlayerStates.Jump, new JumpState(this));
         states.Add(EPlayerStates.Falling, new FallingState(this));
         states.Add(EPlayerStates.Punching, new PunchingState(this));
+        states.Add(EPlayerStates.CombatDeath, new CombatDeathState(this));
+        states.Add(EPlayerStates.Drowning, new DrowiningState(this));
 
         currentState = states[EPlayerStates.Idle];
         stateName = EPlayerStates.Idle;
@@ -206,19 +210,27 @@ public class PlayerController : MonoBehaviour
         //isGrounded = controller.isGrounded;
     }
 
-    public void Damage()
+    public void Damage(Vector3 knockbackDirection)
     {
-        //TODO change to CombatDeath state
-        currentlives -= 1;
-        // TODO respawning happens in Dying state after doing whatever
-        level.RespawnPlayer();
+        if (!IsDead)
+        {
+            //TODO change to CombatDeath state
+            currentlives -= 1;
+            //HACK make proper field
+            velocity = knockbackDirection * 2.0f;
+            ChangeState(EPlayerStates.CombatDeath);
+        }
     }
+
 
     public void EnterKillzone()
     {
-        //TODO change to KillzoneDeath state
-        currentlives -= 1;
-        //TODO respawning happens in Dying state
-        level.RespawnPlayer();
+        if (!IsDead)
+        {
+            //TODO change to KillzoneDeath state
+            currentlives -= 1;
+            //TODO respawning happens in Dying state
+            ChangeState(EPlayerStates.Drowning);
+        }
     }
 }

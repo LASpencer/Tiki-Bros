@@ -823,7 +823,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1661037593448112}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 142.3035, y: 9.998169, z: 200.65198}
+  m_LocalPosition: {x: 138.118, y: 9.998169, z: 186.6134}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4385173203402888}
@@ -1066,6 +1066,8 @@ MonoBehaviour:
   KnockbackSpeed: 3
   DeathTime: 0.1
   DeathParticleTime: 2
+  DeathEffect: {fileID: 1653812955986144, guid: 606e6a593bd18d74098189482286cd0a,
+    type: 2}
   TimeInState: 0
   player: {fileID: 0}
 --- !u!114 &114345573825176964

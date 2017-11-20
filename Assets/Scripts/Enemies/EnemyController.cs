@@ -54,6 +54,8 @@ public class EnemyController : MonoBehaviour {
     [Tooltip("Time for particle emitter on death to exist")]
     public float DeathParticleTime = 2;
 
+    public GameObject DeathEffect;
+
     [HideInInspector]
     public float TimeInState = 0;
 
@@ -125,6 +127,8 @@ public class EnemyController : MonoBehaviour {
         //TODO particle effects to cover up disappearance
         // Spawn particle emitter prefab, and destroy after DeathParticleTime
         navAgent.isStopped = true;
+        GameObject particles = Instantiate(DeathEffect, transform.position, transform.rotation);
+        Destroy(particles, DeathParticleTime);
     }
 
     public void Attack()
