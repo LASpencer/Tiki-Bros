@@ -6,6 +6,8 @@ using UnityEngine.AI;
 [RequireComponent(typeof(NavMeshAgent))]
 public class EnemyController : MonoBehaviour {
 
+    public int Health = 1;
+
     [Tooltip("Current AI State")]
     public State CurrentState;
 
@@ -74,5 +76,21 @@ public class EnemyController : MonoBehaviour {
             waypointIndex = 0;
         }
         return Waypoints[waypointIndex];
+    }
+
+    public void Damage(int damage = 1)
+    {
+        //HACK make up states for recovery, dying
+        Debug.Log("Enemy punched");
+        Health -= damage;
+        if(Health <= 0)
+        {
+            //TODO death
+            Destroy(gameObject);
+        } else
+        {
+            //
+        }
+
     }
 }
