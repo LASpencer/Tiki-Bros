@@ -52,6 +52,8 @@ public class PlayerController : MonoBehaviour
     public float PunchCooldownTime = 0.1f;
     [Tooltip("Speed moved during punch")]
     public float PunchMoveSpeed = 3.0f;
+    [Tooltip("Speed when hit by enemy")]
+    public float KnockbackSpeed = 5.0f;
 
     [HideInInspector]
     public float PunchCooldown = 0.0f;
@@ -233,8 +235,8 @@ public class PlayerController : MonoBehaviour
         {
             //TODO change to CombatDeath state
             currentlives -= 1;
-            //HACK make proper field
-            velocity = knockbackDirection * 2.0f;
+            //TODO apply knockback as enemy makes hit
+            velocity = knockbackDirection * KnockbackSpeed;
             ChangeState(EPlayerStates.CombatDeath);
             return true;
         } else

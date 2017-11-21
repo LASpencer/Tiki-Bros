@@ -1615,11 +1615,12 @@ MonoBehaviour:
   PunchWindup: 0
   PunchCooldownTime: 0.1
   PunchMoveSpeed: 3
+  KnockbackSpeed: 5
   PunchCooldown: 0
   currentlives: 3
   maxlives: 3
   minlives: 0
-  DeathTime: 1
+  DeathTime: 1.2
   livesText: {fileID: 0}
   controller: {fileID: 0}
   animator: {fileID: 0}
