@@ -17,18 +17,17 @@ public class EnemyHitbox : MonoBehaviour {
 	}
 
     //TODO on trigger enter, check if player and if so damage them
-    void OnTriggerEnter(Collider other)
+    void OnTriggerStay(Collider other)
     {
         if (Controller.AttackActivated)
         {
             if (other.CompareTag("Player"))
             {
                 PlayerController player = other.GetComponent<PlayerController>();
-                if (!player.IsDead)
+                Vector3 displacement = player.transform.position - Controller.transform.position;
+                if (player.Damage(displacement.normalized))
                 {
                     Controller.Attack();
-                    Vector3 displacement = player.transform.position - Controller.transform.position;
-                    player.Damage(displacement.normalized);
                 }
             }
         }

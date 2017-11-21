@@ -56,7 +56,7 @@ public class IdleState : PlayerState
             player.ChangeState(EPlayerStates.Jump);
         }
         // Exit to Punch on punch press
-        else if (Input.GetButtonDown("Punch"))
+        else if (Input.GetButtonDown("Punch") && player.PunchCooldown == 0.0f)
         {
             player.ChangeState(EPlayerStates.Punching);
         }
@@ -116,7 +116,7 @@ public class RunState : PlayerState
         {
             player.ChangeState(EPlayerStates.Jump);
         }
-        else if (Input.GetButtonDown("Punch"))
+        else if (Input.GetButtonDown("Punch") && player.PunchCooldown == 0.0f)
         {
             player.ChangeState(EPlayerStates.Punching);
         }
@@ -167,6 +167,13 @@ public class RunState : PlayerState
         }
         acceleration += player.BrakingAcceleration * frictionRatio;
         player.velocity += Vector3.ClampMagnitude(difference, acceleration * Time.deltaTime);
+
+        // Turn player to face desired direction
+        // TODO: rotation should be more smooth?
+        if (target.magnitude != 0)
+        {
+            player.transform.forward = target.normalized;
+        }
         //TODO figure out how to stop bouncing on hills
         // Maybe use raycast/capsulecast to check if ground within margin of error, and if so move down to force collision (do in PlayerController)
         // Alternately, just treat that as being grounded for state change purpose
@@ -204,6 +211,12 @@ public abstract class AirState : PlayerState
         if (Input.GetButtonDown("Jump"))
         {
             JumpToleranceTimer = player.JumpPressTolerance;
+        }
+        // Turn player to face desired direction
+        // TODO: rotation smoothness different in air?
+        if (target.magnitude != 0)
+        {
+            player.transform.forward = target.normalized;
         }
     }
 
@@ -359,6 +372,15 @@ public class PunchingState : PlayerState
         player.animator.SetTrigger("hasPunched");
 
         //TODO set/clamp velocity to punching speed
+        Vector3 target = player.GetTargetVelocity();
+        if(target != Vector3.zero)
+        {
+            player.transform.forward = target.normalized;
+        }
+        player.velocity = player.transform.forward * player.PunchMoveSpeed;
+
+        //TODO maybe not invincible whole time, just part of punch?
+        player.Invincible = true;
 
         
     }
@@ -367,12 +389,16 @@ public class PunchingState : PlayerState
     {
         // deactivate punching hitbox
         player.Hitbox.gameObject.SetActive(false);
+        // Start cooldown
+        player.PunchCooldown = player.PunchCooldownTime;
+        player.Invincible = false;
     }
 
     public override void Update()
     {
         timeInState += Time.deltaTime;
         //TODO activate punching hitbox based on animation event
+        //TODO punch movement
         //activate punching hitbox
         if (timeInState > player.PunchWindup)
         {
