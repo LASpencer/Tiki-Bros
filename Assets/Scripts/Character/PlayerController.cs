@@ -49,6 +49,8 @@ public class PlayerController : MonoBehaviour
     public float PunchWindup = 0.2f;
     [Tooltip("Time before another punch can be made")]
     public float PunchCooldownTime = 0.1f;
+    [Tooltip("Speed moved during punch")]
+    public float PunchMoveSpeed = 3.0f;
 
     [HideInInspector]
     public float PunchCooldown = 0.0f;
@@ -142,15 +144,10 @@ public class PlayerController : MonoBehaviour
             CheckIfGrounded();
             animator.SetBool("isGrounded", isGrounded);
 
-            // TODO rotate to movement direction
-            // TODO: rotation should be more smooth
             // TODO: maybe target has some offset?
             Vector3 moveDirection = new Vector3(velocity.x, 0, velocity.z);
-            Vector3 targetVelocity = GetTargetVelocity();
-            if (targetVelocity.magnitude != 0)
-            {
-                transform.forward = targetVelocity;
-            }
+            
+            // TODO: change how camera position controlled
             CameraTarget.transform.position = transform.position + CameraTargetOffset;
         }
 
