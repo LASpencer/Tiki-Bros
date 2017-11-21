@@ -83,7 +83,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1749312253658810}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 10.97, y: 5.356, z: -14.772}
+  m_LocalPosition: {x: 10.97, y: 5.255, z: -14.772}
   m_LocalScale: {x: 0.7045998, y: 0.7045996, z: 0.7045996}
   m_Children:
   - {fileID: 4360409701289028}
@@ -155,7 +155,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pointsToAdd: 1
   rotateSpeed: 80
-  CollectSound: {fileID: 8300000, guid: 210dc261f6cf939448d5c0b6a1c68797, type: 3}
+  CollectSound: {fileID: 8300000, guid: b8231f26f0e1a3b4fb9cd2612749efed, type: 3}
 --- !u!135 &135620188386315922
 SphereCollider:
   m_ObjectHideFlags: 1

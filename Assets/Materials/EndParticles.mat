@@ -6,7 +6,7 @@ Material:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: WaterParticles
+  m_Name: EndParticles
   m_Shader: {fileID: 202, guid: 0000000000000000f000000000000000, type: 0}
   m_ShaderKeywords: 
   m_LightmapFlags: 4
@@ -39,7 +39,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
-        m_Texture: {fileID: 2800000, guid: 03899f263a8380e4c844d8ce8330259d, type: 3}
+        m_Texture: {fileID: 2800000, guid: 20e01d952759877479e4cb7f3d0493ef, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MetallicGlossMap:
@@ -76,7 +76,7 @@ Material:
     - _GlossMapScale: 1
     - _Glossiness: 0.5
     - _GlossyReflections: 1
-    - _InvFade: 0.27
+    - _InvFade: 0.39
     - _Metallic: 0
     - _Mode: 0
     - _OcclusionStrength: 1
@@ -90,4 +90,4 @@ Material:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _EmissionColorMultiplier: {r: 0.5, g: 0.5, b: 0.5, a: 1}
-    - _TintColor: {r: 1, g: 1, b: 1, a: 0.266}
+    - _TintColor: {r: 0.5, g: 0.5, b: 0.5, a: 0.116}
