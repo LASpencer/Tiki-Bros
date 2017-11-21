@@ -6,8 +6,8 @@ Material:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: SmokeParticle
-  m_Shader: {fileID: 200, guid: 0000000000000000f000000000000000, type: 0}
+  m_Name: LakeMaterial
+  m_Shader: {fileID: 4800000, guid: b0a1fb2e46cabc74ebdc3e848859c670, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
@@ -39,7 +39,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
-        m_Texture: {fileID: 2800000, guid: 4371bbba63682a64a8d12375ab520f2d, type: 3}
+        m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MetallicGlossMap:
@@ -54,16 +54,16 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
-    - _node_8976:
-        m_Texture: {fileID: 0}
+    - _node_7014:
+        m_Texture: {fileID: 2800000, guid: 00fd2a24edc60414ba57b4149ed0d5a4, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
-    - _node_8976_copy:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
+    - _node_7014_copy:
+        m_Texture: {fileID: 2800000, guid: ca223877b3156c943b984c4accbaffca, type: 3}
+        m_Scale: {x: 2.08, y: 1}
         m_Offset: {x: 0, y: 0}
-    - _node_8976_copy_copy:
-        m_Texture: {fileID: 0}
+    - _node_7014_copy_copy:
+        m_Texture: {fileID: 2800000, guid: 00fd2a24edc60414ba57b4149ed0d5a4, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
@@ -71,12 +71,10 @@ Material:
     - _Cutoff: 0.5
     - _DetailNormalMapScale: 1
     - _DstBlend: 0
-    - _EmissionMultiplier: 1
     - _Gloss: 0
     - _GlossMapScale: 1
     - _Glossiness: 0.5
     - _GlossyReflections: 1
-    - _InvFade: 1
     - _Metallic: 0
     - _Mode: 0
     - _OcclusionStrength: 1
@@ -89,5 +87,3 @@ Material:
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
-    - _EmissionColorMultiplier: {r: 0.5, g: 0.5, b: 0.5, a: 1}
-    - _TintColor: {r: 0.5, g: 0.5, b: 0.5, a: 0.5}
