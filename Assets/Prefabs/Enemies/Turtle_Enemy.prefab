@@ -66,13 +66,11 @@ GameObject:
   m_Component:
   - component: {fileID: 4141360365509756}
   - component: {fileID: 95066887751002746}
-  - component: {fileID: 135740958538986672}
   - component: {fileID: 114950617093043790}
-  - component: {fileID: 114612848647492900}
   - component: {fileID: 195258475255162620}
   m_Layer: 0
   m_Name: Turtle_Enemy
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -102,6 +100,23 @@ GameObject:
   - component: {fileID: 4563701541030818}
   m_Layer: 0
   m_Name: R_frontleg2_JNT
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!1 &1456194063388924
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4647544240470908}
+  - component: {fileID: 135622596635850044}
+  - component: {fileID: 114297585482663024}
+  m_Layer: 0
+  m_Name: Hitbox
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -317,12 +332,13 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1293594698570408}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 122.56, y: 2.92, z: 193.64145}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 122.05823, y: 3.0031128, z: 193.47424}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4910022606865438}
   - {fileID: 4544328579593136}
+  - {fileID: 4647544240470908}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -462,6 +478,19 @@ Transform:
   m_Father: {fileID: 4389472607466226}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &4647544240470908
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1456194063388924}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4141360365509756}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4746218007616742
 Transform:
   m_ObjectHideFlags: 1
@@ -526,18 +555,18 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
---- !u!114 &114612848647492900
+--- !u!114 &114297585482663024
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1293594698570408}
+  m_GameObject: {fileID: 1456194063388924}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 60ecd35bfde75fa48a1d0be7a028cb0d, type: 3}
+  m_Script: {fileID: 11500000, guid: 5806336285c6d6d48aebf326e0cad941, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  levelManager: {fileID: 0}
+  Controller: {fileID: 114950617093043790}
 --- !u!114 &114950617093043790
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -549,6 +578,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1938addbbc2c26a44968381e6855427b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Health: 1
+  Hit: 0
+  Invincible: 0
+  AttackActivated: 1
+  KnockbackDirection: {x: 0, y: 0, z: 0}
   CurrentState: {fileID: 11400000, guid: 2dc2a84427ca50e44acaeea754de9516, type: 2}
   Waypoints:
   - {fileID: 0}
@@ -557,20 +591,26 @@ MonoBehaviour:
   VisionAngle: 90
   VisionRange: 5
   EscapeRange: 8
+  RecoveryTime: 0
+  KnockbackSpeed: 0
+  DeathTime: 1
+  DeathParticleTime: 2
+  DeathEffect: {fileID: 1653812955986144, guid: 606e6a593bd18d74098189482286cd0a,
+    type: 2}
   TimeInState: 0
   player: {fileID: 0}
---- !u!135 &135740958538986672
+--- !u!135 &135622596635850044
 SphereCollider:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1293594698570408}
+  m_GameObject: {fileID: 1456194063388924}
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.69601
-  m_Center: {x: 0, y: 0.36092952, z: 0.006842509}
+  m_Center: {x: 0, y: 0.3609295, z: 0.006842509}
 --- !u!137 &137137617561054216
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 1

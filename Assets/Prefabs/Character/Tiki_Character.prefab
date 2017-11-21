@@ -944,8 +944,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1829130161853252}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.229, y: 0.662, z: 0.47}
-  m_LocalScale: {x: 1, y: 0.35810983, z: 0.7709778}
+  m_LocalPosition: {x: 0.229, y: 0.531, z: 0.47}
+  m_LocalScale: {x: 1, y: 0.6833384, z: 0.7709778}
   m_Children: []
   m_Father: {fileID: 4806009978203762}
   m_RootOrder: 3
@@ -1190,7 +1190,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1367706791113824}
   m_LocalRotation: {x: -0, y: 0.7377423, z: -0, w: 0.6750825}
-  m_LocalPosition: {x: 78.99081, y: 1.23, z: 166.07205}
+  m_LocalPosition: {x: 151.6, y: 17.44, z: 190.29}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4186549964662172}
@@ -1611,7 +1611,7 @@ MonoBehaviour:
   JumpPressTolerance: 0.05
   Hitbox: {fileID: 114422920739561898}
   PunchTime: 0.5
-  PunchWindup: 0.2
+  PunchWindup: 0
   currentlives: 3
   maxlives: 3
   minlives: 0
@@ -1625,6 +1625,7 @@ MonoBehaviour:
   velocity: {x: 0, y: 0, z: 0}
   level: {fileID: 0}
   stateName: 0
+  IsDead: 0
 --- !u!114 &114422920739561898
 MonoBehaviour:
   m_ObjectHideFlags: 1
