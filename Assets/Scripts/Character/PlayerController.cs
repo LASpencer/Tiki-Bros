@@ -47,6 +47,11 @@ public class PlayerController : MonoBehaviour
     public float PunchTime = 0.5f;
     [Tooltip("Time it takes for punch hitbox to activate")]
     public float PunchWindup = 0.2f;
+    [Tooltip("Time before another punch can be made")]
+    public float PunchCooldownTime = 0.1f;
+
+    [HideInInspector]
+    public float PunchCooldown = 0.0f;
 
 
 	[Header ("Lives")]
@@ -86,6 +91,9 @@ public class PlayerController : MonoBehaviour
     [HideInInspector]
     public bool IsDead = false;
 
+    [HideInInspector]
+    public bool Invincible = false;
+
     // Returns bounds around player's mesh
     public Bounds bounds { get { return ModelRenderer.bounds; } }
 
@@ -111,6 +119,7 @@ public class PlayerController : MonoBehaviour
 
         // Disable hitbox
         Hitbox.gameObject.SetActive(false);
+        Invincible = false;
 	}
 	
 	// Update is called once per frame
@@ -121,6 +130,9 @@ public class PlayerController : MonoBehaviour
         {
             currentState.CheckTransition();
             currentState.Update();
+
+            // Run timers
+            PunchCooldown = Mathf.Max(0.0f, PunchCooldown - Time.deltaTime);
 
             // Apply gravity
             velocity.y += Physics.gravity.y * gravityScale * Time.deltaTime;
@@ -210,15 +222,19 @@ public class PlayerController : MonoBehaviour
         //isGrounded = controller.isGrounded;
     }
 
-    public void Damage(Vector3 knockbackDirection)
+    public bool Damage(Vector3 knockbackDirection)
     {
-        if (!IsDead)
+        if (!IsDead && !Invincible)
         {
             //TODO change to CombatDeath state
             currentlives -= 1;
             //HACK make proper field
             velocity = knockbackDirection * 2.0f;
             ChangeState(EPlayerStates.CombatDeath);
+            return true;
+        } else
+        {
+            return false;
         }
     }
 

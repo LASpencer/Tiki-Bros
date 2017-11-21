@@ -56,7 +56,7 @@ public class IdleState : PlayerState
             player.ChangeState(EPlayerStates.Jump);
         }
         // Exit to Punch on punch press
-        else if (Input.GetButtonDown("Punch"))
+        else if (Input.GetButtonDown("Punch") && player.PunchCooldown == 0.0f)
         {
             player.ChangeState(EPlayerStates.Punching);
         }
@@ -116,7 +116,7 @@ public class RunState : PlayerState
         {
             player.ChangeState(EPlayerStates.Jump);
         }
-        else if (Input.GetButtonDown("Punch"))
+        else if (Input.GetButtonDown("Punch") && player.PunchCooldown == 0.0f)
         {
             player.ChangeState(EPlayerStates.Punching);
         }
@@ -360,6 +360,9 @@ public class PunchingState : PlayerState
 
         //TODO set/clamp velocity to punching speed
 
+        //TODO maybe not invincible whole time, just part of punch?
+        player.Invincible = true;
+
         
     }
 
@@ -367,6 +370,9 @@ public class PunchingState : PlayerState
     {
         // deactivate punching hitbox
         player.Hitbox.gameObject.SetActive(false);
+        // Start cooldown
+        player.PunchCooldown = player.PunchCooldownTime;
+        player.Invincible = false;
     }
 
     public override void Update()
