@@ -15,6 +15,12 @@ public class GameManagerController : MonoBehaviour {
 
     bool sceneLoading = false;
 
+    private bool sceneFinished = false;
+
+    public bool SceneFinished { get { return sceneFinished; } }
+
+    private AsyncOperation loadingOperation;
+
     // Whether a scene is being loaded
     public bool SceneLoading { get { return sceneLoading; } }
 
@@ -28,6 +34,7 @@ public class GameManagerController : MonoBehaviour {
         {
             Destroy(gameObject);
         }
+        Application.backgroundLoadingPriority = ThreadPriority.Normal;
     }
 
 	// Use this for initialization
@@ -40,38 +47,51 @@ public class GameManagerController : MonoBehaviour {
 		
 	}
     
-    public void LoadScene(string sceneName)
+    public void AllowSceneActivation()
+    {
+        if(loadingOperation != null)
+        {
+            loadingOperation.allowSceneActivation = true;
+        }
+    }
+
+    public void LoadScene(string sceneName, bool waitToActivate = false, bool showCanvas = true)
     {
         if (!sceneLoading)
         {
-            StartCoroutine(AsyncSceneLoad(sceneName));
+            StartCoroutine(AsyncSceneLoad(sceneName, waitToActivate));
+            LoadingCanvas.enabled = showCanvas;
         }
     }
 
     void StartSceneLoad()
     {
         sceneLoading = true;
-        LoadingCanvas.enabled = true;
+        sceneFinished = false;
     }
 
     void FinishSceneLoad()
     {
         sceneLoading = false;
         LoadingCanvas.enabled = false;
+        loadingOperation = null;
     }
 
-    IEnumerator AsyncSceneLoad(string sceneName)
+    IEnumerator AsyncSceneLoad(string sceneName, bool waitToActivate)
     {
         StartSceneLoad();
         yield return null;
-        AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(sceneName);
-
-        while (!asyncLoad.isDone)
+        loadingOperation = SceneManager.LoadSceneAsync(sceneName);
+        loadingOperation.allowSceneActivation = !waitToActivate;
+        while (!loadingOperation.isDone)
         {
             // TODO instead set value of loading bar in canvas
             // Loading goes from 0 to 0.9, with 1.0 meaning done
-            float progress = Mathf.Clamp01(asyncLoad.progress / 0.9f);
+            float progress = Mathf.Clamp01(loadingOperation.progress / 0.9f);
             Debug.Log("Loading: " + (progress * 100) + "%");
+            
+            sceneFinished = loadingOperation.progress >= 0.9f;
+            //TODO maybe have an option to hide the LoadingCanvas on finish?
             yield return null;
         }
         FinishSceneLoad();
