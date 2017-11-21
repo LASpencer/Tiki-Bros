@@ -1190,7 +1190,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1367706791113824}
   m_LocalRotation: {x: -0, y: 0.7377423, z: -0, w: 0.6750825}
-  m_LocalPosition: {x: 151.6, y: 17.44, z: 190.29}
+  m_LocalPosition: {x: 75.58, y: 1.11, z: 164.9}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4186549964662172}
@@ -1600,6 +1600,7 @@ MonoBehaviour:
   AirAcceleration: 10
   GroundAcceleration: 20
   gravityScale: 1
+  drowningGravityScale: 0.2
   BrakingAcceleration: 0
   treasureCollected: 0
   FootRadius: 0.3
@@ -1612,9 +1613,13 @@ MonoBehaviour:
   Hitbox: {fileID: 114422920739561898}
   PunchTime: 0.5
   PunchWindup: 0
+  PunchCooldownTime: 0.1
+  PunchMoveSpeed: 3
+  PunchCooldown: 0
   currentlives: 3
   maxlives: 3
   minlives: 0
+  DeathTime: 1
   livesText: {fileID: 0}
   controller: {fileID: 0}
   animator: {fileID: 0}
@@ -1626,6 +1631,8 @@ MonoBehaviour:
   level: {fileID: 0}
   stateName: 0
   IsDead: 0
+  Invincible: 0
+  CameraFollows: 1
 --- !u!114 &114422920739561898
 MonoBehaviour:
   m_ObjectHideFlags: 1

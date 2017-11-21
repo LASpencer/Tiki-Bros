@@ -497,11 +497,17 @@ public class DrowiningState : DyingState
         base.OnEnter();
         //TODO appropriate animation for drowning (use falling animation?)
         //TODO camera freezes to watch death
+        player.CameraFollows = false;
+        player.gravityScale = player.drowningGravityScale;
+        player.velocity *= 0.1f;    //HACK magic number
+        // TODO instead of just sinking, quickly fall up to waist depth, then slowly sink
     }
 
     public override void OnExit()
     {
         base.OnExit();
         // TODO camera unfreezes
+        player.CameraFollows = true;
+        player.gravityScale = 1;
     }
 }

@@ -14,6 +14,7 @@ public class PlayerController : MonoBehaviour
     [Tooltip("Acceleration applied while running")]
     public float GroundAcceleration;
     public float gravityScale;
+    public float drowningGravityScale;
     [Tooltip("Extra acceleration for stopping or turning around")]
     public float BrakingAcceleration;
 	public int treasureCollected;
@@ -99,6 +100,9 @@ public class PlayerController : MonoBehaviour
     // Returns bounds around player's mesh
     public Bounds bounds { get { return ModelRenderer.bounds; } }
 
+    [HideInInspector]
+    public bool CameraFollows = true; //HACK might only use until camera redone
+
 	// Use this for initialization
 	void Start () {
         controller = GetComponent<CharacterController>();
@@ -146,9 +150,13 @@ public class PlayerController : MonoBehaviour
 
             // TODO: maybe target has some offset?
             Vector3 moveDirection = new Vector3(velocity.x, 0, velocity.z);
-            
+
             // TODO: change how camera position controlled
-            CameraTarget.transform.position = transform.position + CameraTargetOffset;
+            // Make CameraController responsible for actually moving CameraTarget, and just tell it our position + offset
+            if (CameraFollows)
+            {
+                CameraTarget.transform.position = transform.position + CameraTargetOffset;
+            }
         }
 
 		livesText.text = "LIVES: " + currentlives + " / " + maxlives ;
