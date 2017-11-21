@@ -76,16 +76,16 @@ public class CameraController : MonoBehaviour
             float modifiedMaxAngle = maxViewAngle;
             float modifiedMinAngle = 0;
             RaycastHit hit;
-            RaycastHit groundBelowTarget;
-            Vector3 groundNormal = Vector3.up;
-            // Find angle of ground below target
-            if(Physics.Raycast(target.transform.position, Vector3.down, out groundBelowTarget, BlocksCamera))
-            {
-                groundNormal = groundBelowTarget.normal;
-            }
-            float slope = Vector3.Angle(target.forward, groundNormal) - 90;
-            modifiedMinAngle = Mathf.Clamp(modifiedMinAngle - slope, minViewAngle, maxViewAngle);
-
+            //RaycastHit groundBelowTarget;
+            //Vector3 groundNormal = Vector3.up;
+            //// Find angle of ground below target
+            //if(Physics.Raycast(target.transform.position, Vector3.down, out groundBelowTarget, BlocksCamera))
+            //{
+            //    groundNormal = groundBelowTarget.normal;
+            //}
+            //float slope = Vector3.Angle(target.forward, groundNormal) - 90;
+            //modifiedMinAngle = Mathf.Clamp(modifiedMinAngle - slope, minViewAngle, maxViewAngle);
+            modifiedMinAngle = minViewAngle;
 
 
             // Get the X position of mouse and rotate the target.
