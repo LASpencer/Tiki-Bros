@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 
 [RequireComponent (typeof(AudioSource))]
@@ -6,6 +7,8 @@ using System.Collections;
 public class VideoScript : MonoBehaviour {
 
 	public MovieTexture CutSceneMaterial;
+
+    public Text SkipText;
 
 	private MeshRenderer meshRenderer;
 
@@ -17,17 +20,33 @@ public class VideoScript : MonoBehaviour {
 		audio.Play();
 
 		CutSceneMaterial.Play ();
-	}
+
+    }
 
 	void OnMouseDown()
 	{
 		CutSceneMaterial.Stop ();
-		//Application.LoadLevel("S1_Tutorial");
-		GameManagerController.Instance.LoadScene("S1_Tutorial"); 
-	}
+        GameManagerController.Instance.AllowSceneActivation();
+    }
 
 	void Update()
 	{
-		if (!CutSceneMaterial.isPlaying) GameManagerController.Instance.LoadScene("S1_Tutorial");
+        if (!GameManagerController.Instance.SceneLoading)
+        {
+            //HACK Start is called before GameManagerController calls FinishSceneLoad
+            // so it won't accept it. 
+            GameManagerController.Instance.LoadScene("S1_Tutorial", true, false);
+        }
+		if (!CutSceneMaterial.isPlaying)
+        {
+            GameManagerController.Instance.AllowSceneActivation();
+        }
+        if (GameManagerController.Instance.SceneFinished)
+        {
+            SkipText.text = "CLICK TO SKIP";
+        } else
+        {
+            SkipText.text = "LOADING";
+        }
 	}
 }
