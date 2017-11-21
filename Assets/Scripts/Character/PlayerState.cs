@@ -140,7 +140,8 @@ public class RunState : PlayerState
     public override void Update()
     {
         //TODO write a more fluid movement (accellerate in/decellerate out)
-        Vector3 target = player.GetTargetVelocity();
+        Vector3 targetVelocity = player.GetTargetVelocity();
+        Vector3 adjustedTarget = targetVelocity;
         Vector3 groundSlope = Vector3.up;
         RaycastHit groundHit;
         float distance = 0.2f; //HACK
@@ -148,21 +149,21 @@ public class RunState : PlayerState
         {
             groundSlope = groundHit.normal;
         }
-        target += -(Vector3.Dot(target, groundSlope)) * groundSlope;
+        adjustedTarget += -(Vector3.Dot(adjustedTarget, groundSlope)) * groundSlope;
         Vector3 groundVelocity = player.velocity;
         //groundVelocity.y = 0;
         groundVelocity += -(Vector3.Dot(groundVelocity, groundSlope)) * groundSlope;
-        Vector3 difference = target - groundVelocity;
+        Vector3 difference = adjustedTarget - groundVelocity;
         float acceleration = player.GroundAcceleration;
         float groundSpeed = groundVelocity.magnitude;
-        float targetSpeed = target.magnitude;
+        float targetSpeed = adjustedTarget.magnitude;
         float frictionRatio = 0f;
         if(targetSpeed == 0)
         {
             frictionRatio = 1;
         } else if(targetSpeed != 0 && groundSpeed != 0)
         {
-            float cosForce = Vector3.Dot(groundVelocity, target) / (targetSpeed * groundSpeed);
+            float cosForce = Vector3.Dot(groundVelocity, adjustedTarget) / (targetSpeed * groundSpeed);
             frictionRatio = (0.5f - 0.5f * cosForce);
         }
         acceleration += player.BrakingAcceleration * frictionRatio;
@@ -170,9 +171,9 @@ public class RunState : PlayerState
 
         // Turn player to face desired direction
         // TODO: rotation should be more smooth?
-        if (target.magnitude != 0)
+        if (targetVelocity != Vector3.zero)
         {
-            player.transform.forward = target.normalized;
+            player.transform.forward = targetVelocity;
         }
         //TODO figure out how to stop bouncing on hills
         // Maybe use raycast/capsulecast to check if ground within margin of error, and if so move down to force collision (do in PlayerController)
@@ -214,9 +215,9 @@ public abstract class AirState : PlayerState
         }
         // Turn player to face desired direction
         // TODO: rotation smoothness different in air?
-        if (target.magnitude != 0)
+        if (target != Vector3.zero)
         {
-            player.transform.forward = target.normalized;
+            player.transform.forward = target;
         }
     }
 
