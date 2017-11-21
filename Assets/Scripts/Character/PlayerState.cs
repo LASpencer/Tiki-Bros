@@ -9,7 +9,9 @@ public enum EPlayerStates
     Run,
     Jump,
     Falling,
-    Punching
+    Punching,
+    CombatDeath,
+    Drowning
 }
 
 public abstract class PlayerState  {
@@ -54,7 +56,7 @@ public class IdleState : PlayerState
             player.ChangeState(EPlayerStates.Jump);
         }
         // Exit to Punch on punch press
-        else if (Input.GetButtonDown("Punch"))
+        else if (Input.GetButtonDown("Punch") && player.PunchCooldown == 0.0f)
         {
             player.ChangeState(EPlayerStates.Punching);
         }
@@ -114,7 +116,7 @@ public class RunState : PlayerState
         {
             player.ChangeState(EPlayerStates.Jump);
         }
-        else if (Input.GetButtonDown("Punch"))
+        else if (Input.GetButtonDown("Punch") && player.PunchCooldown == 0.0f)
         {
             player.ChangeState(EPlayerStates.Punching);
         }
@@ -138,7 +140,8 @@ public class RunState : PlayerState
     public override void Update()
     {
         //TODO write a more fluid movement (accellerate in/decellerate out)
-        Vector3 target = player.GetTargetVelocity();
+        Vector3 targetVelocity = player.GetTargetVelocity();
+        Vector3 adjustedTarget = targetVelocity;
         Vector3 groundSlope = Vector3.up;
         RaycastHit groundHit;
         float distance = 0.2f; //HACK
@@ -146,25 +149,32 @@ public class RunState : PlayerState
         {
             groundSlope = groundHit.normal;
         }
-        target += -(Vector3.Dot(target, groundSlope)) * groundSlope;
+        adjustedTarget += -(Vector3.Dot(adjustedTarget, groundSlope)) * groundSlope;
         Vector3 groundVelocity = player.velocity;
         //groundVelocity.y = 0;
         groundVelocity += -(Vector3.Dot(groundVelocity, groundSlope)) * groundSlope;
-        Vector3 difference = target - groundVelocity;
+        Vector3 difference = adjustedTarget - groundVelocity;
         float acceleration = player.GroundAcceleration;
         float groundSpeed = groundVelocity.magnitude;
-        float targetSpeed = target.magnitude;
+        float targetSpeed = adjustedTarget.magnitude;
         float frictionRatio = 0f;
         if(targetSpeed == 0)
         {
             frictionRatio = 1;
         } else if(targetSpeed != 0 && groundSpeed != 0)
         {
-            float cosForce = Vector3.Dot(groundVelocity, target) / (targetSpeed * groundSpeed);
+            float cosForce = Vector3.Dot(groundVelocity, adjustedTarget) / (targetSpeed * groundSpeed);
             frictionRatio = (0.5f - 0.5f * cosForce);
         }
         acceleration += player.BrakingAcceleration * frictionRatio;
         player.velocity += Vector3.ClampMagnitude(difference, acceleration * Time.deltaTime);
+
+        // Turn player to face desired direction
+        // TODO: rotation should be more smooth?
+        if (targetVelocity != Vector3.zero)
+        {
+            player.transform.forward = targetVelocity;
+        }
         //TODO figure out how to stop bouncing on hills
         // Maybe use raycast/capsulecast to check if ground within margin of error, and if so move down to force collision (do in PlayerController)
         // Alternately, just treat that as being grounded for state change purpose
@@ -202,6 +212,12 @@ public abstract class AirState : PlayerState
         if (Input.GetButtonDown("Jump"))
         {
             JumpToleranceTimer = player.JumpPressTolerance;
+        }
+        // Turn player to face desired direction
+        // TODO: rotation smoothness different in air?
+        if (target != Vector3.zero)
+        {
+            player.transform.forward = target;
         }
     }
 
@@ -357,6 +373,15 @@ public class PunchingState : PlayerState
         player.animator.SetTrigger("hasPunched");
 
         //TODO set/clamp velocity to punching speed
+        Vector3 target = player.GetTargetVelocity();
+        if(target != Vector3.zero)
+        {
+            player.transform.forward = target.normalized;
+        }
+        player.velocity = player.transform.forward * player.PunchMoveSpeed;
+
+        //TODO maybe not invincible whole time, just part of punch?
+        player.Invincible = true;
 
         
     }
@@ -365,16 +390,118 @@ public class PunchingState : PlayerState
     {
         // deactivate punching hitbox
         player.Hitbox.gameObject.SetActive(false);
+        // Start cooldown
+        player.PunchCooldown = player.PunchCooldownTime;
+        player.Invincible = false;
     }
 
     public override void Update()
     {
         timeInState += Time.deltaTime;
         //TODO activate punching hitbox based on animation event
+        //TODO punch movement
         //activate punching hitbox
         if (timeInState > player.PunchWindup)
         {
             player.Hitbox.gameObject.SetActive(true);
         }
+    }
+}
+
+public abstract class DyingState : PlayerState
+{
+    float timeInState;
+
+    public DyingState(PlayerController player) : base(player)
+    {
+    }
+
+    public override void CheckTransition()
+    {
+        if(timeInState >= player.DeathTime)
+        {
+            player.ChangeState(EPlayerStates.Idle);
+        }
+    }
+
+    public override void Update()
+    {
+        timeInState += Time.deltaTime;
+    }
+
+    public override void OnEnter()
+    {
+        player.IsDead = true;
+        timeInState = 0.0f;
+    }
+
+    public override void OnExit()
+    {
+        player.IsDead = false;
+        player.level.RespawnPlayer();
+    }
+
+    // TODO state for dying from combat hit
+    // TODO state for drowning/lava
+    // TODO state for falling to death
+}
+
+public class CombatDeathState : DyingState
+{
+    public CombatDeathState(PlayerController player) : base(player)
+    {
+    }
+
+    public override void Update()
+    {
+        base.Update();
+        //TODO knockback?
+    }
+
+    public override void CheckTransition()
+    {
+        base.CheckTransition();
+    }
+
+    public override void OnEnter()
+    {
+        base.OnEnter();
+        player.animator.SetTrigger("hasBeenHit");
+    }
+
+    public override void OnExit()
+    {
+        base.OnExit();
+    }
+}
+
+public class DrowiningState : DyingState
+{
+    public DrowiningState(PlayerController player) : base(player)
+    {
+    }
+
+    public override void Update()
+    {
+        base.Update();
+        //TODO sink through terrain
+    }
+
+    public override void CheckTransition()
+    {
+        base.CheckTransition();
+    }
+
+    public override void OnEnter()
+    {
+        base.OnEnter();
+        //TODO appropriate animation for drowning (use falling animation?)
+        //TODO camera freezes to watch death
+    }
+
+    public override void OnExit()
+    {
+        base.OnExit();
+        // TODO camera unfreezes
     }
 }

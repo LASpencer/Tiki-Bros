@@ -29,4 +29,14 @@ public class PatrolAction : EnemyAction
         agent.isStopped = false;
         }
     }
+
+    public override void OnEnter(EnemyController controller)
+    {
+        controller.Invincible = false;
+        controller.AttackActivated = true;
+    }
+
+    public override void OnExit(EnemyController controller)
+    {
+    }
 }

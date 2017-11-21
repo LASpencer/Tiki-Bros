@@ -52,7 +52,6 @@ public class LevelManager : MonoBehaviour
     public void RespawnPlayer ()
     {
         player.transform.position = currentCheckpoint.spawnPoint.transform.position;
-		player.currentlives = player.currentlives  - 1;
         Debug.Log(" Respawn player");
 
 		if (player.currentlives <= player.minlives) 

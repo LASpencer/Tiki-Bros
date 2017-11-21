@@ -20,5 +20,9 @@ public class HitboxController : MonoBehaviour {
     {
         //TODO if punching an enemy, enemy killed
         //TODO give enemies rigidbody/character controller so they can be punched
+        if (other.CompareTag("Enemy"))
+        {
+            other.GetComponent<EnemyController>().Damage();
+        }
     }
 }

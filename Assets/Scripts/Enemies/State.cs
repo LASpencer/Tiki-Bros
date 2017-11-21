@@ -26,6 +26,22 @@ public class State : ScriptableObject {
         }
     }
 
+    public void OnEnter(EnemyController controller)
+    {
+        foreach(EnemyAction action in actions)
+        {
+            action.OnEnter(controller);
+        }
+    }
+
+    public void OnExit(EnemyController controller)
+    {
+        foreach(EnemyAction action in actions)
+        {
+            action.OnExit(controller);
+        }
+    }
+
     private void CheckTransitions(EnemyController controller)
     {
         State nextState;

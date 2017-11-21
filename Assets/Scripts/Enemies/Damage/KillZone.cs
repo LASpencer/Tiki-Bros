@@ -7,7 +7,6 @@ public class KillZone : MonoBehaviour
 
     public LevelManager levelManager;
 
-
 	// Use this for initialization
 	void Start ()
     {
@@ -26,8 +25,11 @@ public class KillZone : MonoBehaviour
         Debug.Log(other.name + "Has entered Kill Zone");
         if (other.CompareTag("Player"))
         {
-            //TODO make player responsible for dying instead
-            levelManager.RespawnPlayer();
+            PlayerController player = other.GetComponent<PlayerController>();
+            if (!player.IsDead)
+            {
+                player.EnterKillzone();
+            }
             Debug.Log("Player Has died");
         }
 
