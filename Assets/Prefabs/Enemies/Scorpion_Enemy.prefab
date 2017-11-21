@@ -872,7 +872,7 @@ MonoBehaviour:
   EscapeRange: 15
   RecoveryTime: 1
   KnockbackSpeed: 3
-  DeathTime: 0.5
+  DeathTime: 1
   DeathParticleTime: 2
   DeathEffect: {fileID: 1653812955986144, guid: 606e6a593bd18d74098189482286cd0a,
     type: 2}
