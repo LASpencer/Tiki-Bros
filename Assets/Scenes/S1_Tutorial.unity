@@ -15921,91 +15921,6 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 6a560a05c4c769d4b81b5c2a000c3ddd, type: 2}
   m_IsPrefabParent: 0
---- !u!1 &1196711897 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 1661037593448112, guid: 6a560a05c4c769d4b81b5c2a000c3ddd,
-    type: 2}
-  m_PrefabInternal: {fileID: 1196711896}
---- !u!82 &1196711898
-AudioSource:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1196711897}
-  m_Enabled: 1
-  serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 1
-  m_Volume: 1
-  m_Pitch: 1
-  Loop: 0
-  Mute: 0
-  Spatialize: 0
-  SpatializePostEffects: 0
-  Priority: 128
-  DopplerLevel: 1
-  MinDistance: 1
-  MaxDistance: 500
-  Pan2D: 0
-  rolloffMode: 0
-  BypassEffects: 0
-  BypassListenerEffects: 0
-  BypassReverbZones: 0
-  rolloffCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 2
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-    - serializedVersion: 2
-      time: 1
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  panLevelCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 2
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  spreadCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 2
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  reverbZoneMixCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 2
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
 --- !u!4 &1197946166 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4710661251357392, guid: 2630610b2b20117489103df55d4a4a1f,
@@ -16914,6 +16829,21 @@ Prefab:
       propertyPath: m_RootOrder
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 114383362599122434, guid: b325102b91baa8f4d8627df9da595c55,
+        type: 2}
+      propertyPath: Waypoints.Array.data[0]
+      value: 
+      objectReference: {fileID: 1236726864}
+    - target: {fileID: 114383362599122434, guid: b325102b91baa8f4d8627df9da595c55,
+        type: 2}
+      propertyPath: Waypoints.Array.data[1]
+      value: 
+      objectReference: {fileID: 1274148604}
+    - target: {fileID: 114383362599122434, guid: b325102b91baa8f4d8627df9da595c55,
+        type: 2}
+      propertyPath: Waypoints.Array.data[2]
+      value: 
+      objectReference: {fileID: 975090548}
     - target: {fileID: 4283331907310974, guid: b325102b91baa8f4d8627df9da595c55, type: 2}
       propertyPath: m_LocalRotation.x
       value: -0.14773752
@@ -16930,21 +16860,6 @@ Prefab:
       propertyPath: m_LocalRotation.w
       value: 0.70047814
       objectReference: {fileID: 0}
-    - target: {fileID: 114383362599122434, guid: b325102b91baa8f4d8627df9da595c55,
-        type: 2}
-      propertyPath: Waypoints.Array.data[0]
-      value: 
-      objectReference: {fileID: 1236726864}
-    - target: {fileID: 114383362599122434, guid: b325102b91baa8f4d8627df9da595c55,
-        type: 2}
-      propertyPath: Waypoints.Array.data[1]
-      value: 
-      objectReference: {fileID: 1274148604}
-    - target: {fileID: 114383362599122434, guid: b325102b91baa8f4d8627df9da595c55,
-        type: 2}
-      propertyPath: Waypoints.Array.data[2]
-      value: 
-      objectReference: {fileID: 975090548}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b325102b91baa8f4d8627df9da595c55, type: 2}
   m_IsPrefabParent: 0
