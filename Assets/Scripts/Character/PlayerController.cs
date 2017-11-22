@@ -105,6 +105,8 @@ public class PlayerController : MonoBehaviour
     [HideInInspector]
     public bool CameraFollows = true; //HACK might only use until camera redone
 
+    public PlayerSounds sounds;
+
 	// Use this for initialization
 	void Start () {
         controller = GetComponent<CharacterController>();
@@ -246,14 +248,14 @@ public class PlayerController : MonoBehaviour
     }
 
 
-    public void EnterKillzone()
+    public void EnterKillzone(KillZone zone)
     {
         if (!IsDead)
         {
-            //TODO change to KillzoneDeath state
             currentlives -= 1;
             //TODO respawning happens in Dying state
             ChangeState(EPlayerStates.Drowning);
+            AudioSource.PlayClipAtPoint(zone.dieSound, transform.position);
         }
     }
 }
