@@ -16,7 +16,7 @@ public enum EPlayerStates
 
 public abstract class PlayerState  {
 
-    public const float IDLE_SPEED = 0.01f; // If x and y components less than this, treat as in idle state
+    public const float IDLE_SPEED = 0.01f; // If x and z components less than this, treat as in idle state
 
     protected PlayerController player;
     public PlayerController Player { get { return Player; } }
@@ -173,6 +173,10 @@ public class RunState : PlayerState
         // TODO: rotation should be more smooth?
         if (targetVelocity != Vector3.zero)
         {
+            // TODO: Extract out as function on PlayerController, passed target and speed
+            //float speed = 5.0f; //HACK make a property of playercontroller
+            //Quaternion targetDirection = Quaternion.LookRotation(targetVelocity);
+            //player.transform.rotation = Quaternion.Slerp(player.transform.rotation, targetDirection, Time.deltaTime * speed);
             player.transform.forward = targetVelocity;
         }
         //TODO figure out how to stop bouncing on hills
@@ -180,7 +184,7 @@ public class RunState : PlayerState
         // Alternately, just treat that as being grounded for state change purpose
 
         // Animation stuff
-        player.animator.SetFloat("groundSpeed", player.velocity.magnitude);
+        player.animator.SetFloat("groundSpeed", groundSpeed);
     }
 }
 
@@ -371,7 +375,7 @@ public class PunchingState : PlayerState
     {
         timeInState = 0.0f;
         player.animator.SetTrigger("hasPunched");
-
+        player.audioSource.PlayOneShot(player.sounds.AttackGrunt);
         //TODO set/clamp velocity to punching speed
         Vector3 target = player.GetTargetVelocity();
         if(target != Vector3.zero)
@@ -477,6 +481,9 @@ public class CombatDeathState : DyingState
 
 public class DrowiningState : DyingState
 {
+
+    public const float IMPACT_SPEED_FACTOR = 0.1f;
+
     public DrowiningState(PlayerController player) : base(player)
     {
     }
@@ -484,7 +491,6 @@ public class DrowiningState : DyingState
     public override void Update()
     {
         base.Update();
-        //TODO sink through terrain
     }
 
     public override void CheckTransition()
@@ -496,12 +502,17 @@ public class DrowiningState : DyingState
     {
         base.OnEnter();
         //TODO appropriate animation for drowning (use falling animation?)
-        //TODO camera freezes to watch death
+        //camera freezes to watch death
+        player.CameraFollows = false;
+        player.gravityScale = player.drowningGravityScale;
+        player.velocity *= IMPACT_SPEED_FACTOR;
     }
 
     public override void OnExit()
     {
         base.OnExit();
-        // TODO camera unfreezes
+        // camera unfreezes
+        player.CameraFollows = true;
+        player.gravityScale = 1;
     }
 }

@@ -66,9 +66,14 @@ public class EnemyController : MonoBehaviour {
 
 	Animator animator;
 
+    AudioSource audioSource;
+
+    EnemySounds sounds;
+
 	// Use this for initialization
 	void Start () {
         navAgent = GetComponent<NavMeshAgent>();
+        audioSource = GetComponent<AudioSource>();
         player = FindObjectOfType<PlayerController>();
         waypointIndex = 0;
 		animator = GetComponent<Animator> ();
