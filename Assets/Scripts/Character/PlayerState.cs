@@ -414,7 +414,7 @@ public class PunchingState : PlayerState
 
 public abstract class DyingState : PlayerState
 {
-    float timeInState;
+    protected float timeInState;
 
     public DyingState(PlayerController player) : base(player)
     {
@@ -452,6 +452,9 @@ public abstract class DyingState : PlayerState
 
 public class CombatDeathState : DyingState
 {
+    bool knockbackFinished = false;
+    GameObject particles;
+
     public CombatDeathState(PlayerController player) : base(player)
     {
     }
@@ -459,7 +462,14 @@ public class CombatDeathState : DyingState
     public override void Update()
     {
         base.Update();
-        //TODO knockback?
+        //TODO after time end knockback and have particle effect
+        if(!knockbackFinished && timeInState >= player.KnockbackTime)
+        {
+            knockbackFinished = true;
+            player.velocity = Vector3.zero;
+            particles = GameObject.Instantiate(player.DeathEffect, player.transform.position, player.transform.rotation);
+            player.audioSource.PlayOneShot(player.sounds.Explode);
+        }
     }
 
     public override void CheckTransition()
@@ -471,11 +481,16 @@ public class CombatDeathState : DyingState
     {
         base.OnEnter();
         player.animator.SetTrigger("hasBeenHit");
+        knockbackFinished = false;
     }
 
     public override void OnExit()
     {
         base.OnExit();
+        if(particles != null)
+        {
+            GameObject.Destroy(particles);
+        }
     }
 }
 

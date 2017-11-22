@@ -55,6 +55,10 @@ public class PlayerController : MonoBehaviour
     [Tooltip("Speed when hit by enemy")]
     public float KnockbackSpeed = 5.0f;
 
+    public float KnockbackTime;
+
+    public GameObject DeathEffect;
+
     [HideInInspector]
     public float PunchCooldown = 0.0f;
 
@@ -65,6 +69,7 @@ public class PlayerController : MonoBehaviour
 	public int minlives;
 
     public float DeathTime;
+
 
 	[Header ("UI Elements")]
 

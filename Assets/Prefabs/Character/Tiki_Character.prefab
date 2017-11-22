@@ -1697,6 +1697,9 @@ MonoBehaviour:
   PunchCooldownTime: 0.1
   PunchMoveSpeed: 3
   KnockbackSpeed: 5
+  KnockbackTime: 0.5
+  DeathEffect: {fileID: 1653812955986144, guid: 248df379622a94e47bd7e0a05bb70307,
+    type: 2}
   PunchCooldown: 0
   currentlives: 3
   maxlives: 3
