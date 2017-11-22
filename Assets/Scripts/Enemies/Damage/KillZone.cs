@@ -6,6 +6,7 @@ public class KillZone : MonoBehaviour
 {
 
     public LevelManager levelManager;
+    public AudioClip dieSound;
 
 	// Use this for initialization
 	void Start ()
@@ -28,7 +29,7 @@ public class KillZone : MonoBehaviour
             PlayerController player = other.GetComponent<PlayerController>();
             if (!player.IsDead)
             {
-                player.EnterKillzone();
+                player.EnterKillzone(this);
             }
             Debug.Log("Player Has died");
         }

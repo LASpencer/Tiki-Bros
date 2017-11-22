@@ -1678,6 +1678,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 939d9c9a9a2211e4fb0d20d6d5ff642c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  AttackGrunt: {fileID: 0}
+  Hurt: {fileID: 0}
+  source: {fileID: 82894899261248062}
 --- !u!114 &114081622212451654
 MonoBehaviour:
   m_ObjectHideFlags: 1

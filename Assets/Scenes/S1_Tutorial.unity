@@ -1876,6 +1876,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   levelManager: {fileID: 1183135869}
+  dieSound: {fileID: 8300000, guid: ea1f017e8b2503d40afb58caed844a6b, type: 3}
 --- !u!23 &184729373
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -1983,6 +1984,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   levelManager: {fileID: 1183135869}
+  dieSound: {fileID: 8300000, guid: ea1f017e8b2503d40afb58caed844a6b, type: 3}
 --- !u!23 &187628804
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -6200,6 +6202,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   levelManager: {fileID: 1183135869}
+  dieSound: {fileID: 8300000, guid: ea1f017e8b2503d40afb58caed844a6b, type: 3}
 --- !u!23 &292030982
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -6483,6 +6486,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   levelManager: {fileID: 1183135869}
+  dieSound: {fileID: 8300000, guid: ea1f017e8b2503d40afb58caed844a6b, type: 3}
 --- !u!23 &309146452
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -8403,6 +8407,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   levelManager: {fileID: 1183135869}
+  dieSound: {fileID: 8300000, guid: ea1f017e8b2503d40afb58caed844a6b, type: 3}
 --- !u!23 &446607483
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -13349,6 +13354,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   levelManager: {fileID: 1183135869}
+  dieSound: {fileID: 8300000, guid: ea1f017e8b2503d40afb58caed844a6b, type: 3}
 --- !u!23 &943997625
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -13654,6 +13660,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   levelManager: {fileID: 1183135869}
+  dieSound: {fileID: 8300000, guid: ea1f017e8b2503d40afb58caed844a6b, type: 3}
 --- !u!23 &982270112
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -17884,6 +17891,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   levelManager: {fileID: 1183135869}
+  dieSound: {fileID: 8300000, guid: ea1f017e8b2503d40afb58caed844a6b, type: 3}
 --- !u!23 &1355177809
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -19803,6 +19811,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   levelManager: {fileID: 1183135869}
+  dieSound: {fileID: 8300000, guid: ea1f017e8b2503d40afb58caed844a6b, type: 3}
 --- !u!23 &1526385730
 MeshRenderer:
   m_ObjectHideFlags: 0
