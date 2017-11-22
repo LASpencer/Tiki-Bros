@@ -1,3 +1,3 @@
 # Tiki-Bros
 
-Alpha version 0.3
+Beta version 1.0

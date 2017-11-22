@@ -13,14 +13,14 @@ public class TikiHand_Collectable : MonoBehaviour {
     {
         if (other.CompareTag("Player")){
             Destroy(gameObject);
-
-            // Currently displays Game Over screen.
-            GameManagerController.Instance.LoadScene("GameOver");
+			GameManagerController gameManager = GameManagerController.Instance;
+			if (gameManager.CoinsCollected == gameManager.TotalCoins) {
+				GameManagerController.Instance.LoadScene("WinScene");
+			} else {
+				GameManagerController.Instance.LoadScene("LoseScene");
+			}    
+            
         }
-        // Check for coins
-        // if all coins not collected load bad scene.
-        // Else, load good ending.
-
 
     }
 

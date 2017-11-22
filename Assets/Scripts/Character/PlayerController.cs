@@ -47,12 +47,21 @@ public class PlayerController : MonoBehaviour
     public float PunchTime = 0.5f;
     [Tooltip("Time it takes for punch hitbox to activate")]
     public float PunchWindup = 0.2f;
+    [Tooltip("Time before another punch can be made")]
+    public float PunchCooldownTime = 0.1f;
+    [Tooltip("Speed moved during punch")]
+    public float PunchMoveSpeed = 3.0f;
+
+    [HideInInspector]
+    public float PunchCooldown = 0.0f;
 
 
 	[Header ("Lives")]
 	public int currentlives;
 	public int maxlives;
 	public int minlives;
+
+    public float DeathTime;
 
 	[Header ("UI Elements")]
 
@@ -81,6 +90,12 @@ public class PlayerController : MonoBehaviour
 
     public bool IsGrounded { get { return isGrounded; } }
 
+    [HideInInspector]
+    public bool IsDead = false;
+
+    [HideInInspector]
+    public bool Invincible = false;
+
     // Returns bounds around player's mesh
     public Bounds bounds { get { return ModelRenderer.bounds; } }
 
@@ -96,6 +111,8 @@ public class PlayerController : MonoBehaviour
         states.Add(EPlayerStates.Jump, new JumpState(this));
         states.Add(EPlayerStates.Falling, new FallingState(this));
         states.Add(EPlayerStates.Punching, new PunchingState(this));
+        states.Add(EPlayerStates.CombatDeath, new CombatDeathState(this));
+        states.Add(EPlayerStates.Drowning, new DrowiningState(this));
 
         currentState = states[EPlayerStates.Idle];
         stateName = EPlayerStates.Idle;
@@ -104,6 +121,7 @@ public class PlayerController : MonoBehaviour
 
         // Disable hitbox
         Hitbox.gameObject.SetActive(false);
+        Invincible = false;
 	}
 	
 	// Update is called once per frame
@@ -115,6 +133,9 @@ public class PlayerController : MonoBehaviour
             currentState.CheckTransition();
             currentState.Update();
 
+            // Run timers
+            PunchCooldown = Mathf.Max(0.0f, PunchCooldown - Time.deltaTime);
+
             // Apply gravity
             velocity.y += Physics.gravity.y * gravityScale * Time.deltaTime;
 
@@ -123,15 +144,10 @@ public class PlayerController : MonoBehaviour
             CheckIfGrounded();
             animator.SetBool("isGrounded", isGrounded);
 
-            // TODO rotate to movement direction
-            // TODO: rotation should be more smooth
             // TODO: maybe target has some offset?
             Vector3 moveDirection = new Vector3(velocity.x, 0, velocity.z);
-            Vector3 targetVelocity = GetTargetVelocity();
-            if (targetVelocity.magnitude != 0)
-            {
-                transform.forward = targetVelocity;
-            }
+            
+            // TODO: change how camera position controlled
             CameraTarget.transform.position = transform.position + CameraTargetOffset;
         }
 
@@ -190,7 +206,7 @@ public class PlayerController : MonoBehaviour
     {
         //TODO write test based on ground distance directly below
         RaycastHit groundHit;
-        Debug.DrawRay(transform.position, Vector3.down, Color.green);
+        Debug.DrawRay(transform.position + Vector3.up*FootOffset, Vector3.down *FootRadius, Color.green);
 
         if (Physics.SphereCast(transform.position + ((FootRadius + FootOffset) * Vector3.up), FootRadius, Vector3.down, out groundHit, FootRadius, Physics.DefaultRaycastLayers, QueryTriggerInteraction.Ignore))
         {
@@ -201,5 +217,33 @@ public class PlayerController : MonoBehaviour
             isGrounded = false;
         }
         //isGrounded = controller.isGrounded;
+    }
+
+    public bool Damage(Vector3 knockbackDirection)
+    {
+        if (!IsDead && !Invincible)
+        {
+            //TODO change to CombatDeath state
+            currentlives -= 1;
+            //HACK make proper field
+            velocity = knockbackDirection * 2.0f;
+            ChangeState(EPlayerStates.CombatDeath);
+            return true;
+        } else
+        {
+            return false;
+        }
+    }
+
+
+    public void EnterKillzone()
+    {
+        if (!IsDead)
+        {
+            //TODO change to KillzoneDeath state
+            currentlives -= 1;
+            //TODO respawning happens in Dying state
+            ChangeState(EPlayerStates.Drowning);
+        }
     }
 }
