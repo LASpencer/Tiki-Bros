@@ -105,6 +105,8 @@ public class PlayerController : MonoBehaviour
     [HideInInspector]
     public bool CameraFollows = true; //HACK might only use until camera redone
 
+    public PlayerSounds sounds;
+
 	// Use this for initialization
 	void Start () {
         controller = GetComponent<CharacterController>();
