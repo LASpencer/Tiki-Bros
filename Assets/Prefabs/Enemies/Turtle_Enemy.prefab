@@ -333,7 +333,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1293594698570408}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 122.05823, y: 3.0031128, z: 193.47424}
+  m_LocalPosition: {x: 121.21719, y: 3.0031128, z: 183.71985}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4910022606865438}
@@ -587,7 +587,7 @@ MonoBehaviour:
   Waypoints:
   - {fileID: 0}
   - {fileID: 0}
-  navAgent: {fileID: 0}
+  navAgent: {fileID: 195258475255162620}
   VisionAngle: 90
   VisionRange: 5
   EscapeRange: 8
