@@ -375,7 +375,7 @@ public class PunchingState : PlayerState
     {
         timeInState = 0.0f;
         player.animator.SetTrigger("hasPunched");
-
+        player.audioSource.PlayOneShot(player.sounds.AttackGrunt);
         //TODO set/clamp velocity to punching speed
         Vector3 target = player.GetTargetVelocity();
         if(target != Vector3.zero)

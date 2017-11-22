@@ -70,7 +70,11 @@ public class PlayerController : MonoBehaviour
 
 	public Text livesText;
 
+    [Header("Audio")]
+    public PlayerSounds sounds;
+    public AudioSource audioSource;
 
+    [Header ("")]
     public CharacterController controller;
     public Animator animator;
     public CameraController PlayerCamera;
@@ -105,12 +109,11 @@ public class PlayerController : MonoBehaviour
     [HideInInspector]
     public bool CameraFollows = true; //HACK might only use until camera redone
 
-    public PlayerSounds sounds;
-
 	// Use this for initialization
 	void Start () {
         controller = GetComponent<CharacterController>();
         animator = GetComponent<Animator>();
+        audioSource = GetComponent<AudioSource>();
 
         // Set up player states
         states = new Dictionary<EPlayerStates, PlayerState>();
@@ -240,6 +243,7 @@ public class PlayerController : MonoBehaviour
             //TODO apply knockback as enemy makes hit
             velocity = knockbackDirection * KnockbackSpeed;
             ChangeState(EPlayerStates.CombatDeath);
+            audioSource.PlayOneShot(sounds.Hurt);
             return true;
         } else
         {

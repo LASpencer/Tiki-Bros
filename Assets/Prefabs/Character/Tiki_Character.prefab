@@ -218,7 +218,6 @@ GameObject:
   - component: {fileID: 143096517367365058}
   - component: {fileID: 114081622212451654}
   - component: {fileID: 82894899261248062}
-  - component: {fileID: 114074162751781332}
   m_Layer: 0
   m_Name: Tiki_Character
   m_TagString: Player
@@ -1667,20 +1666,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   LeftFoot: 0
   player: {fileID: 0}
---- !u!114 &114074162751781332
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1367706791113824}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 939d9c9a9a2211e4fb0d20d6d5ff642c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  AttackGrunt: {fileID: 0}
-  Hurt: {fileID: 0}
-  source: {fileID: 82894899261248062}
 --- !u!114 &114081622212451654
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1718,6 +1703,8 @@ MonoBehaviour:
   minlives: 0
   DeathTime: 1.2
   livesText: {fileID: 0}
+  sounds: {fileID: 11400000, guid: a9d5d913afba7c7409f679c3dacad479, type: 2}
+  audioSource: {fileID: 0}
   controller: {fileID: 0}
   animator: {fileID: 0}
   PlayerCamera: {fileID: 0}
@@ -1730,7 +1717,6 @@ MonoBehaviour:
   IsDead: 0
   Invincible: 0
   CameraFollows: 1
-  sounds: {fileID: 114074162751781332}
 --- !u!114 &114422920739561898
 MonoBehaviour:
   m_ObjectHideFlags: 1
