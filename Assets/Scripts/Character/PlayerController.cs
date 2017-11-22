@@ -221,7 +221,7 @@ public class PlayerController : MonoBehaviour
     {
         //TODO write test based on ground distance directly below
         RaycastHit groundHit;
-        Debug.DrawRay(transform.position, Vector3.down, Color.green);
+        Debug.DrawRay(transform.position + Vector3.up*FootOffset, Vector3.down *FootRadius, Color.green);
 
         if (Physics.SphereCast(transform.position + ((FootRadius + FootOffset) * Vector3.up), FootRadius, Vector3.down, out groundHit, FootRadius, Physics.DefaultRaycastLayers, QueryTriggerInteraction.Ignore))
         {

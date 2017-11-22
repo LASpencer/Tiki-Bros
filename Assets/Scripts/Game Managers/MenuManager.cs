@@ -12,7 +12,7 @@ public class MenuManager : MonoBehaviour
     public void PlayLevel()
     {
         //SceneManager.LoadScene("S1_Tutorial");
-        GameManagerController.Instance.LoadScene("S1_Tutorial");
+        GameManagerController.Instance.LoadScene("CutScene");
     }
 
     //TODO move stuff from PauseScreen into here

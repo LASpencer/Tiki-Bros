@@ -26,7 +26,7 @@ Material:
     - _InvFade: 0.6
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
-    - _TintColor: {r: 0.5955882, g: 0.5955882, b: 0.5955882, a: 0.728}
+    - _TintColor: {r: 0.59558815, g: 0.59558815, b: 0.59558815, a: 0.597}
 --- !u!1002 &2100001
 EditorExtensionImpl:
   serializedVersion: 6

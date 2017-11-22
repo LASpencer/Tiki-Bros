@@ -1690,7 +1690,7 @@ MonoBehaviour:
   MaxJumpHeight: 2.5
   JumpCutoffProportion: 0
   CoyoteTime: 0.2
-  JumpPressTolerance: 0.1
+  JumpPressTolerance: 0.05
   Hitbox: {fileID: 114422920739561898}
   PunchTime: 0.5
   PunchWindup: 0

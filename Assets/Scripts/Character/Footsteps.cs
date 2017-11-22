@@ -24,6 +24,11 @@ public class Footsteps : MonoBehaviour
         {
             landing = true;
         }
+        else if (landing)
+        {
+            PlayLanding();
+            landing = false;
+        }
     }
 
     void OnTriggerEnter(Collider col)
@@ -35,22 +40,22 @@ public class Footsteps : MonoBehaviour
             {
                 //TODO decide whether to get Footstep or Landing sound based on player state
                 AudioClip footstep;
-                if (landing)
-                {
-                    if (LeftFoot)
-                    {
-                        footstep = otherAudible.GetLanding(this.gameObject);
-                    } else
-                    {
-                        //HACK figure out more elegant control structure
-                        landing = false;
-                        return;
-                    }
-                }
-                else
-                {
+                //if (landing)
+                //{
+                //    if (LeftFoot)
+                //    {
+                //        footstep = otherAudible.GetLanding(this.gameObject);
+                //    } else
+                //    {
+                //        //HACK figure out more elegant control structure
+                //        landing = false;
+                //        return;
+                //    }
+                //}
+                //else
+                //{
                     footstep = otherAudible.GetFootstep(this.gameObject, LeftFoot);
-                }
+                //}
                 a.PlayOneShot(footstep);
                 playing = true;
                 landing = false;
@@ -59,6 +64,34 @@ public class Footsteps : MonoBehaviour
         }
     }
 
+
+    public void PlayLanding()
+    {
+        if (!playing)
+        {
+            if (LeftFoot)
+            {
+                AudioClip landingClip;
+                RaycastHit hit;
+                if (Physics.Raycast(this.transform.position, Vector3.down, out hit))
+                {
+                    Audible otherAudible = hit.collider.gameObject.GetComponent<Audible>();
+                    if (otherAudible != null)
+                    {
+                        landingClip = otherAudible.GetLanding(this.gameObject);
+                        a.PlayOneShot(landingClip);
+                        playing = true;
+                        Invoke("Reset", TIMER_RESET);
+                    }
+                }
+            } else
+            {
+                playing = true;
+                Invoke("Reset", TIMER_RESET);
+            }
+        }
+
+    }
 
     private void Reset()
     {
