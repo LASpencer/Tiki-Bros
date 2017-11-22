@@ -106,3 +106,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   levelManager: {fileID: 0}
+  dieSound: {fileID: 8300000, guid: 481c1d553db18e54f97976d1fa3fbf9a, type: 3}
