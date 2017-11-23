@@ -420,14 +420,6 @@ public abstract class DyingState : PlayerState
     {
     }
 
-    public override void CheckTransition()
-    {
-        if(timeInState >= player.DeathTime)
-        {
-            player.ChangeState(EPlayerStates.Idle);
-        }
-    }
-
     public override void Update()
     {
         timeInState += Time.deltaTime;
@@ -469,12 +461,20 @@ public class CombatDeathState : DyingState
             player.velocity = Vector3.zero;
             particles = GameObject.Instantiate(player.DeathEffect, player.transform.position, player.transform.rotation);
             player.audioSource.PlayOneShot(player.sounds.Explode);
+            // camera freezes to watch effect
+            player.CameraFollows = false;
+            // Player invisible
+            player.SetRenderersActive(false);
+            //TODO also spawn mask/gravestone?
         }
     }
 
     public override void CheckTransition()
     {
-        base.CheckTransition();
+        if (timeInState >= player.CombatDeathTime)
+        {
+            player.ChangeState(EPlayerStates.Idle);
+        }
     }
 
     public override void OnEnter()
@@ -491,6 +491,10 @@ public class CombatDeathState : DyingState
         {
             GameObject.Destroy(particles);
         }
+        // Reactivate camera movement
+        player.CameraFollows = true;
+        // Draw player again
+        player.SetRenderersActive(true);
     }
 }
 
@@ -510,7 +514,10 @@ public class DrowiningState : DyingState
 
     public override void CheckTransition()
     {
-        base.CheckTransition();
+        if (timeInState >= player.DrowningDeathTime)
+        {
+            player.ChangeState(EPlayerStates.Idle);
+        }
     }
 
     public override void OnEnter()

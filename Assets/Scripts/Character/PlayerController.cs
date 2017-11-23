@@ -68,7 +68,8 @@ public class PlayerController : MonoBehaviour
 	public int maxlives;
 	public int minlives;
 
-    public float DeathTime;
+    public float DrowningDeathTime;
+    public float CombatDeathTime;
 
 
 	[Header ("UI Elements")]
@@ -268,6 +269,15 @@ public class PlayerController : MonoBehaviour
             //TODO respawning happens in Dying state
             ChangeState(EPlayerStates.Drowning);
             AudioSource.PlayClipAtPoint(zone.dieSound, transform.position);
+        }
+    }
+
+    // Sets renderers of this and all children to active or inactive
+    public void SetRenderersActive(bool active)
+    {
+        foreach(Renderer r in gameObject.GetComponentsInChildren<Renderer>())
+        {
+            r.enabled = active;
         }
     }
 }

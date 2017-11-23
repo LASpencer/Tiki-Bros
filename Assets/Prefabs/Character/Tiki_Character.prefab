@@ -555,7 +555,6 @@ GameObject:
   - component: {fileID: 4421029194670764}
   - component: {fileID: 33915309045259932}
   - component: {fileID: 65367326750058976}
-  - component: {fileID: 23343917105434688}
   - component: {fileID: 114422920739561898}
   m_Layer: 0
   m_Name: PunchHitbox
@@ -1308,38 +1307,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!23 &23343917105434688
-MeshRenderer:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1829130161853252}
-  m_Enabled: 0
-  m_CastShadows: 0
-  m_ReceiveShadows: 0
-  m_MotionVectors: 1
-  m_LightProbeUsage: 1
-  m_ReflectionProbeUsage: 1
-  m_Materials:
-  - {fileID: 0}
-  m_StaticBatchInfo:
-    firstSubMesh: 0
-    subMeshCount: 0
-  m_StaticBatchRoot: {fileID: 0}
-  m_ProbeAnchor: {fileID: 0}
-  m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_PreserveUVs: 0
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_SelectedEditorRenderState: 3
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
 --- !u!33 &33007806647501150
 MeshFilter:
   m_ObjectHideFlags: 1
@@ -1704,7 +1671,8 @@ MonoBehaviour:
   currentlives: 3
   maxlives: 3
   minlives: 0
-  DeathTime: 1.2
+  DrowningDeathTime: 1.5
+  CombatDeathTime: 1.5
   livesText: {fileID: 0}
   sounds: {fileID: 11400000, guid: a9d5d913afba7c7409f679c3dacad479, type: 2}
   audioSource: {fileID: 0}
@@ -1719,6 +1687,7 @@ MonoBehaviour:
   stateName: 0
   IsDead: 0
   Invincible: 0
+  PlayFootsteps: 1
   CameraFollows: 1
 --- !u!114 &114422920739561898
 MonoBehaviour:
