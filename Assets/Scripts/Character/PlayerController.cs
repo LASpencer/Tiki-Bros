@@ -108,6 +108,9 @@ public class PlayerController : MonoBehaviour
     [HideInInspector]
     public bool Invincible = false;
 
+    [HideInInspector]
+    public bool PlayFootsteps = true;
+
     // Returns bounds around player's mesh
     public Bounds bounds { get { return ModelRenderer.bounds; } }
 

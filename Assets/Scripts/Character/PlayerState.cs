@@ -521,6 +521,8 @@ public class DrowiningState : DyingState
         player.CameraFollows = false;
         player.gravityScale = player.drowningGravityScale;
         player.velocity *= IMPACT_SPEED_FACTOR;
+        // Prevent sounds from landing on lakebed
+        player.PlayFootsteps = false;
     }
 
     public override void OnExit()
@@ -529,5 +531,7 @@ public class DrowiningState : DyingState
         // camera unfreezes
         player.CameraFollows = true;
         player.gravityScale = 1;
+        // Reactivate feet
+        player.PlayFootsteps = true;
     }
 }
