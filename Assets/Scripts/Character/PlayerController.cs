@@ -252,7 +252,7 @@ public class PlayerController : MonoBehaviour
             //TODO apply knockback as enemy makes hit
             velocity = knockbackDirection * KnockbackSpeed;
             ChangeState(EPlayerStates.CombatDeath);
-            audioSource.PlayOneShot(sounds.Hurt);
+            audioSource.PlayOneShot(sounds.Hurt, sounds.HurtScale);
             return true;
         } else
         {

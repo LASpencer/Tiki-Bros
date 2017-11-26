@@ -375,7 +375,7 @@ public class PunchingState : PlayerState
     {
         timeInState = 0.0f;
         player.animator.SetTrigger("hasPunched");
-        player.audioSource.PlayOneShot(player.sounds.AttackGrunt);
+        player.audioSource.PlayOneShot(player.sounds.AttackGrunt, player.sounds.AttackGruntScale);
         //TODO set/clamp velocity to punching speed
         Vector3 target = player.GetTargetVelocity();
         if(target != Vector3.zero)
@@ -460,7 +460,7 @@ public class CombatDeathState : DyingState
             knockbackFinished = true;
             player.velocity = Vector3.zero;
             particles = GameObject.Instantiate(player.DeathEffect, player.transform.position, player.transform.rotation);
-            player.audioSource.PlayOneShot(player.sounds.Explode);
+            player.audioSource.PlayOneShot(player.sounds.Explode, player.sounds.ExplodeScale);
             // camera freezes to watch effect
             player.CameraFollows = false;
             // Player invisible

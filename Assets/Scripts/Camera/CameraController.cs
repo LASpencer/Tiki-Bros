@@ -142,6 +142,7 @@ public class CameraController : MonoBehaviour
                 } else
                 {
                     //TODO if less than minDistance, try rotating instead
+
                     offset = minDistance;
                 }
                 currentSmoothSpeed = 0f;
