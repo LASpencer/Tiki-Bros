@@ -2662,20 +2662,6 @@ Light:
   m_Lightmapping: 4
   m_AreaSize: {x: 1, y: 1}
   m_BounceIntensity: 0
-  m_FalloffTable:
-    m_Table[0]: 0
-    m_Table[1]: 0
-    m_Table[2]: 0
-    m_Table[3]: 0
-    m_Table[4]: 0
-    m_Table[5]: 0
-    m_Table[6]: 0
-    m_Table[7]: 0
-    m_Table[8]: 0
-    m_Table[9]: 0
-    m_Table[10]: 0
-    m_Table[11]: 0
-    m_Table[12]: 0
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
   m_ShadowRadius: 0
@@ -6421,20 +6407,6 @@ Light:
   m_Lightmapping: 4
   m_AreaSize: {x: 1, y: 1}
   m_BounceIntensity: 1
-  m_FalloffTable:
-    m_Table[0]: 0
-    m_Table[1]: 0
-    m_Table[2]: 0
-    m_Table[3]: 0
-    m_Table[4]: 0
-    m_Table[5]: 0
-    m_Table[6]: 0
-    m_Table[7]: 0
-    m_Table[8]: 0
-    m_Table[9]: 0
-    m_Table[10]: 0
-    m_Table[11]: 0
-    m_Table[12]: 0
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
   m_ShadowRadius: 0
@@ -10441,20 +10413,6 @@ Light:
   m_Lightmapping: 4
   m_AreaSize: {x: 1, y: 1}
   m_BounceIntensity: 0
-  m_FalloffTable:
-    m_Table[0]: 0
-    m_Table[1]: 0
-    m_Table[2]: 0
-    m_Table[3]: 0
-    m_Table[4]: 0
-    m_Table[5]: 0
-    m_Table[6]: 0
-    m_Table[7]: 0
-    m_Table[8]: 0
-    m_Table[9]: 0
-    m_Table[10]: 0
-    m_Table[11]: 0
-    m_Table[12]: 0
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
   m_ShadowRadius: 0
@@ -15019,20 +14977,6 @@ Light:
   m_Lightmapping: 4
   m_AreaSize: {x: 1, y: 1}
   m_BounceIntensity: 1
-  m_FalloffTable:
-    m_Table[0]: 0
-    m_Table[1]: 0
-    m_Table[2]: 0
-    m_Table[3]: 0
-    m_Table[4]: 0
-    m_Table[5]: 0
-    m_Table[6]: 0
-    m_Table[7]: 0
-    m_Table[8]: 0
-    m_Table[9]: 0
-    m_Table[10]: 0
-    m_Table[11]: 0
-    m_Table[12]: 0
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
   m_ShadowRadius: 0
@@ -19340,20 +19284,6 @@ Light:
   m_Lightmapping: 4
   m_AreaSize: {x: 1, y: 1}
   m_BounceIntensity: 0
-  m_FalloffTable:
-    m_Table[0]: 0
-    m_Table[1]: 0
-    m_Table[2]: 0
-    m_Table[3]: 0
-    m_Table[4]: 0
-    m_Table[5]: 0
-    m_Table[6]: 0
-    m_Table[7]: 0
-    m_Table[8]: 0
-    m_Table[9]: 0
-    m_Table[10]: 0
-    m_Table[11]: 0
-    m_Table[12]: 0
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
   m_ShadowRadius: 0
@@ -19871,19 +19801,19 @@ Prefab:
       objectReference: {fileID: 975090548}
     - target: {fileID: 4283331907310974, guid: b325102b91baa8f4d8627df9da595c55, type: 2}
       propertyPath: m_LocalRotation.x
-      value: -0.14773752
+      value: -0.1477375
       objectReference: {fileID: 0}
     - target: {fileID: 4283331907310974, guid: b325102b91baa8f4d8627df9da595c55, type: 2}
       propertyPath: m_LocalRotation.y
-      value: -0.6796345
+      value: -0.67963445
       objectReference: {fileID: 0}
     - target: {fileID: 4283331907310974, guid: b325102b91baa8f4d8627df9da595c55, type: 2}
       propertyPath: m_LocalRotation.z
-      value: 0.16000341
+      value: 0.1600034
       objectReference: {fileID: 0}
     - target: {fileID: 4283331907310974, guid: b325102b91baa8f4d8627df9da595c55, type: 2}
       propertyPath: m_LocalRotation.w
-      value: 0.70047814
+      value: 0.7004781
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b325102b91baa8f4d8627df9da595c55, type: 2}
@@ -20159,20 +20089,6 @@ Light:
   m_Lightmapping: 4
   m_AreaSize: {x: 1, y: 1}
   m_BounceIntensity: 0
-  m_FalloffTable:
-    m_Table[0]: 0
-    m_Table[1]: 0
-    m_Table[2]: 0
-    m_Table[3]: 0
-    m_Table[4]: 0
-    m_Table[5]: 0
-    m_Table[6]: 0
-    m_Table[7]: 0
-    m_Table[8]: 0
-    m_Table[9]: 0
-    m_Table[10]: 0
-    m_Table[11]: 0
-    m_Table[12]: 0
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
   m_ShadowRadius: 0
@@ -23980,14 +23896,6 @@ Prefab:
       propertyPath: Waypoints.Array.data[2]
       value: 
       objectReference: {fileID: 1922642459}
-    - target: {fileID: 1010830505199926, guid: b325102b91baa8f4d8627df9da595c55, type: 2}
-      propertyPath: m_Name
-      value: Scorpion_Enemy (1)
-      objectReference: {fileID: 0}
-    - target: {fileID: 4985682561079304, guid: b325102b91baa8f4d8627df9da595c55, type: 2}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: -85.05601
-      objectReference: {fileID: 0}
     - target: {fileID: 4283331907310974, guid: b325102b91baa8f4d8627df9da595c55, type: 2}
       propertyPath: m_LocalRotation.x
       value: -0.14773752
@@ -24003,6 +23911,10 @@ Prefab:
     - target: {fileID: 4283331907310974, guid: b325102b91baa8f4d8627df9da595c55, type: 2}
       propertyPath: m_LocalRotation.w
       value: 0.70047814
+      objectReference: {fileID: 0}
+    - target: {fileID: 1010830505199926, guid: b325102b91baa8f4d8627df9da595c55, type: 2}
+      propertyPath: m_Name
+      value: Scorpion_Enemy (1)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b325102b91baa8f4d8627df9da595c55, type: 2}
@@ -24202,20 +24114,6 @@ Light:
   m_Lightmapping: 4
   m_AreaSize: {x: 1, y: 1}
   m_BounceIntensity: 0
-  m_FalloffTable:
-    m_Table[0]: 0
-    m_Table[1]: 0
-    m_Table[2]: 0
-    m_Table[3]: 0
-    m_Table[4]: 0
-    m_Table[5]: 0
-    m_Table[6]: 0
-    m_Table[7]: 0
-    m_Table[8]: 0
-    m_Table[9]: 0
-    m_Table[10]: 0
-    m_Table[11]: 0
-    m_Table[12]: 0
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
   m_ShadowRadius: 0

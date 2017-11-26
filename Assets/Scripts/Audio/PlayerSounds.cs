@@ -7,5 +7,6 @@ public class PlayerSounds : ScriptableObject {
 
     public AudioClip AttackGrunt;
     public AudioClip Hurt;
+    public AudioClip Explode;
 
 }

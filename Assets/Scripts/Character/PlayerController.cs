@@ -55,6 +55,10 @@ public class PlayerController : MonoBehaviour
     [Tooltip("Speed when hit by enemy")]
     public float KnockbackSpeed = 5.0f;
 
+    public float KnockbackTime;
+
+    public GameObject DeathEffect;
+
     [HideInInspector]
     public float PunchCooldown = 0.0f;
 
@@ -64,7 +68,9 @@ public class PlayerController : MonoBehaviour
 	public int maxlives;
 	public int minlives;
 
-    public float DeathTime;
+    public float DrowningDeathTime;
+    public float CombatDeathTime;
+
 
 	[Header ("UI Elements")]
 
@@ -102,6 +108,9 @@ public class PlayerController : MonoBehaviour
 
     [HideInInspector]
     public bool Invincible = false;
+
+    [HideInInspector]
+    public bool PlayFootsteps = true;
 
     // Returns bounds around player's mesh
     public Bounds bounds { get { return ModelRenderer.bounds; } }
@@ -260,6 +269,15 @@ public class PlayerController : MonoBehaviour
             //TODO respawning happens in Dying state
             ChangeState(EPlayerStates.Drowning);
             AudioSource.PlayClipAtPoint(zone.dieSound, transform.position);
+        }
+    }
+
+    // Sets renderers of this and all children to active or inactive
+    public void SetRenderersActive(bool active)
+    {
+        foreach(Renderer r in gameObject.GetComponentsInChildren<Renderer>())
+        {
+            r.enabled = active;
         }
     }
 }
