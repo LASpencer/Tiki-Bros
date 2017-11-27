@@ -22,6 +22,8 @@ public class HurtAction : EnemyAction
         Vector3 knockback = controller.transform.position - controller.player.transform.position;
         controller.KnockbackDirection = knockback.normalized;
         controller.navAgent.updateRotation = false;
+        // Play hurt sound
+        controller.audioSource.PlayOneShot(controller.sounds.Knockback, controller.sounds.KnockbackScale);
     }
 
     public override void OnExit(EnemyController controller)
