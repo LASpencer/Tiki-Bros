@@ -54,6 +54,12 @@ public class EnemyController : MonoBehaviour {
     [Tooltip("Time for particle emitter on death to exist")]
     public float DeathParticleTime = 2;
 
+    [Tooltip("Time between making attack animations while chasing player")]
+    public float AttackTime = 2;
+
+    [Tooltip("Delay between start of attack animation and playing attack sound")]
+    public float AttackSoundDelay = 0;
+
     public GameObject DeathEffect;
 
     [HideInInspector]
@@ -70,6 +76,9 @@ public class EnemyController : MonoBehaviour {
 
     public EnemySounds sounds;
 
+    [HideInInspector]
+    public float AttackCD = 0; //HACK
+
 	// Use this for initialization
 	void Start () {
         navAgent = GetComponent<NavMeshAgent>();
@@ -83,6 +92,7 @@ public class EnemyController : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
         TimeInState += Time.deltaTime;
+        AttackCD = Mathf.Max(0, AttackCD - Time.deltaTime);
         CurrentState.UpdateState(this);
 		if (animator != null) {
 			//if (animator.get
@@ -141,5 +151,7 @@ public class EnemyController : MonoBehaviour {
     {
         // Do all animation etc changes
         animator.SetTrigger("hasPunched");
+        audioSource.clip = sounds.Attack;
+        audioSource.PlayDelayed(AttackSoundDelay);
     }
 }
