@@ -472,7 +472,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1156171616032982}
-  m_LocalRotation: {x: -0.14773752, y: -0.6796345, z: 0.16000341, w: 0.70047814}
+  m_LocalRotation: {x: -0.1477375, y: -0.67963445, z: 0.1600034, w: 0.7004781}
   m_LocalPosition: {x: 0.0077009453, y: 0.16560136, z: 0.8133341}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -954,16 +954,13 @@ MonoBehaviour:
   RecoveryTime: 1
   KnockbackSpeed: 3
   DeathTime: 0.1
-  DeathParticleTime: 2
-  AttackTime: 2
-  AttackSoundDelay: 0.5
+  DeathParticleTime: 1
   DeathEffect: {fileID: 1653812955986144, guid: 606e6a593bd18d74098189482286cd0a,
     type: 2}
   TimeInState: 0
   player: {fileID: 0}
   audioSource: {fileID: 0}
   sounds: {fileID: 11400000, guid: 09b47a07e2a0d1645866bd2d4c92bd76, type: 2}
-  AttackCD: 0
 --- !u!135 &135044109260177756
 SphereCollider:
   m_ObjectHideFlags: 1
