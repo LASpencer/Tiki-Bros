@@ -15486,7 +15486,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 6e34e13ecc3866741a724c885c8e7d09, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.8
+  m_Volume: 1
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -16485,6 +16485,61 @@ Prefab:
     - target: {fileID: 4199519192691602, guid: 3459736c59837f542a9c98576d529317, type: 2}
       propertyPath: m_RootOrder
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 82346818321803462, guid: 3459736c59837f542a9c98576d529317,
+        type: 2}
+      propertyPath: m_Volume
+      value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 82827210183616790, guid: 3459736c59837f542a9c98576d529317,
+        type: 2}
+      propertyPath: m_Volume
+      value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 82954722472943432, guid: 3459736c59837f542a9c98576d529317,
+        type: 2}
+      propertyPath: m_Volume
+      value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 82320952090743884, guid: 3459736c59837f542a9c98576d529317,
+        type: 2}
+      propertyPath: m_Volume
+      value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 82987130553991064, guid: 3459736c59837f542a9c98576d529317,
+        type: 2}
+      propertyPath: m_Volume
+      value: 0.9
+      objectReference: {fileID: 0}
+    - target: {fileID: 82561080679460408, guid: 3459736c59837f542a9c98576d529317,
+        type: 2}
+      propertyPath: m_Volume
+      value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 82685228515695630, guid: 3459736c59837f542a9c98576d529317,
+        type: 2}
+      propertyPath: m_Volume
+      value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 82398423613565856, guid: 3459736c59837f542a9c98576d529317,
+        type: 2}
+      propertyPath: m_Volume
+      value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 82651887430699950, guid: 3459736c59837f542a9c98576d529317,
+        type: 2}
+      propertyPath: m_Volume
+      value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 82139385947163322, guid: 3459736c59837f542a9c98576d529317,
+        type: 2}
+      propertyPath: m_Volume
+      value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 82432880754091108, guid: 3459736c59837f542a9c98576d529317,
+        type: 2}
+      propertyPath: m_Volume
+      value: 0.8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 3459736c59837f542a9c98576d529317, type: 2}
