@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+// Allows player to move camera around character and zoom in or out
 public class CameraController : MonoBehaviour
 {
     [Tooltip("Target pointed at by camera defining its rotation")]
@@ -53,13 +54,10 @@ public class CameraController : MonoBehaviour
     [Tooltip("LayerMask indicating objects that camera can't clip into")]
     public LayerMask BlocksCamera;
 
-	// Use this for initialization
+    public PlayerController player;
+
 	void Start ()
     {
-        //if (!useOffsetValues)
-        //{
-        //    offset = target.position - transform.position;
-        //}
 
         pivot.transform.position = target.transform.position;
         pivot.transform.parent = target.transform;
@@ -68,6 +66,8 @@ public class CameraController : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
 
         offset = offsetWanted;
+
+        player = FindObjectOfType<PlayerController>();
 	}
 
     // Update is called once per frame
@@ -79,17 +79,14 @@ public class CameraController : MonoBehaviour
             float modifiedMaxAngle = maxViewAngle;
             float modifiedMinAngle = 0;
             RaycastHit hit;
-            //RaycastHit groundBelowTarget;
-            //Vector3 groundNormal = Vector3.up;
-            //// Find angle of ground below target
-            //if(Physics.Raycast(target.transform.position, Vector3.down, out groundBelowTarget, BlocksCamera))
-            //{
-            //    groundNormal = groundBelowTarget.normal;
-            //}
-            //float slope = Vector3.Angle(target.forward, groundNormal) - 90;
-            //modifiedMinAngle = Mathf.Clamp(modifiedMinAngle - slope, minViewAngle, maxViewAngle);
+
             modifiedMinAngle = minViewAngle;
 
+            // Move Camera Target towards player
+            if (player.CameraFollows)
+            {
+                target.transform.position = player.transform.position + player.CameraTargetOffset;
+            }
 
             // Get the X position of mouse and rotate the target.
             float horizontal = Input.GetAxis("Mouse X") * rotateSpeed;
@@ -97,7 +94,6 @@ public class CameraController : MonoBehaviour
 
             // Get the Y position of mouse and rotate pivot.
             float vertical = Input.GetAxis("Mouse Y") * rotateSpeed;
-            //pivot.Rotate(-vertical, 0, 0);
 
             float zoom = -Input.GetAxis("Mouse ScrollWheel") * zoomSpeed;
 
@@ -144,9 +140,7 @@ public class CameraController : MonoBehaviour
                     offset = hit.distance;
                 } else
                 {
-                    //TODO if less than minDistance, try rotating instead
-
-                    offset = minDistance;
+                    offset = Mathf.Max(hit.distance, hardMinDistance);
                 }
                 currentSmoothSpeed = 0f;
 
@@ -156,14 +150,9 @@ public class CameraController : MonoBehaviour
             }
 
             // Move to offset wanted
+            //HACK change variable names to fit
             transform.position = target.position - (pivot.forward * offset);
 
-            //  transform.position = target.position - offset;
-
-            //if (transform.position.y < target.position.y)
-            //{
-            //    transform.position = new Vector3(transform.position.x, target.position.y, transform.position.z);
-            //}
             transform.LookAt(target);
         }
     }
