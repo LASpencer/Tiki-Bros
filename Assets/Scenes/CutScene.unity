@@ -377,7 +377,7 @@ GameObject:
   - component: {fileID: 588684387}
   - component: {fileID: 588684386}
   m_Layer: 0
-  m_Name: Text
+  m_Name: SkipText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -639,6 +639,10 @@ Prefab:
         type: 2}
       propertyPath: m_AnchoredPosition.y
       value: 40.169983
+      objectReference: {fileID: 0}
+    - target: {fileID: 1993361960294948, guid: 820ae19eafe864345b13fe8e84bcd8cb, type: 2}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 820ae19eafe864345b13fe8e84bcd8cb, type: 2}
