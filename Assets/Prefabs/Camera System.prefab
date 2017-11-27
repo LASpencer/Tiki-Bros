@@ -316,6 +316,7 @@ MonoBehaviour:
   invertY: 1
   maxDistance: 10
   minDistance: 2.8
+  hardMinDistance: 1
   level: {fileID: 0}
   occlusionRadius: 0.3
   BlocksCamera:
