@@ -57,8 +57,8 @@ public class EnemyController : MonoBehaviour {
     [Tooltip("Time between making attack animations while chasing player")]
     public float AttackTime = 2;
 
-    [Tooltip("Delay between start of attack animation and playing attack sound")]
-    public float AttackSoundDelay = 0;
+    //[Tooltip("Delay between start of attack animation and playing attack sound")]
+    //public float AttackSoundDelay = 0;
 
     public GameObject DeathEffect;
 
@@ -151,7 +151,10 @@ public class EnemyController : MonoBehaviour {
     {
         // Do all animation etc changes
         animator.SetTrigger("hasPunched");
-        audioSource.clip = sounds.Attack;
-        audioSource.PlayDelayed(AttackSoundDelay);
+    }
+
+    public void PlayAttackSound()
+    {
+        audioSource.PlayOneShot(sounds.Attack, sounds.AttackScale);
     }
 }
