@@ -13,3 +13,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   AttackGrunt: {fileID: 8300000, guid: 58c55ed88f8a83d42a2ddcf75a311d0d, type: 3}
   Hurt: {fileID: 8300000, guid: 7bf44fb0f517540419bbd67ab267631e, type: 3}
+  Explode: {fileID: 8300000, guid: 6abf08e78357ce642916a359f546561e, type: 3}

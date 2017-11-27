@@ -680,6 +680,8 @@ MonoBehaviour:
     type: 2}
   TimeInState: 0
   player: {fileID: 0}
+  audioSource: {fileID: 0}
+  sounds: {fileID: 11400000, guid: 350c0665322667d4bae1de5a58a14208, type: 2}
 --- !u!135 &135622596635850044
 SphereCollider:
   m_ObjectHideFlags: 1

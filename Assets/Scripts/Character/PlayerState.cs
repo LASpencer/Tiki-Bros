@@ -375,7 +375,7 @@ public class PunchingState : PlayerState
     {
         timeInState = 0.0f;
         player.animator.SetTrigger("hasPunched");
-        player.audioSource.PlayOneShot(player.sounds.AttackGrunt);
+        player.audioSource.PlayOneShot(player.sounds.AttackGrunt, player.sounds.AttackGruntScale);
         //TODO set/clamp velocity to punching speed
         Vector3 target = player.GetTargetVelocity();
         if(target != Vector3.zero)
@@ -414,18 +414,10 @@ public class PunchingState : PlayerState
 
 public abstract class DyingState : PlayerState
 {
-    float timeInState;
+    protected float timeInState;
 
     public DyingState(PlayerController player) : base(player)
     {
-    }
-
-    public override void CheckTransition()
-    {
-        if(timeInState >= player.DeathTime)
-        {
-            player.ChangeState(EPlayerStates.Idle);
-        }
     }
 
     public override void Update()
@@ -452,6 +444,9 @@ public abstract class DyingState : PlayerState
 
 public class CombatDeathState : DyingState
 {
+    bool knockbackFinished = false;
+    GameObject particles;
+
     public CombatDeathState(PlayerController player) : base(player)
     {
     }
@@ -459,23 +454,47 @@ public class CombatDeathState : DyingState
     public override void Update()
     {
         base.Update();
-        //TODO knockback?
+        //TODO after time end knockback and have particle effect
+        if(!knockbackFinished && timeInState >= player.KnockbackTime)
+        {
+            knockbackFinished = true;
+            player.velocity = Vector3.zero;
+            particles = GameObject.Instantiate(player.DeathEffect, player.transform.position, player.transform.rotation);
+            player.audioSource.PlayOneShot(player.sounds.Explode, player.sounds.ExplodeScale);
+            // camera freezes to watch effect
+            player.CameraFollows = false;
+            // Player invisible
+            player.SetRenderersActive(false);
+            //TODO also spawn mask/gravestone?
+        }
     }
 
     public override void CheckTransition()
     {
-        base.CheckTransition();
+        if (timeInState >= player.CombatDeathTime)
+        {
+            player.ChangeState(EPlayerStates.Idle);
+        }
     }
 
     public override void OnEnter()
     {
         base.OnEnter();
         player.animator.SetTrigger("hasBeenHit");
+        knockbackFinished = false;
     }
 
     public override void OnExit()
     {
         base.OnExit();
+        if(particles != null)
+        {
+            GameObject.Destroy(particles);
+        }
+        // Reactivate camera movement
+        player.CameraFollows = true;
+        // Draw player again
+        player.SetRenderersActive(true);
     }
 }
 
@@ -495,7 +514,10 @@ public class DrowiningState : DyingState
 
     public override void CheckTransition()
     {
-        base.CheckTransition();
+        if (timeInState >= player.DrowningDeathTime)
+        {
+            player.ChangeState(EPlayerStates.Idle);
+        }
     }
 
     public override void OnEnter()
@@ -506,6 +528,8 @@ public class DrowiningState : DyingState
         player.CameraFollows = false;
         player.gravityScale = player.drowningGravityScale;
         player.velocity *= IMPACT_SPEED_FACTOR;
+        // Prevent sounds from landing on lakebed
+        player.PlayFootsteps = false;
     }
 
     public override void OnExit()
@@ -514,5 +538,7 @@ public class DrowiningState : DyingState
         // camera unfreezes
         player.CameraFollows = true;
         player.gravityScale = 1;
+        // Reactivate feet
+        player.PlayFootsteps = true;
     }
 }

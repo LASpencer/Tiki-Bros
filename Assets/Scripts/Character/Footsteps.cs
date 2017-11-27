@@ -33,29 +33,15 @@ public class Footsteps : MonoBehaviour
 
     void OnTriggerEnter(Collider col)
     {
-        if (!playing)
+        if (player.PlayFootsteps && !playing)
         {
             Audible otherAudible = col.gameObject.GetComponent<Audible>();
             if (otherAudible != null)
             {
-                //TODO decide whether to get Footstep or Landing sound based on player state
+                // Get appropriate sound from object walked on
                 AudioClip footstep;
-                //if (landing)
-                //{
-                //    if (LeftFoot)
-                //    {
-                //        footstep = otherAudible.GetLanding(this.gameObject);
-                //    } else
-                //    {
-                //        //HACK figure out more elegant control structure
-                //        landing = false;
-                //        return;
-                //    }
-                //}
-                //else
-                //{
-                    footstep = otherAudible.GetFootstep(this.gameObject, LeftFoot);
-                //}
+                footstep = otherAudible.GetFootstep(this.gameObject, LeftFoot);
+                // Play sound
                 a.PlayOneShot(footstep);
                 playing = true;
                 landing = false;
@@ -67,10 +53,11 @@ public class Footsteps : MonoBehaviour
 
     public void PlayLanding()
     {
-        if (!playing)
+        if (player.PlayFootsteps && !playing)
         {
             if (LeftFoot)
             {
+                // Check for appropriate sound below
                 AudioClip landingClip;
                 RaycastHit hit;
                 if (Physics.Raycast(this.transform.position, Vector3.down, out hit))
@@ -78,6 +65,7 @@ public class Footsteps : MonoBehaviour
                     Audible otherAudible = hit.collider.gameObject.GetComponent<Audible>();
                     if (otherAudible != null)
                     {
+                        // Play landing sound
                         landingClip = otherAudible.GetLanding(this.gameObject);
                         a.PlayOneShot(landingClip);
                         playing = true;
@@ -86,6 +74,7 @@ public class Footsteps : MonoBehaviour
                 }
             } else
             {
+                // Stop right foot from playing footstep audio
                 playing = true;
                 Invoke("Reset", TIMER_RESET);
             }

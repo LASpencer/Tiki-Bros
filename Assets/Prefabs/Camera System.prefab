@@ -312,10 +312,11 @@ MonoBehaviour:
   rotateSpeed: 1.5
   zoomSpeed: 2
   maxViewAngle: 40
-  minViewAngle: -10
+  minViewAngle: -2
   invertY: 1
   maxDistance: 10
-  minDistance: 1
+  minDistance: 2.8
+  hardMinDistance: 1
   level: {fileID: 0}
   occlusionRadius: 0.3
   BlocksCamera:
