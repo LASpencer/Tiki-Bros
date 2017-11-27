@@ -35,7 +35,7 @@ public class Footsteps : MonoBehaviour
     {
         if (player.PlayFootsteps && !playing)
         {
-            Audible otherAudible = col.gameObject.GetComponent<Audible>();
+            AudibleBase otherAudible = col.gameObject.GetComponent<AudibleBase>();
             if (otherAudible != null)
             {
                 // Get appropriate sound from object walked on

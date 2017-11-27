@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// 
+/// </summary>
 public class CameraController : MonoBehaviour
 {
     [Tooltip("Target pointed at by camera defining its rotation")]
