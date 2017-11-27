@@ -25,6 +25,7 @@ public class EnemyHitbox : MonoBehaviour {
             {
                 PlayerController player = other.GetComponent<PlayerController>();
                 Vector3 displacement = player.transform.position - Controller.transform.position;
+                player.Damage(displacement.normalized);
             }
         }
     }
