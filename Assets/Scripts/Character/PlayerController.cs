@@ -280,4 +280,12 @@ public class PlayerController : MonoBehaviour
             r.enabled = active;
         }
     }
+
+    /// <summary>
+    /// Plays attack grunt sound from PlayerSounds asset
+    /// </summary>
+    public void PlayAttackSound()
+    {
+        audioSource.PlayOneShot(sounds.AttackGrunt, sounds.AttackGruntScale);
+    }
 }
