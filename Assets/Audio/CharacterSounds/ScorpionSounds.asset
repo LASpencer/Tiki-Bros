@@ -12,5 +12,8 @@ MonoBehaviour:
   m_Name: ScorpionSounds
   m_EditorClassIdentifier: 
   Attack: {fileID: 0}
+  AttackScale: 1
   Knockback: {fileID: 0}
-  Death: {fileID: 0}
+  KnockbackScale: 1
+  Death: {fileID: 8300000, guid: 6fcea99c2543cfe48b343e35bdfc9af9, type: 3}
+  DeathScale: 1
