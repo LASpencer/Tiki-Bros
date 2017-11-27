@@ -42,6 +42,9 @@ public class CameraController : MonoBehaviour
     [Tooltip("Minimum distance camera can zoom in to target")]
     public float minDistance;
 
+    [Tooltip("Minimum distance camera can be forced towards target by terrain")]
+    public float hardMinDistance;
+
     public LevelManager level;
 
     [Tooltip("Radius of spherecast to check for obstructions in front of camera")]
