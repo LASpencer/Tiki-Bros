@@ -1070,6 +1070,8 @@ MonoBehaviour:
     type: 2}
   TimeInState: 0
   player: {fileID: 0}
+  audioSource: {fileID: 0}
+  sounds: {fileID: 11400000, guid: 5ccc763b12da61e43a6bc29009061008, type: 2}
 --- !u!114 &114345573825176964
 MonoBehaviour:
   m_ObjectHideFlags: 1
