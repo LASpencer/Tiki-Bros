@@ -24,6 +24,7 @@ GameObject:
   - component: {fileID: 114383362599122434}
   - component: {fileID: 54528584441792576}
   - component: {fileID: 135672429137842936}
+  - component: {fileID: 82434710888084130}
   m_Layer: 0
   m_Name: Scorpion_Enemy
   m_TagString: Enemy
@@ -471,7 +472,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1156171616032982}
-  m_LocalRotation: {x: -0.14773752, y: -0.6796345, z: 0.16000341, w: 0.70047814}
+  m_LocalRotation: {x: -0.1477375, y: -0.67963445, z: 0.1600034, w: 0.7004781}
   m_LocalPosition: {x: 0.0077009453, y: 0.16560136, z: 0.8133341}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -791,8 +792,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1010830505199926}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 162.01843, y: 12.534334, z: 200.62009}
+  m_LocalRotation: {x: -0, y: -0.6759534, z: -0, w: 0.7369444}
+  m_LocalPosition: {x: 147.98, y: 24.9, z: 143.44}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4752149115074514}
@@ -800,7 +801,7 @@ Transform:
   - {fileID: 4982613469831708}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: -85.05601, z: 0}
 --- !u!54 &54528584441792576
 Rigidbody:
   m_ObjectHideFlags: 1
@@ -816,6 +817,86 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!82 &82434710888084130
+AudioSource:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1010830505199926}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - serializedVersion: 2
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
 --- !u!95 &95202190462536626
 Animator:
   serializedVersion: 3
@@ -872,12 +953,14 @@ MonoBehaviour:
   EscapeRange: 15
   RecoveryTime: 1
   KnockbackSpeed: 3
-  DeathTime: 1
+  DeathTime: 0.1
   DeathParticleTime: 2
   DeathEffect: {fileID: 1653812955986144, guid: 606e6a593bd18d74098189482286cd0a,
     type: 2}
   TimeInState: 0
   player: {fileID: 0}
+  audioSource: {fileID: 0}
+  sounds: {fileID: 11400000, guid: 09b47a07e2a0d1645866bd2d4c92bd76, type: 2}
 --- !u!135 &135044109260177756
 SphereCollider:
   m_ObjectHideFlags: 1

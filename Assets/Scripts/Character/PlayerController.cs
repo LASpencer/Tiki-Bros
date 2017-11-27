@@ -14,6 +14,7 @@ public class PlayerController : MonoBehaviour
     [Tooltip("Acceleration applied while running")]
     public float GroundAcceleration;
     public float gravityScale;
+    public float drowningGravityScale;
     [Tooltip("Extra acceleration for stopping or turning around")]
     public float BrakingAcceleration;
 	public int treasureCollected;
@@ -51,6 +52,12 @@ public class PlayerController : MonoBehaviour
     public float PunchCooldownTime = 0.1f;
     [Tooltip("Speed moved during punch")]
     public float PunchMoveSpeed = 3.0f;
+    [Tooltip("Speed when hit by enemy")]
+    public float KnockbackSpeed = 5.0f;
+
+    public float KnockbackTime;
+
+    public GameObject DeathEffect;
 
     [HideInInspector]
     public float PunchCooldown = 0.0f;
@@ -61,13 +68,19 @@ public class PlayerController : MonoBehaviour
 	public int maxlives;
 	public int minlives;
 
-    public float DeathTime;
+    public float DrowningDeathTime;
+    public float CombatDeathTime;
+
 
 	[Header ("UI Elements")]
 
 	public Text livesText;
 
+    [Header("Audio")]
+    public PlayerSounds sounds;
+    public AudioSource audioSource;
 
+    [Header ("")]
     public CharacterController controller;
     public Animator animator;
     public CameraController PlayerCamera;
@@ -96,13 +109,20 @@ public class PlayerController : MonoBehaviour
     [HideInInspector]
     public bool Invincible = false;
 
+    [HideInInspector]
+    public bool PlayFootsteps = true;
+
     // Returns bounds around player's mesh
     public Bounds bounds { get { return ModelRenderer.bounds; } }
+
+    [HideInInspector]
+    public bool CameraFollows = true; //HACK might only use until camera redone
 
 	// Use this for initialization
 	void Start () {
         controller = GetComponent<CharacterController>();
         animator = GetComponent<Animator>();
+        audioSource = GetComponent<AudioSource>();
 
         // Set up player states
         states = new Dictionary<EPlayerStates, PlayerState>();
@@ -146,9 +166,13 @@ public class PlayerController : MonoBehaviour
 
             // TODO: maybe target has some offset?
             Vector3 moveDirection = new Vector3(velocity.x, 0, velocity.z);
-            
+
             // TODO: change how camera position controlled
-            CameraTarget.transform.position = transform.position + CameraTargetOffset;
+            // Make CameraController responsible for actually moving CameraTarget, and just tell it our position + offset
+            if (CameraFollows)
+            {
+                CameraTarget.transform.position = transform.position + CameraTargetOffset;
+            }
         }
 
 		livesText.text = "LIVES: " + currentlives + " / " + maxlives ;
@@ -225,9 +249,10 @@ public class PlayerController : MonoBehaviour
         {
             //TODO change to CombatDeath state
             currentlives -= 1;
-            //HACK make proper field
-            velocity = knockbackDirection * 2.0f;
+            //TODO apply knockback as enemy makes hit
+            velocity = knockbackDirection * KnockbackSpeed;
             ChangeState(EPlayerStates.CombatDeath);
+            audioSource.PlayOneShot(sounds.Hurt, sounds.HurtScale);
             return true;
         } else
         {
@@ -236,14 +261,23 @@ public class PlayerController : MonoBehaviour
     }
 
 
-    public void EnterKillzone()
+    public void EnterKillzone(KillZone zone)
     {
         if (!IsDead)
         {
-            //TODO change to KillzoneDeath state
             currentlives -= 1;
             //TODO respawning happens in Dying state
             ChangeState(EPlayerStates.Drowning);
+            AudioSource.PlayClipAtPoint(zone.dieSound, transform.position);
+        }
+    }
+
+    // Sets renderers of this and all children to active or inactive
+    public void SetRenderersActive(bool active)
+    {
+        foreach(Renderer r in gameObject.GetComponentsInChildren<Renderer>())
+        {
+            r.enabled = active;
         }
     }
 }

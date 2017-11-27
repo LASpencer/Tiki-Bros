@@ -66,9 +66,14 @@ public class EnemyController : MonoBehaviour {
 
 	Animator animator;
 
+    public AudioSource audioSource;
+
+    public EnemySounds sounds;
+
 	// Use this for initialization
 	void Start () {
         navAgent = GetComponent<NavMeshAgent>();
+        audioSource = GetComponent<AudioSource>();
         player = FindObjectOfType<PlayerController>();
         waypointIndex = 0;
 		animator = GetComponent<Animator> ();
@@ -124,11 +129,12 @@ public class EnemyController : MonoBehaviour {
 
     public void Die()
     {
-        //TODO particle effects to cover up disappearance
         // Spawn particle emitter prefab, and destroy after DeathParticleTime
         navAgent.isStopped = true;
         GameObject particles = Instantiate(DeathEffect, transform.position, transform.rotation);
         Destroy(particles, DeathParticleTime);
+        // Play death audio
+        AudioSource.PlayClipAtPoint(sounds.Death, transform.position, sounds.DeathScale);
     }
 
     public void Attack()
