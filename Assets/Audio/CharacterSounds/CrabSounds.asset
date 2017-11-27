@@ -11,9 +11,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 99848ef1d7eb5394c99e4e6a99a2e5aa, type: 3}
   m_Name: CrabSounds
   m_EditorClassIdentifier: 
-  Attack: {fileID: 8300000, guid: 0d533af9a23581c46997631f22c64e91, type: 3}
+  Attack: {fileID: 8300000, guid: 9f0c7c4c149929442a4532df245122d8, type: 3}
   AttackScale: 1
-  Knockback: {fileID: 8300000, guid: e4d7cb9c327195a46b003adbbc7ffa48, type: 3}
+  Knockback: {fileID: 8300000, guid: 22302413a78331949b73f3a0acdd8ad0, type: 3}
   KnockbackScale: 1
   Death: {fileID: 8300000, guid: 6fcea99c2543cfe48b343e35bdfc9af9, type: 3}
   DeathScale: 1
