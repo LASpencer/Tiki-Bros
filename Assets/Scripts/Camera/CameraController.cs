@@ -42,6 +42,9 @@ public class CameraController : MonoBehaviour
     [Tooltip("Minimum distance camera can zoom in to target")]
     public float minDistance;
 
+    [Tooltip("Minimum distance camera can be forced towards target by terrain")]
+    public float hardMinDistance;
+
     public LevelManager level;
 
     [Tooltip("Radius of spherecast to check for obstructions in front of camera")]
@@ -76,16 +79,16 @@ public class CameraController : MonoBehaviour
             float modifiedMaxAngle = maxViewAngle;
             float modifiedMinAngle = 0;
             RaycastHit hit;
-            RaycastHit groundBelowTarget;
-            Vector3 groundNormal = Vector3.up;
-            // Find angle of ground below target
-            if(Physics.Raycast(target.transform.position, Vector3.down, out groundBelowTarget, BlocksCamera))
-            {
-                groundNormal = groundBelowTarget.normal;
-            }
-            float slope = Vector3.Angle(target.forward, groundNormal) - 90;
-            modifiedMinAngle = Mathf.Clamp(modifiedMinAngle - slope, minViewAngle, maxViewAngle);
-
+            //RaycastHit groundBelowTarget;
+            //Vector3 groundNormal = Vector3.up;
+            //// Find angle of ground below target
+            //if(Physics.Raycast(target.transform.position, Vector3.down, out groundBelowTarget, BlocksCamera))
+            //{
+            //    groundNormal = groundBelowTarget.normal;
+            //}
+            //float slope = Vector3.Angle(target.forward, groundNormal) - 90;
+            //modifiedMinAngle = Mathf.Clamp(modifiedMinAngle - slope, minViewAngle, maxViewAngle);
+            modifiedMinAngle = minViewAngle;
 
 
             // Get the X position of mouse and rotate the target.
@@ -135,13 +138,14 @@ public class CameraController : MonoBehaviour
             //TODO create layer mask for things to ignore
             if(Physics.SphereCast(target.transform.position, occlusionRadius, -pivot.forward, out hit, offsetWanted, BlocksCamera, QueryTriggerInteraction.Ignore))
             {
-                Debug.Log("Camera collided with " + hit.collider + ", " + hit.collider.tag);
+                //Debug.Log("Camera collided with " + hit.collider + ", " + hit.collider.tag);
                 if(hit.distance > minDistance)
                 {
                     offset = hit.distance;
                 } else
                 {
                     //TODO if less than minDistance, try rotating instead
+
                     offset = minDistance;
                 }
                 currentSmoothSpeed = 0f;

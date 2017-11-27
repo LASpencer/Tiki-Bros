@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 public class LevelManager : MonoBehaviour
 {
-    public GameObject currentCheckpoint;
+    public Checkpoint currentCheckpoint;
 
 	public Scene currentScene;
 
@@ -51,8 +51,7 @@ public class LevelManager : MonoBehaviour
 
     public void RespawnPlayer ()
     {
-        player.transform.position = currentCheckpoint.transform.position;
-		player.currentlives = player.currentlives  - 1;
+        player.transform.position = currentCheckpoint.spawnPoint.transform.position;
         Debug.Log(" Respawn player");
 
 		if (player.currentlives <= player.minlives) 
@@ -60,7 +59,7 @@ public class LevelManager : MonoBehaviour
 			player.currentlives = 0;
             //TODO rewrite killing player ie play animation then go to game over scene
             Cursor.lockState = CursorLockMode.None;
-            SceneManager.LoadScene ("GameOver");
+            GameManagerController.Instance.LoadScene("GameOver");
 		}
     }
 
@@ -86,5 +85,7 @@ public class LevelManager : MonoBehaviour
     {
         // Make sure time is started again
         Time.timeScale = 1;
+        // Turn cursor back on
+        Cursor.lockState = CursorLockMode.None;
     }
 }

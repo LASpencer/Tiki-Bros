@@ -6,7 +6,7 @@ public class KillZone : MonoBehaviour
 {
 
     public LevelManager levelManager;
-
+    public AudioClip dieSound;
 
 	// Use this for initialization
 	void Start ()
@@ -24,9 +24,13 @@ public class KillZone : MonoBehaviour
     void OnTriggerEnter(Collider other)
     {
         Debug.Log(other.name + "Has entered Kill Zone");
-        if (other.name == "Tiki_Character")
+        if (other.CompareTag("Player"))
         {
-            levelManager.RespawnPlayer();
+            PlayerController player = other.GetComponent<PlayerController>();
+            if (!player.IsDead)
+            {
+                player.EnterKillzone(this);
+            }
             Debug.Log("Player Has died");
         }
 

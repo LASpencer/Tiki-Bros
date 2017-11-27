@@ -1,0 +1,267 @@
+fileFormatVersion: 2
+guid: d0b1c8f53fb185a47bb91fe9d7ece9de
+timeCreated: 1509925720
+licenseType: Pro
+ModelImporter:
+  serializedVersion: 21
+  fileIDToRecycleName:
+    100000: Crab_NMTT_v1_low:poly_geo
+    100002: //RootNode
+    100004: L_2ndbacklegfoot_JNT
+    100006: L_2ndbacklegknee_JNT
+    100008: L_2ndbacklegmain_JNT
+    100010: L_2ndfrontlegfoot_JNT
+    100012: L_2ndfrontlegknee_JNT
+    100014: L_2ndfrontlegmain_JNT
+    100016: L_backlegfoot_JNT
+    100018: L_backlegknee_JNT
+    100020: L_backlegmain_JNT
+    100022: L_frontlegfoot_JNT
+    100024: L_frontlegknee_JNT
+    100026: L_frontlegmain_JNT
+    100028: L_lowclaw_JNT
+    100030: L_mainclaw_JNT
+    100032: L_topclaw_JNT
+    100034: main_JNT
+    100036: R_2ndbacklegfoot_JNT
+    100038: R_2ndbacklegknee_JNT
+    100040: R_2ndbacklegmain_JNT
+    100042: R_2ndfrontlegfoot_JNT
+    100044: R_2ndfrontlegknee_JNT
+    100046: R_2ndfrontlegmain_JNT
+    100048: R_backlegfoot_JNT
+    100050: R_backlegknee_JNT
+    100052: R_backlegmain_JNT
+    100054: R_frontlegfoot_JNT
+    100056: R_frontlegknee_JNT
+    100058: R_frontlegmain_JNT
+    100060: R_lowclaw_JNT
+    100062: R_mainclaw_JNT
+    100064: R_topclaw_JNT
+    400000: Crab_NMTT_v1_low:poly_geo
+    400002: //RootNode
+    400004: L_2ndbacklegfoot_JNT
+    400006: L_2ndbacklegknee_JNT
+    400008: L_2ndbacklegmain_JNT
+    400010: L_2ndfrontlegfoot_JNT
+    400012: L_2ndfrontlegknee_JNT
+    400014: L_2ndfrontlegmain_JNT
+    400016: L_backlegfoot_JNT
+    400018: L_backlegknee_JNT
+    400020: L_backlegmain_JNT
+    400022: L_frontlegfoot_JNT
+    400024: L_frontlegknee_JNT
+    400026: L_frontlegmain_JNT
+    400028: L_lowclaw_JNT
+    400030: L_mainclaw_JNT
+    400032: L_topclaw_JNT
+    400034: main_JNT
+    400036: R_2ndbacklegfoot_JNT
+    400038: R_2ndbacklegknee_JNT
+    400040: R_2ndbacklegmain_JNT
+    400042: R_2ndfrontlegfoot_JNT
+    400044: R_2ndfrontlegknee_JNT
+    400046: R_2ndfrontlegmain_JNT
+    400048: R_backlegfoot_JNT
+    400050: R_backlegknee_JNT
+    400052: R_backlegmain_JNT
+    400054: R_frontlegfoot_JNT
+    400056: R_frontlegknee_JNT
+    400058: R_frontlegmain_JNT
+    400060: R_lowclaw_JNT
+    400062: R_mainclaw_JNT
+    400064: R_topclaw_JNT
+    4300000: Crab_NMTT_v1_low:poly_geo
+    7400000: CrabIdle
+    7400002: CrabAttack
+    7400004: CrabWalking
+    7400006: CrabHit
+    9500000: //RootNode
+    13700000: Crab_NMTT_v1_low:poly_geo
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: CrabIdle
+      takeName: Take 001
+      firstFrame: 1
+      lastFrame: 750
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: CrabAttack
+      takeName: Take 001
+      firstFrame: 751
+      lastFrame: 1173
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: CrabWalking
+      takeName: Take 001
+      firstFrame: 1174
+      lastFrame: 1480
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: CrabHit
+      takeName: Take 001
+      firstFrame: 1405
+      lastFrame: 1694
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 100
+    meshCompression: 0
+    addColliders: 0
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
