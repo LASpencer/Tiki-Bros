@@ -40,14 +40,17 @@ public class VideoScript : MonoBehaviour {
         {
             if (FinishTextGroup.activeInHierarchy)
             {
+                // If at end text, start level
                 GameManagerController.Instance.AllowSceneActivation();
             } else
             {
+                // If in cutscene, end cutscene
                 CutSceneMaterial.Stop();
             }
         }
         else
         {
+            // If at starting text, start cutscene
             StartCutscene();
         }
 	}
@@ -57,26 +60,18 @@ public class VideoScript : MonoBehaviour {
         if (!GameManagerController.Instance.SceneLoading)
         {
             //HACK Start is called before GameManagerController calls FinishSceneLoad
-            // so it won't accept it. 
+            // so it won't accept a new scene there, and it must go here
             GameManagerController.Instance.LoadScene("S1_Tutorial", true, false);
         }
 		if (cutsceneStarted && !CutSceneMaterial.isPlaying)
         {
+            // When cutscene ends, show end text
 			FinishTextGroup.SetActive (true);
         }
-		//if (!cutsceneStarted) {
-		//	SkipText.text = "CLICK TO CONTINUE";
-		//}
-		//else if	(GameManagerController.Instance.SceneFinished)
-  //      {
-  //          // When scene finishes loading, tell player they can activate the level
-            
-  //      } else
-  //      {
-  //          SkipText.text = "LOADING...";
-  //      }
+
         if(GameManagerController.Instance.SceneFinished)
         {
+            // Prompt to continue past text or skip cutscene
             if (CutSceneMaterial.isPlaying)
             {
                 SkipText.text = "CLICK TO SKIP";
@@ -86,10 +81,14 @@ public class VideoScript : MonoBehaviour {
             }
         } else
         {
+            // While not loaded, say it's loading
             SkipText.text = "LOADING";
         }
 	}
 
+    /// <summary>
+    /// Closes the Start Text and begins playing the cutscene
+    /// </summary>
 	public void StartCutscene(){
 		cutsceneStarted = true;
 		StartTextGroup.SetActive (false);
