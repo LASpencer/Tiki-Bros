@@ -242,7 +242,7 @@ public class JumpState : AirState
     public override void OnEnter()
     {
         base.OnEnter();
-        player.CalculateJumpParameters();       //TODO figure out how to only do it once, or just move this to player.start() and ignore field changes at runtime
+        player.CalculateJumpParameters();       // HACK: Placed here so developers can alter jump parameters in runtime. Probably belongs in PlayerController.start
         //apply velocity upward
         player.velocity.y = player.JumpVelocity;
         TimeInJump = 0;

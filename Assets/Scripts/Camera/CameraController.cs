@@ -85,7 +85,7 @@ public class CameraController : MonoBehaviour
             RaycastHit hit;
             modifiedMinAngle = minViewAngle;
 
-            // Move Camera Target towards player
+            // Move Camera Target to player
             if (player.CameraFollows)
             {
                 target.transform.position = player.transform.position + player.CameraTargetOffset;
@@ -125,16 +125,15 @@ public class CameraController : MonoBehaviour
             // Update requested level of zoom
             offsetWanted = Mathf.Clamp(offsetWanted + zoom, minDistance, maxDistance);
 
-            // move the camera based on current rotation of target and pivot
-            float desiredYAngle = target.eulerAngles.y;
-            float desiredXAngle = pivot.eulerAngles.x;
+            //// move the camera based on current rotation of target and pivot
+            //float desiredYAngle = target.eulerAngles.y;
+            //float desiredXAngle = pivot.eulerAngles.x;
 
-            Quaternion rotation = Quaternion.Euler(desiredXAngle, desiredYAngle, 0);
+            //Quaternion rotation = Quaternion.Euler(desiredXAngle, desiredYAngle, 0);
             
-            // Check for occlusion by terrain
+            // Check for occlusion by terrain and set actual offset
             if(Physics.SphereCast(target.transform.position, occlusionRadius, -pivot.forward, out hit, offsetWanted, BlocksCamera, QueryTriggerInteraction.Ignore))
             {
-                //Debug.Log("Camera collided with " + hit.collider + ", " + hit.collider.tag);
                 if(hit.distance > minDistance)
                 {
                     offset = hit.distance;
@@ -146,13 +145,12 @@ public class CameraController : MonoBehaviour
 
             } else
             {
+                // Smoothly move to offset wanted
                 offset = Mathf.SmoothDamp(offset, offsetWanted, ref currentSmoothSpeed, cameraSmoothTime);
             }
 
-            // Move to offset wanted
-            //HACK change variable names to fit
+            // Move camera to position wanted and rotate to target
             transform.position = target.position - (pivot.forward * offset);
-
             transform.LookAt(target);
         }
     }
