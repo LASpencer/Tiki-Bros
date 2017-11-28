@@ -169,10 +169,10 @@ public class PlayerController : MonoBehaviour
 
             // TODO: change how camera position controlled
             // Make CameraController responsible for actually moving CameraTarget, and just tell it our position + offset
-            if (CameraFollows)
-            {
-                CameraTarget.transform.position = transform.position + CameraTargetOffset;
-            }
+            //if (CameraFollows)
+            //{
+            //    CameraTarget.transform.position = transform.position + CameraTargetOffset;
+            //}
         }
 
 		livesText.text = "LIVES: " + currentlives + " / " + maxlives ;

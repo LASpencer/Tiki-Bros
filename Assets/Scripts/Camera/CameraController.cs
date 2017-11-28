@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
 /// <summary>
 /// Controls the position and rotation of the camera while playing.
 /// The camera follow a transform set to the position of the player character.
@@ -60,17 +61,17 @@ public class CameraController : MonoBehaviour
     [Tooltip("LayerMask indicating objects that camera can't clip into")]
     public LayerMask BlocksCamera;
 
-	// Use this for initialization
+    public PlayerController player;
+
 	void Start ()
     {
         // Ensure pivot is at target position and is its child
         pivot.transform.position = target.transform.position;
         pivot.transform.parent = target.transform;
 
-        // Hide cursor
-        //Cursor.lockState = CursorLockMode.Locked;
-
         offset = offsetWanted;
+
+        player = FindObjectOfType<PlayerController>();
 	}
 
     // Update is called once per frame
@@ -84,6 +85,11 @@ public class CameraController : MonoBehaviour
             RaycastHit hit;
             modifiedMinAngle = minViewAngle;
 
+            // Move Camera Target towards player
+            if (player.CameraFollows)
+            {
+                target.transform.position = player.transform.position + player.CameraTargetOffset;
+            }
             // Get the X position of mouse and rotate the target.
             float horizontal = Input.GetAxis("Mouse X") * rotateSpeed;
             target.Rotate(0, horizontal, 0);
@@ -134,9 +140,7 @@ public class CameraController : MonoBehaviour
                     offset = hit.distance;
                 } else
                 {
-                    //TODO if less than minDistance, try rotating instead
-
-                    offset = minDistance;
+                    offset = Mathf.Max(hit.distance, hardMinDistance);
                 }
                 currentSmoothSpeed = 0f;
 
@@ -146,14 +150,9 @@ public class CameraController : MonoBehaviour
             }
 
             // Move to offset wanted
+            //HACK change variable names to fit
             transform.position = target.position - (pivot.forward * offset);
 
-            //  transform.position = target.position - offset;
-
-            //if (transform.position.y < target.position.y)
-            //{
-            //    transform.position = new Vector3(transform.position.x, target.position.y, transform.position.z);
-            //}
             transform.LookAt(target);
         }
     }
