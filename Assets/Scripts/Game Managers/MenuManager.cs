@@ -45,15 +45,17 @@ public class MenuManager : MonoBehaviour
     }
 
     /// <summary>
-    /// 
+    /// Switches which Screen, or set of UI elements, is being displayed
     /// </summary>
-    /// <param name="newScreen"></param>
+    /// <param name="newScreen">Screen to activate</param>
     public void ChangeScreen(GameObject newScreen)
     {
         if (CurrentScreen != null)
         {
+            // Disable old screen
             CurrentScreen.SetActive(false);
         }
+        // Enable new screen
         newScreen.SetActive(true);
         CurrentScreen = newScreen;
     }

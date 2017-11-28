@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Script for coins, treasure, and other pickups
+/// </summary>
 public class Collectable : MonoBehaviour
 {
     public int pointsToAdd;
@@ -12,14 +15,17 @@ public class Collectable : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
+        // If touched by player, player gets points and treasure destroyed
         if (other.GetComponent<PlayerController>() == null)
+        {
             return;
+        }
+
 		ScoreManager.scoreValue += pointsToAdd;
         GameManagerController.Instance.CoinsCollected++;
 
         //Play audio
-        //AudioSource.PlayClipAtPoint(CollectSound, transform.position);
-        Camera.main.gameObject.GetComponent<AudioSource>().PlayOneShot(CollectSound); //HACK make nicer way to get camera's audio source
+        Camera.main.gameObject.GetComponent<AudioSource>().PlayOneShot(CollectSound); 
 
         Destroy(gameObject);
 
@@ -27,6 +33,7 @@ public class Collectable : MonoBehaviour
 
     void Update()
     {
+        // Treasure slowly rotates
         transform.Rotate(0, rotateSpeed * Time.deltaTime, 0);
     }
 }

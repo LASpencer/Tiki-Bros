@@ -2,6 +2,9 @@
 using UnityEngine.UI;
 using System.Collections;
 
+/// <summary>
+/// Manages cutscene
+/// </summary>
 [RequireComponent (typeof(AudioSource))]
 
 public class VideoScript : MonoBehaviour {
@@ -25,6 +28,7 @@ public class VideoScript : MonoBehaviour {
 
 	void OnMouseDown()
 	{
+        // On click, allow game level to activate
 		CutSceneMaterial.Stop ();
         GameManagerController.Instance.AllowSceneActivation();
     }
@@ -39,10 +43,12 @@ public class VideoScript : MonoBehaviour {
         }
 		if (!CutSceneMaterial.isPlaying)
         {
+            // Allow activation when cutscene ends
             GameManagerController.Instance.AllowSceneActivation();
         }
         if (GameManagerController.Instance.SceneFinished)
         {
+            // When scene finishes loading, tell player they can activate the level
             SkipText.text = "CLICK TO SKIP";
         } else
         {

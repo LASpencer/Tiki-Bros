@@ -61,7 +61,7 @@ public class LevelManager : MonoBehaviour
         player.transform.position = currentCheckpoint.spawnPoint.transform.position;
         Debug.Log(" Respawn player");
 
-		if (player.currentlives <= player.minlives) 
+		if (player.currentlives <= 0) 
 		{
             // If out of lives, game over
 			player.currentlives = 0;

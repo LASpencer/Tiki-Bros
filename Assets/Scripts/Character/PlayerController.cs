@@ -71,7 +71,6 @@ public class PlayerController : MonoBehaviour
 	[Header ("Lives")]
 	public int currentlives;
 	public int maxlives;
-	public int minlives;
 
     [Tooltip("Time spent in Drowning state before respawning")]
     public float DrowningDeathTime;
