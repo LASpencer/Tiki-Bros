@@ -3004,7 +3004,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: 1023277458
+  randomSeed: 604331933
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -9193,7 +9193,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4295695947711852, guid: a88b7ddcb7bddd340bdc90819e9f94e2, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 0.29
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4295695947711852, guid: a88b7ddcb7bddd340bdc90819e9f94e2, type: 2}
       propertyPath: m_LocalPosition.z
@@ -11131,6 +11131,91 @@ Transform:
   m_PrefabParentObject: {fileID: 4401756668882626, guid: 623170fa052a6114289307093c546e12,
     type: 2}
   m_PrefabInternal: {fileID: 533042723}
+--- !u!1 &534043104 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1086071097823376, guid: 2e8dd6401891f8947b582e5f7cc03170,
+    type: 2}
+  m_PrefabInternal: {fileID: 2144477160}
+--- !u!82 &534043105
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 534043104}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: a33b32a676b8fb04aa2a6fede3c3e1c5, type: 3}
+  m_PlayOnAwake: 1
+  m_Volume: 0.8
+  m_Pitch: 1
+  Loop: 1
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 0
+  MinDistance: 1
+  MaxDistance: 14
+  Pan2D: 0
+  rolloffMode: 1
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - serializedVersion: 2
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
 --- !u!1001 &543452772
 Prefab:
   m_ObjectHideFlags: 0
@@ -15734,6 +15819,11 @@ Prefab:
         type: 2}
       propertyPath: m_Volume
       value: 0.85
+      objectReference: {fileID: 0}
+    - target: {fileID: 114081622212451654, guid: 2e36693907f9bb743a54d9c921074a18,
+        type: 2}
+      propertyPath: CameraTargetOffset.y
+      value: 0.8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 2e36693907f9bb743a54d9c921074a18, type: 2}
@@ -24296,7 +24386,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1620388453}
   m_LocalRotation: {x: -0.000000029802322, y: -0.7071068, z: -0.7071068, w: 0.000000029802322}
-  m_LocalPosition: {x: -478, y: 515.1, z: 196.4}
+  m_LocalPosition: {x: -478, y: 526.42706, z: 196.4}
   m_LocalScale: {x: 217.26225, y: 217.26274, z: 217.26274}
   m_Children: []
   m_Father: {fileID: 870562612}
@@ -27279,6 +27369,11 @@ Prefab:
       propertyPath: m_audioClip
       value: 
       objectReference: {fileID: 8300000, guid: fe1c27d90fe590a47a376251c2fa813a, type: 3}
+    - target: {fileID: 114651073425982484, guid: 40905d3299bf4264aa90b0acf6928d04,
+        type: 2}
+      propertyPath: offsetWanted
+      value: 4.8
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 40905d3299bf4264aa90b0acf6928d04, type: 2}
   m_IsPrefabParent: 0
