@@ -284,7 +284,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b39cc32b3b68184499bae59770d6f595, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CutSceneMaterial: {fileID: 15200000, guid: a0dd62a5279721b4da6906ec932d0880, type: 3}
+  CutSceneMaterial: {fileID: 15200000, guid: 748631cc36b939646bd94818a1289179, type: 3}
   SkipText: {fileID: 588684386}
 --- !u!82 &413576272
 AudioSource:
@@ -353,7 +353,7 @@ AudioSource:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
-    m_RotationOrder: 4
+    m_RotationOrder: 0
   reverbZoneMixCustomCurve:
     serializedVersion: 2
     m_Curve:

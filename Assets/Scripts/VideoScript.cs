@@ -46,7 +46,7 @@ public class VideoScript : MonoBehaviour {
             SkipText.text = "CLICK TO SKIP";
         } else
         {
-            SkipText.text = "LOADING";
+            SkipText.text = "LOADING...";
         }
 	}
 }
