@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+/// <summary>
+/// Script for Game Over scenes
+/// </summary>
 public class GameOverManager : MenuManager {
 
     public Text TreasureCollectedText;
@@ -10,6 +13,7 @@ public class GameOverManager : MenuManager {
 
 	// Use this for initialization
 	void Start () {
+        // Display how much treasure was collected
         float treasureCollected = GameManagerController.Instance.CoinsCollected;
         float totalTreasure = GameManagerController.Instance.TotalCoins;
 

@@ -296,7 +296,7 @@ public class PlayerController : MonoBehaviour
     }
 
     /// <summary>
-    /// Plays attack grunt sound from PlayerSounds asset
+    /// Plays attack grunt sound in response to animation event
     /// </summary>
     public void PlayAttackSound()
     {
