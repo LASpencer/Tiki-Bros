@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-//TODO maybe this should inherit from collectable?
+/// <summary>
+/// Script for Tiki Hand, which ends the game on being collected
+/// </summary>
 public class TikiHand_Collectable : MonoBehaviour {
 
 
@@ -12,6 +14,7 @@ public class TikiHand_Collectable : MonoBehaviour {
     void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player")){
+            // If picked up by player, end the game
             Destroy(gameObject);
 			GameManagerController gameManager = GameManagerController.Instance;
 			if (gameManager.CoinsCollected == gameManager.TotalCoins) {

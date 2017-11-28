@@ -1,15 +1,18 @@
 ﻿using System;
 using UnityEngine;
 
+/// <summary>
+/// Controls playing audio clips for character's footsteps and landing
+/// </summary>
 [RequireComponent(typeof(AudioSource))]
 public class Footsteps : MonoBehaviour
 {
     private AudioSource a;
-    public bool LeftFoot;
-    private bool playing = false;
-    private bool landing = false;
-    public PlayerController player;
-    private const float TIMER_RESET = 0.18f;    //HACK maybe should be exposed?
+    public bool LeftFoot;               // Is this the left or right foot?
+    private bool playing = false;       // Is a clip already being played?
+    private bool landing = false;       // Is the next contact with ground landing or walking?
+    public PlayerController player;     
+    private const float TIMER_RESET = 0.18f;    // Time before another clip is allowed to play
 
     void Awake()
     {
@@ -26,6 +29,7 @@ public class Footsteps : MonoBehaviour
         }
         else if (landing)
         {
+            // If player was previously ungrounded, play landing sound
             PlayLanding();
             landing = false;
         }
@@ -33,29 +37,15 @@ public class Footsteps : MonoBehaviour
 
     void OnTriggerEnter(Collider col)
     {
-        if (!playing)
+        if (player.PlayFootsteps && !playing)
         {
-            Audible otherAudible = col.gameObject.GetComponent<Audible>();
+            AudibleBase otherAudible = col.gameObject.GetComponent<AudibleBase>();
             if (otherAudible != null)
             {
-                //TODO decide whether to get Footstep or Landing sound based on player state
+                // Get appropriate sound from object walked on
                 AudioClip footstep;
-                //if (landing)
-                //{
-                //    if (LeftFoot)
-                //    {
-                //        footstep = otherAudible.GetLanding(this.gameObject);
-                //    } else
-                //    {
-                //        //HACK figure out more elegant control structure
-                //        landing = false;
-                //        return;
-                //    }
-                //}
-                //else
-                //{
-                    footstep = otherAudible.GetFootstep(this.gameObject, LeftFoot);
-                //}
+                footstep = otherAudible.GetFootstep(this.gameObject, LeftFoot);
+                // Play sound
                 a.PlayOneShot(footstep);
                 playing = true;
                 landing = false;
@@ -67,10 +57,11 @@ public class Footsteps : MonoBehaviour
 
     public void PlayLanding()
     {
-        if (!playing)
+        if (player.PlayFootsteps && !playing)
         {
             if (LeftFoot)
             {
+                // Check for appropriate sound on object below player
                 AudioClip landingClip;
                 RaycastHit hit;
                 if (Physics.Raycast(this.transform.position, Vector3.down, out hit))
@@ -78,6 +69,7 @@ public class Footsteps : MonoBehaviour
                     Audible otherAudible = hit.collider.gameObject.GetComponent<Audible>();
                     if (otherAudible != null)
                     {
+                        // Play landing sound
                         landingClip = otherAudible.GetLanding(this.gameObject);
                         a.PlayOneShot(landingClip);
                         playing = true;
@@ -86,6 +78,7 @@ public class Footsteps : MonoBehaviour
                 }
             } else
             {
+                // Stop right foot from playing footstep audio
                 playing = true;
                 Invoke("Reset", TIMER_RESET);
             }

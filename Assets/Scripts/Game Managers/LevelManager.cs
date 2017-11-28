@@ -4,6 +4,9 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
+/// <summary>
+/// Manages game levels. Is responsible for pausing and respawning the player
+/// </summary>
 public class LevelManager : MonoBehaviour
 {
     public Checkpoint currentCheckpoint;
@@ -29,6 +32,7 @@ public class LevelManager : MonoBehaviour
         PauseScreen.gameObject.SetActive(false);//Hide pause screen		
         isPaused = false;
         Time.timeScale = TimeScale;
+        Cursor.lockState = CursorLockMode.Locked;
 
         // Reset coin count and check coins needed
         GameManagerController.Instance.CoinsCollected = 0;
@@ -49,20 +53,26 @@ public class LevelManager : MonoBehaviour
         }
 	}
 
+    /// <summary>
+    /// Respawns player at spawn point of current checkpoint
+    /// </summary>
     public void RespawnPlayer ()
     {
         player.transform.position = currentCheckpoint.spawnPoint.transform.position;
         Debug.Log(" Respawn player");
 
-		if (player.currentlives <= player.minlives) 
+		if (player.currentlives <= 0) 
 		{
+            // If out of lives, game over
 			player.currentlives = 0;
-            //TODO rewrite killing player ie play animation then go to game over scene
             Cursor.lockState = CursorLockMode.None;
             GameManagerController.Instance.LoadScene("GameOver");
 		}
     }
 
+    /// <summary>
+    /// Pauses the game, activating the pause menu and unlocking the mouse
+    /// </summary>
     public void Pause()
     {
         isPaused = true;
@@ -72,6 +82,9 @@ public class LevelManager : MonoBehaviour
         Debug.Log("pause");
     }
 
+    /// <summary>
+    /// Unpauses the game
+    /// </summary>
     public void Unpause()
     {
         isPaused = false;
@@ -80,7 +93,7 @@ public class LevelManager : MonoBehaviour
         PauseScreen.gameObject.SetActive(false);
         Debug.Log("unpause");
     }
-
+    
     void OnDestroy()
     {
         // Make sure time is started again

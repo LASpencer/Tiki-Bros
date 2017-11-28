@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+/// <summary>
+/// Displays current score
+/// </summary>
 public class ScoreManager : MonoBehaviour 
 {
 	public static int scoreValue;
@@ -13,7 +16,6 @@ public class ScoreManager : MonoBehaviour
 	// Use this for initialization
 	void Start () 
 	{
-//		treasureText = GetComponent<Text> ();
 		scoreValue = 0;
 	}
 	
