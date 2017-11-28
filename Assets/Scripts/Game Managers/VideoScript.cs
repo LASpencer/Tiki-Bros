@@ -12,8 +12,13 @@ public class VideoScript : MonoBehaviour {
 	public MovieTexture CutSceneMaterial;
 
     public Text SkipText;
+	public GameObject StoryText1;
+	public GameObject StartTextGroup;
+	public GameObject FinishTextGroup;
 
 	private MeshRenderer meshRenderer;
+
+	bool cutsceneStarted;
 
 	void Start(){
 		meshRenderer = GetComponent<MeshRenderer>();
@@ -22,37 +27,71 @@ public class VideoScript : MonoBehaviour {
 		AudioSource audio = GetComponent<AudioSource>();
 		audio.Play();
 
-		CutSceneMaterial.Play ();
+		cutsceneStarted = false;
+
+		StartTextGroup.SetActive (true);
+		FinishTextGroup.SetActive (false);
 
     }
 
 	void OnMouseDown()
 	{
-        // On click, allow game level to activate
-		CutSceneMaterial.Stop ();
-        GameManagerController.Instance.AllowSceneActivation();
-    }
+        if (cutsceneStarted)
+        {
+            if (FinishTextGroup.activeInHierarchy)
+            {
+                // If at end text, start level
+                GameManagerController.Instance.AllowSceneActivation();
+            } else
+            {
+                // If in cutscene, end cutscene
+                CutSceneMaterial.Stop();
+            }
+        }
+        else
+        {
+            // If at starting text, start cutscene
+            StartCutscene();
+        }
+	}
 
 	void Update()
 	{
         if (!GameManagerController.Instance.SceneLoading)
         {
             //HACK Start is called before GameManagerController calls FinishSceneLoad
-            // so it won't accept it. 
+            // so it won't accept a new scene there, and it must go here
             GameManagerController.Instance.LoadScene("S1_Tutorial", true, false);
         }
-		if (!CutSceneMaterial.isPlaying)
+		if (cutsceneStarted && !CutSceneMaterial.isPlaying)
         {
-            // Allow activation when cutscene ends
-            GameManagerController.Instance.AllowSceneActivation();
+            // When cutscene ends, show end text
+			FinishTextGroup.SetActive (true);
         }
-        if (GameManagerController.Instance.SceneFinished)
+
+        if(GameManagerController.Instance.SceneFinished)
         {
-            // When scene finishes loading, tell player they can activate the level
-            SkipText.text = "CLICK TO SKIP";
+            // Prompt to continue past text or skip cutscene
+            if (CutSceneMaterial.isPlaying)
+            {
+                SkipText.text = "CLICK TO SKIP";
+            } else
+            {
+                SkipText.text = "CLICK TO CONTINUE";
+            }
         } else
         {
-            SkipText.text = "LOADING...";
+            // While not loaded, say it's loading
+            SkipText.text = "LOADING";
         }
+	}
+
+    /// <summary>
+    /// Closes the Start Text and begins playing the cutscene
+    /// </summary>
+	public void StartCutscene(){
+		cutsceneStarted = true;
+		StartTextGroup.SetActive (false);
+		CutSceneMaterial.Play();
 	}
 }
