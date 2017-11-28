@@ -9,8 +9,13 @@ public class VideoScript : MonoBehaviour {
 	public MovieTexture CutSceneMaterial;
 
     public Text SkipText;
+	public GameObject StoryText1;
+	public GameObject StartTextGroup;
+	public GameObject FinishTextGroup;
 
 	private MeshRenderer meshRenderer;
+
+	bool cutsceneStarted;
 
 	void Start(){
 		meshRenderer = GetComponent<MeshRenderer>();
@@ -19,15 +24,21 @@ public class VideoScript : MonoBehaviour {
 		AudioSource audio = GetComponent<AudioSource>();
 		audio.Play();
 
-		CutSceneMaterial.Play ();
+		cutsceneStarted = false;
+
+		StartTextGroup.SetActive (true);
+		FinishTextGroup.SetActive (false);
 
     }
 
 	void OnMouseDown()
 	{
-		CutSceneMaterial.Stop ();
-        GameManagerController.Instance.AllowSceneActivation();
-    }
+		if (cutsceneStarted) {
+			GameManagerController.Instance.AllowSceneActivation ();
+		} else {
+			StartCutscene();
+		}
+	}
 
 	void Update()
 	{
@@ -37,16 +48,25 @@ public class VideoScript : MonoBehaviour {
             // so it won't accept it. 
             GameManagerController.Instance.LoadScene("S1_Tutorial", true, false);
         }
-		if (!CutSceneMaterial.isPlaying)
+		if (cutsceneStarted && !CutSceneMaterial.isPlaying)
         {
-            GameManagerController.Instance.AllowSceneActivation();
+			FinishTextGroup.SetActive (true);
         }
-        if (GameManagerController.Instance.SceneFinished)
+		if (!cutsceneStarted) {
+			SkipText.text = "CLICK TO CONTINUE";
+		}
+		else if	(GameManagerController.Instance.SceneFinished)
         {
             SkipText.text = "CLICK TO SKIP";
         } else
         {
             SkipText.text = "LOADING...";
         }
+	}
+
+	public void StartCutscene(){
+		cutsceneStarted = true;
+		StartTextGroup.SetActive (false);
+		CutSceneMaterial.Play();
 	}
 }

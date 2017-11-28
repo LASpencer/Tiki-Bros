@@ -8,12 +8,19 @@ using UnityEngine.SceneManagement;
 public class TikiHand_Collectable : MonoBehaviour {
 
     public float rotateSpeed = 35f;
-	//public GameObject fadeImage;
+	public GameObject FadePanel;
 
-	void OnTriggerEnter(Collider other)
+	/*
+	IEnumerator WaitForFade()
+	{
+		//FadePanel.SetActive(true);
+		yield return new WaitForSeconds(4);
+	}
+	*/
+
+	 void OnTriggerEnter(Collider other)
 	{
 		if (other.CompareTag("Player")){
-			//fadeImage.SetActive(true);
 			Destroy(gameObject);
 			GameManagerController gameManager = GameManagerController.Instance;
 			if (gameManager.CoinsCollected == gameManager.TotalCoins) {
@@ -26,7 +33,6 @@ public class TikiHand_Collectable : MonoBehaviour {
 
 	}
 		
-
 	void Update()
 	{
 		transform.Rotate(0, rotateSpeed * Time.deltaTime,  0);
