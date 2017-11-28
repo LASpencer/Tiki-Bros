@@ -3,6 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
+/// <summary>
+/// Controls AI enemies using a state machine. States are ScriptableObjects
+/// containing the actions and transitions for that state, which are executed 
+/// by this class each update. This class contains the data used by the states 
+/// as well as methods for interacting with the enemy object
+/// </summary>
 [RequireComponent(typeof(NavMeshAgent))]
 public class EnemyController : MonoBehaviour {
 
@@ -57,9 +63,7 @@ public class EnemyController : MonoBehaviour {
     [Tooltip("Time between making attack animations while chasing player")]
     public float AttackTime = 2;
 
-    //[Tooltip("Delay between start of attack animation and playing attack sound")]
-    //public float AttackSoundDelay = 0;
-
+    [Tooltip("Particle effect created when killed")]
     public GameObject DeathEffect;
 
     [HideInInspector]
@@ -95,12 +99,15 @@ public class EnemyController : MonoBehaviour {
         AttackCD = Mathf.Max(0, AttackCD - Time.deltaTime);
         CurrentState.UpdateState(this);
 		if (animator != null) {
-			//if (animator.get
-				animator.SetFloat ("MovementSpeed", navAgent.velocity.magnitude);
+		    animator.SetFloat ("MovementSpeed", navAgent.velocity.magnitude);
 		}
         Hit = false;
 	}
 
+    /// <summary>
+    /// Sets current state, calling OnExit and OnEnter if not already in that state
+    /// </summary>
+    /// <param name="nextState">New state to enter</param>
     public void ChangeState(State nextState)
     {
         if(CurrentState != nextState)
@@ -112,7 +119,10 @@ public class EnemyController : MonoBehaviour {
         }
     }
 
-    // Increment waypoints, returning to 0 when end reached
+    /// <summary>
+    /// Increments waypoint index, looping back to 0 when end reached
+    /// </summary>
+    /// <returns>Transform of waypoint incremented to</returns>
     public Transform NextWaypoint()
     {
         waypointIndex++;
@@ -123,10 +133,12 @@ public class EnemyController : MonoBehaviour {
         return Waypoints[waypointIndex];
     }
 
+    /// <summary>
+    /// Tells enemy it was hit, subtracting some amount from its health
+    /// </summary>
+    /// <param name="damage">Amount take away from enemy health</param>
     public void Damage(int damage = 1)
     {
-        //HACK make up states for recovery, dying
-        // TODO have invincibility frames
         if (!Invincible)
         {
             Debug.Log("Enemy punched");
@@ -137,6 +149,9 @@ public class EnemyController : MonoBehaviour {
 
     }
 
+    /// <summary>
+    /// Triggers audio and particle effects for enemy being killed
+    /// </summary>
     public void Die()
     {
         // Spawn particle emitter prefab, and destroy after DeathParticleTime
@@ -147,12 +162,18 @@ public class EnemyController : MonoBehaviour {
         AudioSource.PlayClipAtPoint(sounds.Death, transform.position, sounds.DeathScale);
     }
 
+    /// <summary>
+    /// Starts attack animation
+    /// </summary>
     public void Attack()
     {
         // Do all animation etc changes
         animator.SetTrigger("hasPunched");
     }
 
+    /// <summary>
+    /// Plays attack sound in response to animation event
+    /// </summary>
     public void PlayAttackSound()
     {
         audioSource.PlayOneShot(sounds.Attack, sounds.AttackScale);

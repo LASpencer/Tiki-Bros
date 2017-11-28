@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Contains audio clips for player
+/// </summary>
 [CreateAssetMenu(menuName ="Audible/PlayerSounds")]
 public class PlayerSounds : ScriptableObject {
 

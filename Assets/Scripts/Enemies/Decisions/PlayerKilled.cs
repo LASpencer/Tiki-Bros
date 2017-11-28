@@ -3,6 +3,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Tests if the player was killed
+/// </summary>
 [CreateAssetMenu(menuName = "EnemyAI/Decision/PlayerKilled")]
 public class PlayerKilled : Decision {
 

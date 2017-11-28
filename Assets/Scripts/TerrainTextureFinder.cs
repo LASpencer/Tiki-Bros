@@ -2,20 +2,28 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Has methods for finding the texture mix on the terrain at some particular point
+/// </summary>
 public static class TerrainTextureFinder {
 
-    // Returns array containing mix of textures on terrain at position
+    /// <summary>
+    /// Finds the Alpha Map cell corresponding to a position and returns that
+    /// cell's texture mix
+    /// </summary>
+    /// <param name="terrain">Terrain being checked</param>
+    /// <param name="pos">Position in world space, with x and z coordinates within the terrain's bounds</param>
+    /// <returns>Alpha Map as float array showing alpha for texture at that index</returns>
 	public static float[] GetTextureMix(Terrain terrain, Vector3 pos)
     {
         TerrainData terrainData = terrain.terrainData;
         Vector3 terrainPos = terrain.transform.position;
 
-        // Get splat map cell the position falls in
+        // Get alpha map data for cell the position falls in
         int mapX = (int)(((pos.x - terrainPos.x) / terrainData.size.x) * terrainData.alphamapWidth);
         int mapZ = (int)(((pos.z - terrainPos.z) / terrainData.size.z) * terrainData.alphamapHeight);
-        // Get splat data for this cell
         float[,,] splatmapData = terrainData.GetAlphamaps(mapX, mapZ, 1, 1);
-        //TODO simpler way to convert to 1D? Does "float[] cellmix = splatmapData[0,0]" make sense?
+        // Convert to 1D array
         float[] cellMix = new float[splatmapData.GetUpperBound(2) + 1];
         for(int n = 0; n<cellMix.Length; ++n)
         {
@@ -24,9 +32,18 @@ public static class TerrainTextureFinder {
         return cellMix;
     }
 
+    /// <summary>
+    /// Finds the Alpha Map cell corresponding to a position and returns the index
+    /// of the texture predominating in that cell
+    /// </summary>
+    /// <param name="terrain">Terrain being checked</param>
+    /// <param name="pos">Position in world space, with x and z coordinates within the terrain's bounds</param>
+    /// <returns>Index of texture with greatest Alpha</returns>
     public static int GetMainTexture(Terrain terrain, Vector3 pos)
     {
+        // Get alpha map for cell position falls in
         float[] mix = GetTextureMix(terrain, pos);
+        // Find index with greatest alpha
         float max = 0;
         int maxIndex = 0;
         for(int n = 0; n < mix.Length; ++n)

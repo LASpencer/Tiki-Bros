@@ -14,6 +14,9 @@ public enum EPlayerStates
     Drowning
 }
 
+/// <summary>
+/// Base class for all states, providing constructor, method declarations, and fields
+/// </summary>
 public abstract class PlayerState  {
 
     public const float IDLE_SPEED = 0.01f; // If x and z components less than this, treat as in idle state
@@ -26,15 +29,30 @@ public abstract class PlayerState  {
         this.player = player;
     }
 
+    /// <summary>
+    /// Checks if the current state should be changed
+    /// </summary>
     abstract public void CheckTransition();
 
+    /// <summary>
+    /// Performs any actions required on starting the state
+    /// </summary>
     abstract public void OnEnter();
 
+    /// <summary>
+    /// Performs behaviour associated with the state
+    /// </summary>
     abstract public void Update();
 
+    /// <summary>
+    /// Performs any actions required on exiting the state, and cleanup
+    /// </summary>
     abstract public void OnExit();
 }
 
+/// <summary>
+/// State for the player not doing anything
+/// </summary>
 public class IdleState : PlayerState
 {
     public IdleState(PlayerController player) : base(player)
@@ -43,8 +61,6 @@ public class IdleState : PlayerState
 
     public override void CheckTransition()
     {
-        
-        
         // Exit to falling on not grounded
         if (!player.IsGrounded)
         {
@@ -69,7 +85,7 @@ public class IdleState : PlayerState
 
     public override void OnEnter()
     {
-        //TODO if entry condition changes, may not need to kill velocity
+        // kill velocity along ground
         player.velocity.x = 0;
         player.velocity.z = 0;
     }
@@ -80,6 +96,7 @@ public class IdleState : PlayerState
 
     public override void Update()
     {
+        // Calculate slope of ground below player
         Vector3 groundSlope = Vector3.up;
         RaycastHit groundHit;
         float distance = 0.2f; //HACK
@@ -87,6 +104,7 @@ public class IdleState : PlayerState
         {
             groundSlope = groundHit.normal;
         }
+        // Apply force to player keeping their velocity perpendicular to ground slope
         Vector3 groundVelocity = player.velocity;
         groundVelocity += -(Vector3.Dot(groundVelocity, groundSlope)) * groundSlope;
         Vector3 difference =  -groundVelocity;
@@ -139,9 +157,10 @@ public class RunState : PlayerState
 
     public override void Update()
     {
-        //TODO write a more fluid movement (accellerate in/decellerate out)
+        // Get target velocity from input
         Vector3 targetVelocity = player.GetTargetVelocity();
         Vector3 adjustedTarget = targetVelocity;
+        // Get slope of ground below player
         Vector3 groundSlope = Vector3.up;
         RaycastHit groundHit;
         float distance = 0.2f; //HACK
@@ -149,14 +168,15 @@ public class RunState : PlayerState
         {
             groundSlope = groundHit.normal;
         }
+        // Alter target velocity to be perpendicular to ground slope
         adjustedTarget += -(Vector3.Dot(adjustedTarget, groundSlope)) * groundSlope;
         Vector3 groundVelocity = player.velocity;
-        //groundVelocity.y = 0;
         groundVelocity += -(Vector3.Dot(groundVelocity, groundSlope)) * groundSlope;
         Vector3 difference = adjustedTarget - groundVelocity;
         float acceleration = player.GroundAcceleration;
         float groundSpeed = groundVelocity.magnitude;
         float targetSpeed = adjustedTarget.magnitude;
+        // Determine how much extra force can be applied by "braking" as player moves against current direction
         float frictionRatio = 0f;
         if(targetSpeed == 0)
         {
@@ -167,31 +187,28 @@ public class RunState : PlayerState
             frictionRatio = (0.5f - 0.5f * cosForce);
         }
         acceleration += player.BrakingAcceleration * frictionRatio;
+        // Apply force to player towards desired velocity, at current acceleration rate
         player.velocity += Vector3.ClampMagnitude(difference, acceleration * Time.deltaTime);
 
-        // Turn player to face desired direction
-        // TODO: rotation should be more smooth?
+        // Turn player to face desired movement direction
         if (targetVelocity != Vector3.zero)
-        {
-            // TODO: Extract out as function on PlayerController, passed target and speed
-            //float speed = 5.0f; //HACK make a property of playercontroller
-            //Quaternion targetDirection = Quaternion.LookRotation(targetVelocity);
-            //player.transform.rotation = Quaternion.Slerp(player.transform.rotation, targetDirection, Time.deltaTime * speed);
+        { 
             player.transform.forward = targetVelocity;
         }
-        //TODO figure out how to stop bouncing on hills
-        // Maybe use raycast/capsulecast to check if ground within margin of error, and if so move down to force collision (do in PlayerController)
-        // Alternately, just treat that as being grounded for state change purpose
 
-        // Animation stuff
+        // Animation parameters
         player.animator.SetFloat("groundSpeed", groundSpeed);
     }
 }
 
-// Abstract class for shared functionality between aerial states
+/// <summary>
+/// Abstract base class for shared functionality between aerial states
+/// </summary>
 public abstract class AirState : PlayerState
 {
-    protected float JumpToleranceTimer;
+    // Counts down after jump press, allowing input to be registered if player
+    // presses jump slightly too early
+    protected float JumpToleranceTimer;     
 
     public AirState(PlayerController player) : base(player)
     {
@@ -204,21 +221,22 @@ public abstract class AirState : PlayerState
 
     public override void Update()
     {
-        //TODO air movement applying force, not just set speed
+        // Get player's target velocity along x-z plane
         Vector3 target = player.GetTargetVelocity();
         Vector3 groundVelocity = player.velocity;
         groundVelocity.y = 0;
+        // Apply force towards target velocity at air movement acceleration rate
         Vector3 difference = target - groundVelocity;
         player.velocity += Vector3.ClampMagnitude(difference, player.AirAcceleration * Time.deltaTime);
 
-        // Check if player trying to jump
+        // Run timer for input tolerance
         JumpToleranceTimer = Mathf.Max(0, JumpToleranceTimer - Time.deltaTime);
+        // Check if player is trying to jump and reset timer if so
         if (Input.GetButtonDown("Jump"))
         {
             JumpToleranceTimer = player.JumpPressTolerance;
         }
         // Turn player to face desired direction
-        // TODO: rotation smoothness different in air?
         if (target != Vector3.zero)
         {
             player.transform.forward = target;
@@ -230,10 +248,14 @@ public abstract class AirState : PlayerState
     }
 }
 
+/// <summary>
+/// State for when player jumps
+/// </summary>
 public class JumpState : AirState
 {
     float TimeInJump = 0;
-    bool InUpswing = false;
+    // True while moving up and jump button held down, indicating it can be released to cut off the jump
+    bool InUpswing = false;         
 
     public JumpState(PlayerController player) : base(player)
     {
@@ -242,7 +264,7 @@ public class JumpState : AirState
     public override void OnEnter()
     {
         base.OnEnter();
-        player.CalculateJumpParameters();       //TODO figure out how to only do it once, or just move this to player.start() and ignore field changes at runtime
+        player.CalculateJumpParameters();       // HACK: Placed here so developers can alter jump parameters in runtime. Probably belongs in PlayerController.start
         //apply velocity upward
         player.velocity.y = player.JumpVelocity;
         TimeInJump = 0;
@@ -252,12 +274,10 @@ public class JumpState : AirState
 
     public override void Update()
     {
-        // TODO double jump?
         base.Update();
         TimeInJump += Time.deltaTime;
-
-        // Cutoff jump version
         
+        // Check if player wants to cut off jump
         if (InUpswing)
         {
             if (player.velocity.y <= 0)
@@ -265,6 +285,7 @@ public class JumpState : AirState
                 InUpswing = false;
             } else if (!Input.GetButton("Jump"))
             {
+                // Apply downward impulse to cut off jump, down to a minimum proportion of velocity
                 player.velocity.y = Mathf.Max(player.velocity.y + player.JumpCutoffVelocity, player.velocity.y * player.JumpCutoffProportion);
                 InUpswing = false;
             }
@@ -279,29 +300,34 @@ public class JumpState : AirState
 
     public override void CheckTransition()
     {
-        // Don't land from jumping until controller collider actually hits
         if (!InUpswing && player.IsGrounded)
         {
             if (JumpToleranceTimer > 0)
             {
+                // If landing and player just hit jump button, jump again
                 player.ChangeState(EPlayerStates.Jump);
             }
             else if (Mathf.Abs(player.velocity.x) < IDLE_SPEED && Mathf.Abs(player.velocity.y) < IDLE_SPEED)
             {
+                // If landing and stationary, idle state
                 player.ChangeState(EPlayerStates.Idle);
             }
             else
             {
+                // If landing with some ground speed, run state
                 player.ChangeState(EPlayerStates.Run);
             }
         }
     }
 }
 
+/// <summary>
+/// State for when player steps off an edge and falls
+/// </summary>
 public class FallingState : AirState
 {
+    // Time spent in state, checked to determine if player can recover into a jump
     float TimeFalling;
-    //TODO allow jumping shortly after entering fall as "grace period"
     public FallingState(PlayerController player) : base(player)
     {
     }
@@ -310,16 +336,19 @@ public class FallingState : AirState
     {
         if (TimeFalling < player.CoyoteTime && Input.GetButtonDown("Jump"))
         {
+            // If jump pressed early enough, jump
             player.ChangeState(EPlayerStates.Jump);
         }
         else if(player.IsGrounded)
         {
             if (JumpToleranceTimer > 0)
             {
+                // If grounded and just pressed jump, jump
                 player.ChangeState(EPlayerStates.Jump);
             }
             else if (Mathf.Abs(player.velocity.x) < IDLE_SPEED && Mathf.Abs(player.velocity.y) < IDLE_SPEED)
             {
+                // If grounded, go to idle or run based on ground speed
                 player.ChangeState(EPlayerStates.Idle);
             }
             else
@@ -348,8 +377,13 @@ public class FallingState : AirState
     }
 }
 
+/// <summary>
+/// State for player punching. While in this state, player's attack
+/// hitbox is activated allowing them to damage enemies
+/// </summary>
 public class PunchingState : PlayerState
 {
+    // Used to check when windup finished and when to exit state
     float timeInState;
 
     public PunchingState(PlayerController player) : base(player)
@@ -358,9 +392,9 @@ public class PunchingState : PlayerState
 
     public override void CheckTransition()
     {
-        //TODO transition out based on animation ending event
         if(timeInState > player.PunchTime)
         {
+            // At end of punch, transition to idle or run based on movement
             if (Mathf.Abs(player.velocity.x) < IDLE_SPEED && Mathf.Abs(player.velocity.y) < IDLE_SPEED)
             {
                 player.ChangeState(EPlayerStates.Idle);
@@ -375,7 +409,7 @@ public class PunchingState : PlayerState
     {
         timeInState = 0.0f;
         player.animator.SetTrigger("hasPunched");
-        //TODO set/clamp velocity to punching speed
+        // Make player lunge forward during punch
         Vector3 target = player.GetTargetVelocity();
         if(target != Vector3.zero)
         {
@@ -383,7 +417,7 @@ public class PunchingState : PlayerState
         }
         player.velocity = player.transform.forward * player.PunchMoveSpeed;
 
-        //TODO maybe not invincible whole time, just part of punch?
+        // Player can't be damaged during punch
         player.Invincible = true;
 
         
@@ -401,9 +435,7 @@ public class PunchingState : PlayerState
     public override void Update()
     {
         timeInState += Time.deltaTime;
-        //TODO activate punching hitbox based on animation event
-        //TODO punch movement
-        //activate punching hitbox
+        //activate punching hitbox after windup
         if (timeInState > player.PunchWindup)
         {
             player.Hitbox.gameObject.SetActive(true);
@@ -411,6 +443,9 @@ public class PunchingState : PlayerState
     }
 }
 
+/// <summary>
+/// Abstract base class for states where player is killed
+/// </summary>
 public abstract class DyingState : PlayerState
 {
     protected float timeInState;
@@ -435,16 +470,15 @@ public abstract class DyingState : PlayerState
         player.IsDead = false;
         player.level.RespawnPlayer();
     }
-
-    // TODO state for dying from combat hit
-    // TODO state for drowning/lava
-    // TODO state for falling to death
 }
 
+/// <summary>
+/// State for dying from being hit by enemy
+/// </summary>
 public class CombatDeathState : DyingState
 {
     bool knockbackFinished = false;
-    GameObject particles;
+    GameObject particles;       // Instance of particle effect spawned on death
 
     public CombatDeathState(PlayerController player) : base(player)
     {
@@ -453,23 +487,24 @@ public class CombatDeathState : DyingState
     public override void Update()
     {
         base.Update();
-        //TODO after time end knockback and have particle effect
+        // After being knocked back, player explodes
         if(!knockbackFinished && timeInState >= player.KnockbackTime)
         {
             knockbackFinished = true;
+            // Stop movement and spawn particle effects
             player.velocity = Vector3.zero;
             particles = GameObject.Instantiate(player.DeathEffect, player.transform.position, player.transform.rotation);
             player.audioSource.PlayOneShot(player.sounds.Explode, player.sounds.ExplodeScale);
             // camera freezes to watch effect
             player.CameraFollows = false;
-            // Player invisible
+            // make player invisible
             player.SetRenderersActive(false);
-            //TODO also spawn mask/gravestone?
         }
     }
 
     public override void CheckTransition()
     {
+        // Return to idle on respawn
         if (timeInState >= player.CombatDeathTime)
         {
             player.ChangeState(EPlayerStates.Idle);
@@ -486,6 +521,7 @@ public class CombatDeathState : DyingState
     public override void OnExit()
     {
         base.OnExit();
+        // Get rid of explosion particles
         if(particles != null)
         {
             GameObject.Destroy(particles);
@@ -497,9 +533,12 @@ public class CombatDeathState : DyingState
     }
 }
 
+/// <summary>
+/// State for dying by falling into a water or lava killzone
+/// </summary>
 public class DrowiningState : DyingState
 {
-
+    // Proportion by which player is slowed when landing in water/lava
     public const float IMPACT_SPEED_FACTOR = 0.1f;
 
     public DrowiningState(PlayerController player) : base(player)
@@ -513,6 +552,7 @@ public class DrowiningState : DyingState
 
     public override void CheckTransition()
     {
+        // Exit to idle on respawn
         if (timeInState >= player.DrowningDeathTime)
         {
             player.ChangeState(EPlayerStates.Idle);
@@ -522,9 +562,9 @@ public class DrowiningState : DyingState
     public override void OnEnter()
     {
         base.OnEnter();
-        //TODO appropriate animation for drowning (use falling animation?)
         //camera freezes to watch death
         player.CameraFollows = false;
+        // Player slows down and falls into water at slower rate
         player.gravityScale = player.drowningGravityScale;
         player.velocity *= IMPACT_SPEED_FACTOR;
         // Prevent sounds from landing on lakebed
@@ -536,6 +576,7 @@ public class DrowiningState : DyingState
         base.OnExit();
         // camera unfreezes
         player.CameraFollows = true;
+        // Gravity back to normal
         player.gravityScale = 1;
         // Reactivate feet
         player.PlayFootsteps = true;

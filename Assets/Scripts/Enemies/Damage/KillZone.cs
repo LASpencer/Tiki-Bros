@@ -2,18 +2,18 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Script for controlling deadly areas such as deep water and pools of lava
+/// </summary>
 public class KillZone : MonoBehaviour
 {
-
     public LevelManager levelManager;
-    public AudioClip dieSound;
+    public AudioClip dieSound;          // Clip to play when player falls into killzone
 
 	// Use this for initialization
 	void Start ()
     {
         levelManager = FindObjectOfType<LevelManager>();
-
-		
 	}
 	
 	// Update is called once per frame
@@ -23,15 +23,14 @@ public class KillZone : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        Debug.Log(other.name + "Has entered Kill Zone");
         if (other.CompareTag("Player"))
         {
+            // If player enters killzone, let them know so they can die
             PlayerController player = other.GetComponent<PlayerController>();
             if (!player.IsDead)
             {
                 player.EnterKillzone(this);
             }
-            Debug.Log("Player Has died");
         }
 
     }

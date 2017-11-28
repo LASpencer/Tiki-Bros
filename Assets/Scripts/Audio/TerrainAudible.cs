@@ -2,11 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-//TODO decide if it makes more sense to just be its own class
+/// <summary>
+/// Provides suitable audio clips for player interacting with terrain. Using the 
+/// TerrainTextureFinder class, it determines what texture they're interacting with
+/// and provides the clip associated with the texture
+/// </summary>
 [RequireComponent(typeof(Terrain))]
-public class TerrainAudible : Audible {
+public class TerrainAudible : AudibleBase {
 
-    //TODO maybe both this and Audible have list. Audible always takes from 0, this picks based on texture index
+    // AudioMaterials for different textures
     public AudioMaterial GrassSounds;
     public AudioMaterial SandSounds;
     public AudioMaterial RockSounds;
@@ -22,6 +26,12 @@ public class TerrainAudible : Audible {
 		
 	}
 
+    /// <summary>
+    /// Returns appropriate sound for walking on object
+    /// </summary>
+    /// <param name="other">Object requesting audio clip</param>
+    /// <param name="leftFoot">Is the object a left or right foot?</param>
+    /// <returns>Audio clip for footstep</returns>
     public override AudioClip GetFootstep(GameObject other, bool leftFoot)
     {
         AudioMaterial selectedMaterial = SelectMaterial(other);
@@ -34,12 +44,23 @@ public class TerrainAudible : Audible {
         }
     }
 
+    /// <summary>
+    /// Returns appropriate audio clip for landing on object
+    /// </summary>
+    /// <param name="other">Object requesting audio clip</param>
+    /// <returns>Audio clip for landing</returns>
     public override AudioClip GetLanding(GameObject other)
     {
         AudioMaterial selectedMaterial = SelectMaterial(other);
         return selectedMaterial.landing;
     }
 
+    /// <summary>
+    /// Determines the AudioMaterial to use based on the predominant
+    /// terrain sprite under the other object
+    /// </summary>
+    /// <param name="other">Object requesting audio clip</param>
+    /// <returns>Audio material corresponding to terrain texture</returns>
     private AudioMaterial SelectMaterial(GameObject other)
     {
         // Figure out predominant terrain
@@ -58,7 +79,7 @@ public class TerrainAudible : Audible {
                 selectedMaterial = SandSounds;
                 break;
             default:
-                selectedMaterial = Sounds;
+                selectedMaterial = RockSounds;
                 Debug.Log("Sound fell through");
                 break;
 

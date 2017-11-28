@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+/// <summary>
+/// Controls the in game pause menu
+/// </summary>
 public class PauseScreenManager : MenuManager
 {
     public GameObject PauseScreen;
@@ -23,6 +26,7 @@ public class PauseScreenManager : MenuManager
 
     void OnEnable()
     {
+        // Sets initial screens
         Settings.SetActive(false);
         HowToPlay.SetActive(false);
 		HowToPlay2.SetActive(false);
