@@ -3,7 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 
 /// <summary>
-/// 
+/// Controls the position and rotation of the camera while playing.
+/// The camera follow a transform set to the position of the player character.
+/// The player is able to zoom in and out, and control the camera's pitch and yaw
+/// within set limits. If the camera would clip through terrain, or other objects 
+/// with the "Wall" or "Terrain" layers, it zooms in towards the player
 /// </summary>
 public class CameraController : MonoBehaviour
 {
@@ -22,7 +26,7 @@ public class CameraController : MonoBehaviour
     [Tooltip("Time for camera to reach desired zoom when able")]
     public float cameraSmoothTime;
     
-    float currentSmoothSpeed;
+    float currentSmoothSpeed;   // Used by SmoothDamp for changing the offset
 
     [Tooltip("Rate of camera panning and pitching")]
     public float rotateSpeed;
@@ -59,16 +63,12 @@ public class CameraController : MonoBehaviour
 	// Use this for initialization
 	void Start ()
     {
-        //if (!useOffsetValues)
-        //{
-        //    offset = target.position - transform.position;
-        //}
-
+        // Ensure pivot is at target position and is its child
         pivot.transform.position = target.transform.position;
         pivot.transform.parent = target.transform;
 
         // Hide cursor
-        Cursor.lockState = CursorLockMode.Locked;
+        //Cursor.lockState = CursorLockMode.Locked;
 
         offset = offsetWanted;
 	}
@@ -82,26 +82,13 @@ public class CameraController : MonoBehaviour
             float modifiedMaxAngle = maxViewAngle;
             float modifiedMinAngle = 0;
             RaycastHit hit;
-            //RaycastHit groundBelowTarget;
-            //Vector3 groundNormal = Vector3.up;
-            //// Find angle of ground below target
-            //if(Physics.Raycast(target.transform.position, Vector3.down, out groundBelowTarget, BlocksCamera))
-            //{
-            //    groundNormal = groundBelowTarget.normal;
-            //}
-            //float slope = Vector3.Angle(target.forward, groundNormal) - 90;
-            //modifiedMinAngle = Mathf.Clamp(modifiedMinAngle - slope, minViewAngle, maxViewAngle);
             modifiedMinAngle = minViewAngle;
-
 
             // Get the X position of mouse and rotate the target.
             float horizontal = Input.GetAxis("Mouse X") * rotateSpeed;
             target.Rotate(0, horizontal, 0);
-
-            // Get the Y position of mouse and rotate pivot.
+            
             float vertical = Input.GetAxis("Mouse Y") * rotateSpeed;
-            //pivot.Rotate(-vertical, 0, 0);
-
             float zoom = -Input.GetAxis("Mouse ScrollWheel") * zoomSpeed;
 
             if (invertY)
@@ -109,7 +96,7 @@ public class CameraController : MonoBehaviour
                 vertical = -vertical;
             }
 
-            // Limit pitch to within rotation
+            // Rotate pivot, with pitch within specified limits
             float pivotPitch = pivot.rotation.eulerAngles.x;
             float newPitch = pivotPitch + vertical;
             
@@ -118,27 +105,27 @@ public class CameraController : MonoBehaviour
                 newPitch -= 360f;
             }
 
-                if (newPitch > modifiedMaxAngle)
-                {
-                    vertical += (modifiedMaxAngle - newPitch);
-                } 
-                if (newPitch < modifiedMinAngle)
-                {
-                    vertical += (modifiedMinAngle - newPitch);
-                }
+            if (newPitch > modifiedMaxAngle)
+            {
+                vertical += (modifiedMaxAngle - newPitch);
+            } 
+            if (newPitch < modifiedMinAngle)
+            {
+                vertical += (modifiedMinAngle - newPitch);
+            }
 
             pivot.Rotate(vertical, 0, 0);
 
+            // Update requested level of zoom
             offsetWanted = Mathf.Clamp(offsetWanted + zoom, minDistance, maxDistance);
 
-            // move the camera based on current rotation of target, using original offset
+            // move the camera based on current rotation of target and pivot
             float desiredYAngle = target.eulerAngles.y;
             float desiredXAngle = pivot.eulerAngles.x;
 
             Quaternion rotation = Quaternion.Euler(desiredXAngle, desiredYAngle, 0);
             
             // Check for occlusion by terrain
-            //TODO create layer mask for things to ignore
             if(Physics.SphereCast(target.transform.position, occlusionRadius, -pivot.forward, out hit, offsetWanted, BlocksCamera, QueryTriggerInteraction.Ignore))
             {
                 //Debug.Log("Camera collided with " + hit.collider + ", " + hit.collider.tag);

@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.Audio;
 
 /// <summary>
-/// This class holds various audio clips for an object
+/// This class holds various audio clips for an object or texture
 /// </summary>
 [CreateAssetMenu(menuName = "Audible/AudioMaterial")]
 public class AudioMaterial : ScriptableObject {

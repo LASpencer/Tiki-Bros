@@ -29,6 +29,7 @@ public class LevelManager : MonoBehaviour
         PauseScreen.gameObject.SetActive(false);//Hide pause screen		
         isPaused = false;
         Time.timeScale = TimeScale;
+        Cursor.lockState = CursorLockMode.Locked;
 
         // Reset coin count and check coins needed
         GameManagerController.Instance.CoinsCollected = 0;

@@ -2,11 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-//TODO decide if it makes more sense to just be its own class
+/// <summary>
+/// Provides suitable audio clips for player interacting with terrain. Using the 
+/// TerrainTextureFinder class, it determines what texture they're interacting with
+/// and provides the clip associated with the texture
+/// </summary>
 [RequireComponent(typeof(Terrain))]
 public class TerrainAudible : AudibleBase {
 
-    //TODO maybe both this and Audible have list. Audible always takes from 0, this picks based on texture index
+    // AudioMaterials for different textures
     public AudioMaterial GrassSounds;
     public AudioMaterial SandSounds;
     public AudioMaterial RockSounds;
