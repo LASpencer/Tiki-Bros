@@ -4,7 +4,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-// Move to the next waypoint
+/// <summary>
+/// Action makes enemy patrol its waypoints
+/// </summary>
 [CreateAssetMenu(menuName = "EnemyAI/Action/Patrol")]
 public class PatrolAction : EnemyAction
 {
