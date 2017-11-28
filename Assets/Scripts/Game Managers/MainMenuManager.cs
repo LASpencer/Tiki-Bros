@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Controls the Main Menu
+/// </summary>
 public class MainMenuManager : MenuManager {
 
     public GameObject MenuOptions;
@@ -12,6 +15,7 @@ public class MainMenuManager : MenuManager {
 
 	// Use this for initialization
 	void Start () {
+        // Set initial menu screen
         Settings.SetActive(false);
         HowToPlay.SetActive(false);
         Credits.SetActive(false);

@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Holds trigger for Hitbox used when player punches
+/// </summary>
 public class HitboxController : MonoBehaviour {
 
     public PlayerController player;
@@ -17,9 +20,7 @@ public class HitboxController : MonoBehaviour {
 	}
 
     void OnTriggerEnter(Collider other)
-    {
-        //TODO if punching an enemy, enemy killed
-        //TODO give enemies rigidbody/character controller so they can be punched
+    { 
         if (other.CompareTag("Enemy"))
         {
             other.GetComponent<EnemyController>().Damage();

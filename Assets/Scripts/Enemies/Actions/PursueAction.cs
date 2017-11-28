@@ -4,6 +4,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
+/// <summary>
+/// Chase after player
+/// </summary>
 [CreateAssetMenu(menuName = "EnemyAI/Action/Pursue")]
 public class PursueAction : EnemyAction {
 
@@ -27,6 +30,7 @@ public class PursueAction : EnemyAction {
         controller.Invincible = false;
         controller.AttackActivated = true;
 
+        // Start countdown to doing attack animation
         controller.AttackCD = controller.AttackTime;
     }
 

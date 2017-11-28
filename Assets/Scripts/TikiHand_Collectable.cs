@@ -3,38 +3,32 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-
-//TODO maybe this should inherit from collectable?
+/// <summary>
+/// Script for Tiki Hand, which ends the game on being collected
+/// </summary>
 public class TikiHand_Collectable : MonoBehaviour {
 
+
     public float rotateSpeed = 35f;
-	public GameObject FadePanel;
 
-	/*
-	IEnumerator WaitForFade()
-	{
-		//FadePanel.SetActive(true);
-		yield return new WaitForSeconds(4);
-	}
-	*/
-
-	 void OnTriggerEnter(Collider other)
-	{
-		if (other.CompareTag("Player")){
-			Destroy(gameObject);
+    void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Player")){
+            // If picked up by player, end the game
+            Destroy(gameObject);
 			GameManagerController gameManager = GameManagerController.Instance;
 			if (gameManager.CoinsCollected == gameManager.TotalCoins) {
 				GameManagerController.Instance.LoadScene("WinScene");
 			} else {
 				GameManagerController.Instance.LoadScene("LoseScene");
 			}    
+            
+        }
 
-		}
+    }
 
-	}
-		
-	void Update()
-	{
-		transform.Rotate(0, rotateSpeed * Time.deltaTime,  0);
-	}
+    void Update()
+    {
+        transform.Rotate(0, rotateSpeed * Time.deltaTime,  0);
+    }
 }

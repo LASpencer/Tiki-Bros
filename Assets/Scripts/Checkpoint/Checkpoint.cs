@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Script for checkpoints in level, which set a new respawn point when reached
+/// </summary>
 public class Checkpoint : MonoBehaviour
 {
 
@@ -17,8 +20,6 @@ public class Checkpoint : MonoBehaviour
     void Start()
     {
         levelManager = FindObjectOfType<LevelManager>();
-
-
     }
 
     // Update is called once per frame
@@ -30,17 +31,21 @@ public class Checkpoint : MonoBehaviour
     {
         if (other.CompareTag("Player") && levelManager.currentCheckpoint != this)
         {
+            // If player reaches checkpoint that's not the current one, set it as the current checkpoint
             if(levelManager.currentCheckpoint != null)
             {
+                // Deactivate last checkpoint's effects
                 levelManager.currentCheckpoint.Deactivate();
             }
             levelManager.currentCheckpoint = this;
+            // Play audio and turn on light, particle effects
             this.Activate();
-            gameObject.GetComponent<AudioSource>().PlayOneShot(ActivateSound);
         }
     }
 
-    // Called when player reaches and activates checkpoint
+    /// <summary>
+    /// Turn on particle effects and play activation sound
+    /// </summary>
     public void Activate()
     {
         gameObject.GetComponent<AudioSource>().PlayOneShot(ActivateSound);
@@ -48,7 +53,9 @@ public class Checkpoint : MonoBehaviour
             CheckpointParticles.SetActive(true);
     }
 
-    // Called when another checkpoint is activated
+    /// <summary>
+    /// Turns off effects
+    /// </summary>
     public void Deactivate()
     {
         if (CheckpointParticles != null)
