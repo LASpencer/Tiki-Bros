@@ -36,11 +36,20 @@ public class VideoScript : MonoBehaviour {
 
 	void OnMouseDown()
 	{
-		if (cutsceneStarted) {
-			GameManagerController.Instance.AllowSceneActivation ();
-		} else {
-			StartCutscene();
-		}
+        if (cutsceneStarted)
+        {
+            if (FinishTextGroup.activeInHierarchy)
+            {
+                GameManagerController.Instance.AllowSceneActivation();
+            } else
+            {
+                CutSceneMaterial.Stop();
+            }
+        }
+        else
+        {
+            StartCutscene();
+        }
 	}
 
 	void Update()
@@ -55,16 +64,29 @@ public class VideoScript : MonoBehaviour {
         {
 			FinishTextGroup.SetActive (true);
         }
-		if (!cutsceneStarted) {
-			SkipText.text = "CLICK TO CONTINUE";
-		}
-		else if	(GameManagerController.Instance.SceneFinished)
+		//if (!cutsceneStarted) {
+		//	SkipText.text = "CLICK TO CONTINUE";
+		//}
+		//else if	(GameManagerController.Instance.SceneFinished)
+  //      {
+  //          // When scene finishes loading, tell player they can activate the level
+            
+  //      } else
+  //      {
+  //          SkipText.text = "LOADING...";
+  //      }
+        if(GameManagerController.Instance.SceneFinished)
         {
-            // When scene finishes loading, tell player they can activate the level
-            SkipText.text = "CLICK TO SKIP";
+            if (CutSceneMaterial.isPlaying)
+            {
+                SkipText.text = "CLICK TO SKIP";
+            } else
+            {
+                SkipText.text = "CLICK TO CONTINUE";
+            }
         } else
         {
-            SkipText.text = "LOADING...";
+            SkipText.text = "LOADING";
         }
 	}
 
