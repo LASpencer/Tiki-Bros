@@ -30,13 +30,13 @@ On this island are many dangers and obsticales that you must over come.
 
 ### Controls
 
-Input | Action
----|---
-WASD / Arrow Keys | Movement
-LMB / left ctrl | Punch
-Spacebar | Jump
-Scrollwheel | Zoom
-ESC / P | Pause
+Input               | Action
+--------------------|-------------
+WASD / Arrow Keys   | Movement
+LMB / left ctrl     | Punch
+Spacebar            | Jump
+Scrollwheel         | Zoom
+ESC / P             | Pause
 
 ### Gameplay
 
@@ -51,6 +51,8 @@ Touching enemies kills you. Turtles can't be hurt, crabs die in one punch and sc
 Falling into water or lava is also fatal.
 
 ## Design
+
+### Requirements
 
 The project brief required the following features in the game
 
@@ -77,3 +79,32 @@ some menu screens), for a waterfall effect, for sparkles around treasure, and as
 characters are killed. As well as background music, audio is used for sound effects from collecting 
 items, attacking and punching sounds, and footsteps.
 6. The game runs at the default 60 frames per second
+
+### Game Mechanics
+
+As a 3D platformer, the main game mechanics are moving, jumping over obstacles and between platforms, and 
+fighting enemies.
+
+Character movement is controlled by treating the player's input as the desired velocity for the character,
+and applying acceleration to reach that velocity. This gives the character a sense of weight and momentum,
+which can be adjusted by changing the maximum acceleration for ground or air control.
+
+When moving on the ground, there is also a Braking Acceleration applied. Based on the angle between the 
+current and target velocity, some portion of this Braking Acceleration is added to the ground acceleration, 
+giving a quicker change in momentum when the character makes a sharp turn or tries to stop. This prevents 
+the character's movement from feeling too slippery, and helps the player avoid accidentally walking off edges.
+
+Jump height in this game is based on the time the jump button is held down. Pressing jump gives the player an 
+upwards velocity, and on releasing the button an impulse downwards is applied, cutting off their ascent. The 
+size of this impulse can be adjusted by changing the MaxJumpHeight and MinJumpHeight of the character.
+
+In general, jumping can only be done on the ground, but to make the game feel more responsive there are exceptions.
+First, if the player presses jump just before reaching the ground (set as the Jump Press Tolerance), that second 
+jump will start as soon as they touch the ground. Second, when a player walks off an edge, they have a short time 
+in which they can still jump (set as Coyote Time). This makes it easier to jump from an edge without accidentally 
+falling off.
+
+Enemies in this game kill the player by touching them. Some, like the turtles, simply move along a path. Others, 
+like the crabs and scorpions, will notice if the player is in front of them and give chase. The player's punch
+knocks enemies away and damages them. The knockback is both to make the punch feel stronger, and to put space 
+between the player and enemy if it takes more than one hit to kill them.
