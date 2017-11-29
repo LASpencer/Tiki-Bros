@@ -417,7 +417,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 204, y: -78.10001}
+  m_AnchoredPosition: {x: 154, y: -50.9}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &101629085
@@ -848,7 +848,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: -95491815
+  randomSeed: 651343856
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -4203,15 +4203,15 @@ RectTransform:
   m_GameObject: {fileID: 582002605}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.39913663, y: 0.39913663, z: 0.39913663}
   m_Children: []
   m_Father: {fileID: 1598641701}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 213, y: -390}
-  m_SizeDelta: {x: 137.94, y: 35.29}
+  m_AnchoredPosition: {x: 220, y: -390}
+  m_SizeDelta: {x: 378.2, y: 93.5}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &582002607
 MonoBehaviour:
@@ -4234,11 +4234,11 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
     m_Font: {fileID: 12800000, guid: 0a66070c7c1eced4e816a81a3a47c01b, type: 3}
-    m_FontSize: 30
+    m_FontSize: 70
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 3
-    m_MaxSize: 40
+    m_MaxSize: 80
     m_Alignment: 0
     m_AlignByGeometry: 0
     m_RichText: 1
@@ -4412,8 +4412,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 148, y: -104}
-  m_SizeDelta: {x: 448.3, y: 441.3}
+  m_AnchoredPosition: {x: 148, y: -78.95}
+  m_SizeDelta: {x: 448.3, y: 391.21}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &627376609
 MonoBehaviour:
@@ -4599,7 +4599,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: 1992406314
+  randomSeed: -771872666
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -8368,7 +8368,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: 551035488
+  randomSeed: -693837368
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -12348,15 +12348,15 @@ RectTransform:
   m_GameObject: {fileID: 1036878861}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.4483998, y: 0.44839984, z: 0.44839984}
   m_Children: []
   m_Father: {fileID: 1598641701}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 112.39989, y: -96}
-  m_SizeDelta: {x: 289, y: 441.26}
+  m_AnchoredPosition: {x: 106.2, y: -67}
+  m_SizeDelta: {x: 658.1, y: 927.5}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1036878863
 MonoBehaviour:
@@ -12379,11 +12379,11 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
     m_Font: {fileID: 12800000, guid: 0a66070c7c1eced4e816a81a3a47c01b, type: 3}
-    m_FontSize: 35
+    m_FontSize: 80
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 0
-    m_MaxSize: 50
+    m_MaxSize: 80
     m_Alignment: 0
     m_AlignByGeometry: 0
     m_RichText: 1
@@ -13165,7 +13165,7 @@ ParticleSystem:
   moveWithTransform: 1
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: -1318047649
+  randomSeed: 754278383
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -17003,15 +17003,15 @@ RectTransform:
   m_GameObject: {fileID: 1806660814}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.43150073, y: 0.43150073, z: 0.43150073}
   m_Children: []
   m_Father: {fileID: 849980467}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 188, y: -96}
-  m_SizeDelta: {x: 440.1, y: 441.3}
+  m_AnchoredPosition: {x: 153.6, y: -74.7}
+  m_SizeDelta: {x: 962.3, y: 984.2}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1806660816
 MonoBehaviour:
@@ -17034,28 +17034,29 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
     m_Font: {fileID: 12800000, guid: 0a66070c7c1eced4e816a81a3a47c01b, type: 3}
-    m_FontSize: 35
+    m_FontSize: 80
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 0
-    m_MaxSize: 50
+    m_MaxSize: 80
     m_Alignment: 0
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1.2
-  m_Text: 'GEORGIA BRYANT - USER INTERFACE, MENU SCREENS, ASSET PLACEMENT
+  m_Text: 'GEORGIA BRYANT: USER INTERFACE, SCENES, MAIN AUDIO
 
-    BRODIE HARBRIDGE - PROTOTYPING, CONTROLS
+    BRODIE HARBRIDGE: PROTOTYPING, CONTROLS, ANIMATION, SHADERS
 
-    PHILLIP PAJOR - TERRAIN, AUDIO
+    ANDREW SPENCER: CONTROLS, CAMERA
 
-    ANDREW SPENCER - CONTROLS, CAMERA
+    ASHLEIGH LAMB: ANIMATOR, RIGGER, MODELLING
 
-    ASHLEIGH LAMB - ANIMATOR, RIGGER
+    NIAMH THIRLWELL-TOWLER: MODELLING, TEXTURING, UV
 
-    NIAMH THIRLWELL-TOWLER - MODELLING, TEXTURING, UV
+    PHILLIP PAJOR: TERRAIN, AUDIO
+
 
 '
 --- !u!222 &1806660817
@@ -17292,14 +17293,14 @@ RectTransform:
   m_GameObject: {fileID: 1943370972}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 2.2676094, y: 2.2676094, z: 2.2676094}
+  m_LocalScale: {x: 1.959055, y: 1.959055, z: 1.959055}
   m_Children: []
   m_Father: {fileID: 974259467}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 138, y: 128}
+  m_AnchoredPosition: {x: 117, y: 114}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1943370974
