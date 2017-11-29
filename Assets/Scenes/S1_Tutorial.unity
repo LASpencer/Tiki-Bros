@@ -7952,6 +7952,10 @@ Prefab:
       propertyPath: m_RootOrder
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1661037593448112, guid: 6a560a05c4c769d4b81b5c2a000c3ddd, type: 2}
+      propertyPath: m_Name
+      value: Crab_Enemy (1)
+      objectReference: {fileID: 0}
     - target: {fileID: 114242102058566638, guid: 6a560a05c4c769d4b81b5c2a000c3ddd,
         type: 2}
       propertyPath: Waypoints.Array.data[0]
@@ -7972,10 +7976,6 @@ Prefab:
       propertyPath: Waypoints.Array.data[3]
       value: 
       objectReference: {fileID: 906012309}
-    - target: {fileID: 1661037593448112, guid: 6a560a05c4c769d4b81b5c2a000c3ddd, type: 2}
-      propertyPath: m_Name
-      value: Crab_Enemy (1)
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 6a560a05c4c769d4b81b5c2a000c3ddd, type: 2}
   m_IsPrefabParent: 0
@@ -15429,7 +15429,7 @@ Prefab:
     - target: {fileID: 224095003236586868, guid: 6c6f873bf401fdd4891451128b4d971a,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: -57.199997
+      value: -57.19995
       objectReference: {fileID: 0}
     - target: {fileID: 224550570260534428, guid: 6c6f873bf401fdd4891451128b4d971a,
         type: 2}
@@ -20077,21 +20077,6 @@ Prefab:
       propertyPath: m_RootOrder
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 114383362599122434, guid: b325102b91baa8f4d8627df9da595c55,
-        type: 2}
-      propertyPath: Waypoints.Array.data[0]
-      value: 
-      objectReference: {fileID: 1236726864}
-    - target: {fileID: 114383362599122434, guid: b325102b91baa8f4d8627df9da595c55,
-        type: 2}
-      propertyPath: Waypoints.Array.data[1]
-      value: 
-      objectReference: {fileID: 1274148604}
-    - target: {fileID: 114383362599122434, guid: b325102b91baa8f4d8627df9da595c55,
-        type: 2}
-      propertyPath: Waypoints.Array.data[2]
-      value: 
-      objectReference: {fileID: 975090548}
     - target: {fileID: 4283331907310974, guid: b325102b91baa8f4d8627df9da595c55, type: 2}
       propertyPath: m_LocalRotation.x
       value: -0.1477375
@@ -20108,6 +20093,21 @@ Prefab:
       propertyPath: m_LocalRotation.w
       value: 0.7004781
       objectReference: {fileID: 0}
+    - target: {fileID: 114383362599122434, guid: b325102b91baa8f4d8627df9da595c55,
+        type: 2}
+      propertyPath: Waypoints.Array.data[0]
+      value: 
+      objectReference: {fileID: 1236726864}
+    - target: {fileID: 114383362599122434, guid: b325102b91baa8f4d8627df9da595c55,
+        type: 2}
+      propertyPath: Waypoints.Array.data[1]
+      value: 
+      objectReference: {fileID: 1274148604}
+    - target: {fileID: 114383362599122434, guid: b325102b91baa8f4d8627df9da595c55,
+        type: 2}
+      propertyPath: Waypoints.Array.data[2]
+      value: 
+      objectReference: {fileID: 975090548}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b325102b91baa8f4d8627df9da595c55, type: 2}
   m_IsPrefabParent: 0
@@ -22161,7 +22161,7 @@ Prefab:
     - target: {fileID: 224913033451006090, guid: 820ae19eafe864345b13fe8e84bcd8cb,
         type: 2}
       propertyPath: m_AnchoredPosition.x
-      value: -56.9
+      value: -56.899994
       objectReference: {fileID: 0}
     - target: {fileID: 114617949045043504, guid: 820ae19eafe864345b13fe8e84bcd8cb,
         type: 2}
@@ -22171,7 +22171,7 @@ Prefab:
     - target: {fileID: 224913033451006090, guid: 820ae19eafe864345b13fe8e84bcd8cb,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: 40.169983
+      value: 40.16992
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 820ae19eafe864345b13fe8e84bcd8cb, type: 2}
