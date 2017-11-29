@@ -18,6 +18,16 @@ Andrew Spencer (Programmer)
 Niamh Thirwell-Towler (Artist)
 
 
+## Intro
+
+Tiki-Bros Is an adveture/ platformer game about two tiki brothers, one happy and one angry. 
+Angry tiki ends up taking the teasure from the volcano god, he is mean and selfish. 
+This makes the volcano god angry, happy tiki tries to stop him but, the volcano god ends up angry at them both. 
+They end up running and falling off a cliff, happy tiki survives but, angry tiki does not.
+Angry tiki ended up hitting a rock on the way down sending parts of him and the treasure across the island.
+Happy tiki now has to collect the volcano god's treasure to restore order, as well as find the wooden parts of his brother to put him back together.
+On this island are many dangers and obsticales that you must over come.
+
 ## Usage
 
 ### Controls
