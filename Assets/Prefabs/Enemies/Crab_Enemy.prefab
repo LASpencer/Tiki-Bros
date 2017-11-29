@@ -1087,7 +1087,7 @@ AudioSource:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
-    m_RotationOrder: 4
+    m_RotationOrder: 0
   reverbZoneMixCustomCurve:
     serializedVersion: 2
     m_Curve:
@@ -1148,7 +1148,6 @@ MonoBehaviour:
   DeathTime: 0.1
   DeathParticleTime: 1
   AttackTime: 4
-  AttackSoundDelay: 1
   DeathEffect: {fileID: 1653812955986144, guid: 606e6a593bd18d74098189482286cd0a,
     type: 2}
   TimeInState: 0
@@ -1178,7 +1177,7 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.7
+  m_Radius: 0.8
   m_Center: {x: 0, y: 0.5, z: 0}
 --- !u!136 &136076507154263108
 CapsuleCollider:
@@ -1192,7 +1191,7 @@ CapsuleCollider:
   m_Radius: 0.5
   m_Height: 1
   m_Direction: 1
-  m_Center: {x: 0, y: 0.5, z: 0}
+  m_Center: {x: 0, y: 0.35, z: 0}
 --- !u!137 &137630179487444668
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 1
